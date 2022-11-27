@@ -14,20 +14,23 @@
     "lint-fix": "eslint . --fix",
     "lint-debug": "DEBUG=eslint:cli-engine npm run lint",
     "test": "jest",
-    "test-coverage": "jest --coverage"
+    "test-coverage": "jest --coverage",
+    "dev": "npm run build && NODE_ENV=development node dist/app/server/start",
+    "start": "NODE_ENV=production node dist/server/start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/giacomoratta/node-boilerplate-v1.git"
   },
   "author": "",
-  "license": "GNU 3.0",
+  "license": "GPU 3.0",
   "bugs": {
     "url": "https://github.com/giacomoratta/node-boilerplate-v1/issues"
   },
   "homepage": "https://github.com/giacomoratta/node-boilerplate-v1#readme",
   "devDependencies": {
     "@types/jest": "^29.2.3",
+    "@types/koa__router": "^12.0.0",
     "@types/node": "^18.11.9",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
@@ -38,10 +41,13 @@
     "eslint-plugin-n": "^15.5.1",
     "eslint-plugin-promise": "^6.1.1",
     "jest": "^29.3.1",
+    "supertest": "^6.3.1",
     "ts-jest": "^29.0.3",
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "@koa/router": "^12.0.0",
+    "dotenv": "^16.0.3",
+    "koa": "^2.13.4"
   }
 }
