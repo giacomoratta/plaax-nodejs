@@ -1,0 +1,2 @@
+extends BaseGateway
+accept config/auth as constructor params
