@@ -68,9 +68,7 @@ The actual initial project: provide a complex UI and use the API layer implement
 - (done) set node version not aliases
 
 #### CHANGES BASED ON FEEDBACK
-- do not overcomplicate the structure with DDD
-- src -> frontend/backend
-- src/backend -> simple structure
+- (done) do not overcomplicate the structure with DDD
 
 #### THE PROJECT (basics)
 - rename project: backend for Plaax-nodejs

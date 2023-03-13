@@ -23,6 +23,15 @@ $ docker run -d -t -P gr/node-bpv1
 
 # Access the container with a terminal
 $ docker exec -ti e390ceb99781 sh
+
+# List all running containers of a specific image
+$ docker container ls | awk '/node-bp-v1/ {print $1}'
+
+# Stop all running containers of a specific image
+$ docker container stop $(docker container ls | awk '/node-bp-v1/ {print $1}')
+
+# Run the newest container of a specific image
+$ docker container start $(docker container ls | awk '/node-bp-v1/ {print $1}' | head -n1)
 ```
 
 #### Cleaning

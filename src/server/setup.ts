@@ -2,20 +2,18 @@ import Koa from 'koa'
 import KoaRouter from '@koa/router'
 import serverStateMiddleware from './state.middleware'
 
-import { apiHelloWorldById } from '../apiControllers'
+import * as apiHelloWorld from '../api/helloWorld'
 
-const server = new Koa()
+export const server = new Koa()
 
-const router = new KoaRouter({
+/* Keep all route definitions here for better readability */
+export const router = new KoaRouter({
   prefix: '/rest/v1'
 })
-
 router
-  .get('/hello/world/:id', apiHelloWorldById)
+  .get('/hello/world/:id', apiHelloWorld.getById)
 
 server
   .use(serverStateMiddleware)
   .use(router.routes())
   .use(router.allowedMethods())
-
-export default server

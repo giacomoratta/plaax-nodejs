@@ -1,4 +1,4 @@
-export const apiHelloWorldById = async (ctx): Promise<void> => {
+export const getById = async (ctx): Promise<void> => {
   const helloId: string = ctx.params.id
   console.log('Called hello world api controller', helloId)
   ctx.status = 200
