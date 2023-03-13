@@ -1,5 +1,5 @@
 {
-  "name": "node-boilerplate-v1",
+  "name": "plaax-nodejs",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -17,19 +17,19 @@
     "test-coverage": "jest --coverage",
     "dev": "npm run build && NODE_ENV=development node dist/server/start",
     "start": "NODE_ENV=production node dist/server/start",
-    "docker-build": "docker build -t gr/node-bp-v1 .",
-    "docker-run": "docker run -p 3000:3000 gr/node-bp-v1"
+    "docker-build": "docker build -t gr/plaax-nodejs .",
+    "docker-run": "docker run -p 3000:3000 gr/plaax-nodejs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/giacomoratta/node-boilerplate-v1.git"
+    "url": "git+https://github.com/giacomoratta/plaax-nodejs.git"
   },
   "author": "",
   "license": "GPU 3.0",
   "bugs": {
-    "url": "https://github.com/giacomoratta/node-boilerplate-v1/issues"
+    "url": "https://github.com/giacomoratta/plaax-nodejs/issues"
   },
-  "homepage": "https://github.com/giacomoratta/node-boilerplate-v1#readme",
+  "homepage": "https://github.com/giacomoratta/plaax-nodejs#readme",
   "devDependencies": {
     "@types/jest": "^29.2.3",
     "@types/koa__router": "^12.0.0",

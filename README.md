@@ -1,4 +1,4 @@
-# Node Boilerplate v1
+# PLAAX NodeJs Backend
 
 ### Install the project
 ```bash
@@ -22,4 +22,3 @@ npm install
 
 ### Other commands
 * `npm run clean`: delete generated directories (e.g. `dist`, `coverage`)
-* 

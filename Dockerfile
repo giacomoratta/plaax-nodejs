@@ -1,7 +1,7 @@
 FROM node:18-slim AS basebuilder
 # The base image for distbuilder, to avoid reinstalling all node modules.
 
-ARG CONTAINER_WORKING_DIR=/home/node-bpv1
+ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
 
@@ -13,7 +13,7 @@ RUN npm install
 FROM basebuilder AS distbuilder
 # The distribution builder: run tests and compile typescript.
 
-ARG CONTAINER_WORKING_DIR=/home/node-bpv1
+ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
 
@@ -34,7 +34,7 @@ FROM node:18-slim AS runner
 ENV NODE_ENV production
 
 ARG EXEC_USER_GROUP=node:node
-ARG CONTAINER_WORKING_DIR=/home/node-bpv1
+ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
 

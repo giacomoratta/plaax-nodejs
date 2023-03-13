@@ -7,31 +7,31 @@ Docker images for Node: https://hub.docker.com/_/node
 #### Images
 ```
 # Build the image
-docker build -t gr/node-bpv1 .
+docker build -t gr/plaax-nodejs .
 ```
 
 #### Containers
 ```
 # Run container, detached (-d) and with terminal (-t)
-$ docker run -d -t gr/node-bp-v1
+$ docker run -d -t gr/plaax-nodejs
 
 # Port mapping
-$ docker run -d -t -p 3020:3000 gr/node-bpv1
+$ docker run -d -t -p 3020:3000 gr/plaax-nodejs
 
 # Expose ports with automatically assigned one
-$ docker run -d -t -P gr/node-bpv1
+$ docker run -d -t -P gr/plaax-nodejs
 
 # Access the container with a terminal
 $ docker exec -ti e390ceb99781 sh
 
 # List all running containers of a specific image
-$ docker container ls | awk '/node-bp-v1/ {print $1}'
+$ docker container ls | awk '/plaax-nodejs/ {print $1}'
 
 # Stop all running containers of a specific image
-$ docker container stop $(docker container ls | awk '/node-bp-v1/ {print $1}')
+$ docker container stop $(docker container ls | awk '/plaax-nodejs/ {print $1}')
 
 # Run the newest container of a specific image
-$ docker container start $(docker container ls | awk '/node-bp-v1/ {print $1}' | head -n1)
+$ docker container start $(docker container ls | awk '/plaax-nodejs/ {print $1}' | head -n1)
 ```
 
 #### Cleaning
