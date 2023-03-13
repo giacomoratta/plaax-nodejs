@@ -76,6 +76,10 @@ export abstract class BaseGateway {
     }
   }
 
+  private kjhdaf (): undefined {
+    return undefined
+  }
+
   private handleError (error: AxiosError): BaseGatewayResponse | undefined {
     if (!axios.isAxiosError(error) || error.response == null) {
       const gatewayError = new Error('Unexpected error' + (error?.message === null ? '' : `: ${error.message}`))

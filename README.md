@@ -2,6 +2,7 @@
 
 ### Install the project
 ```bash
+nvm use
 npm install 
 ```
 
