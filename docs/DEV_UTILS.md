@@ -2,6 +2,8 @@
 
 ## Docker
 
+Docker images for Node: https://hub.docker.com/_/node
+
 #### Images
 ```
 # Build the image

@@ -1,6 +1,5 @@
-FROM node:hydrogen-slim AS basebuilder
-# >> The base image for distbuilder, to avoid reinstalling all node modules <<
-# Versions for node/hydrogen: node 18, npm 8
+FROM node:18-slim AS basebuilder
+# The base image for distbuilder, to avoid reinstalling all node modules.
 
 ARG CONTAINER_WORKING_DIR=/home/node-bpv1
 
@@ -12,7 +11,7 @@ RUN npm install
 
 
 FROM basebuilder AS distbuilder
-# >> The distribution builder: run tests and compile typescript <<
+# The distribution builder: run tests and compile typescript.
 
 ARG CONTAINER_WORKING_DIR=/home/node-bpv1
 
@@ -29,8 +28,8 @@ RUN npm run test
 RUN npm run build
 
 
-FROM node:hydrogen-slim AS runner
-# >> The final container for running the app <<
+FROM node:18-slim AS runner
+# The final container for running the service.
 
 ENV NODE_ENV production
 
