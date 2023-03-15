@@ -1,5 +1,41 @@
 # Dev Notes
 
+## Local config for `git`, `npm`, `nvm`
+
+#### Set a local git config
+This way will prevent the usage of other git accounts or global settings.
+```shell
+$ git config --local user.email '878787+myusername@users.noreply.github.com'
+$ git config --local user.name 'myusername'
+
+# Quick check of the git config for the current repository:
+$ cat .git/config
+```
+
+#### Set a local npm registry
+Create the file `.npmrc` with the following content:
+```text
+registry=https://registry.npmjs.org/
+@namespace:registry=https://registry.npmjs.org/
+```
+
+#### Set local node and npm versions
+- Add `engines` section to `package.json`:
+  ```
+  "engines": {
+    "node": ">=18.12.1 <19.0.0",
+    "npm": ">=9.5.0 < 10.0.0"
+  }
+  ```
+- Create the `.nvmrc` file:
+  ```shell
+  $ nvm use lts/hydrogen
+  $ node -v > .nvmrc
+  
+  # next time, just run:
+  $ nvm use
+  ```
+
 ## Docker
 
 #### COPY always as 'root' user
@@ -21,9 +57,7 @@ Running processes in the container as the root user is a precarious security pra
 - If PID1 is our app, it does not handle child-process signals, so they remain as zombie with reserved resources.
 - When PID1 is 'tini' and our app terminates, the init system takes care of cleaning the process table.
 
-
-
-## References
+#### REFERENCES
 - https://towardsdev.com/writing-a-docker-file-for-your-node-js-typescript-micro-service-c5170b957893
 - https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf
 - https://petermalmgren.com/pid-1-child-processes-docker/

@@ -1,5 +1,3 @@
-# General Guidelines
-
 #### MAIN GOALS
 - build a boilerplate for NodeJs-app (full setup typescript, eslint, jest, docker, docker-compose, project structure)
 - build a simple backend layer (node, python, go, rust)
@@ -71,8 +69,8 @@ The actual initial project: provide a complex UI and use the API layer implement
 - (done) do not overcomplicate the structure with DDD
 
 #### THE PROJECT (basics)
-- rename project: backend for Plaax-nodejs
-  - nodejs is the tech, in case I do other backends with different techs
+- (done) set local configs
+- (done) rename project: backend for Plaax-nodejs; nodejs is the tech, in case I do other backends with different techs
 - create api layer
 - add pino logger
 - prevent console on tests
@@ -83,7 +81,6 @@ The actual initial project: provide a complex UI and use the API layer implement
 - deploy on AWS as ACC environment
 - define architecture
 - arch#1 = lambda, api gateway, script with cloudformation on local
-- 
 
 #### THE PROJECT (more)
 - interact with database SQL and noSQL

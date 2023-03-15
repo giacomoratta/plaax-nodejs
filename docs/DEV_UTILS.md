@@ -25,7 +25,7 @@ $ docker run -d -t -P gr/plaax-nodejs
 $ docker exec -ti e390ceb99781 sh
 
 # List all running containers of a specific image
-$ docker container ls | awk '/plaax-nodejs/ {print $1}'
+$ docker container ps | awk '/plaax-nodejs/ {print $1}'
 
 # Stop all running containers of a specific image
 $ docker container stop $(docker container ls | awk '/plaax-nodejs/ {print $1}')

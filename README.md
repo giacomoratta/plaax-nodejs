@@ -1,8 +1,16 @@
 # PLAAX NodeJs Backend
 
+A backend layer for PLAAX service, build with NodeJS and Typescript.
+
 ### Install the project
 ```bash
+# set local git config (username, email)
+
+# check local npm registry (should be the default one)
+
+# set the right version of node and npm
 nvm use
+
 npm install 
 ```
 
@@ -15,10 +23,20 @@ npm install
 * `npm test`: run all tests
 * `npm run test-coverage`: run all tests and get coverage report
 
-### Build and Run
+### Build & Run
 * `npm run build`: build the project distribution (`dist` directory)
 * `npm run dev`: build and run the project in _development_ mode
 * `npm start`: run the project in _production_ mode
 
-### Other commands
+### Docker commands
+* `npm run docker-build`: build the docker image
+* `npm run docker-run`: create and run a container based on the docker image
+* `npm run docker-start`: start an existing container of this project
+* `npm run docker-stop`: stop a running container of this project
+* `npm run docker-list-containers`: list all docker containers related to this project
+* `npm run docker-list-images`: list all docker images related to this project
+
+### Cleaning
 * `npm run clean`: delete generated directories (e.g. `dist`, `coverage`)
+* `npm run docker-rm-containers`: remove all docker containers related to this project
+* `npm run docker-rm-images`: remove all docker images related to this project
