@@ -1,0 +1,56 @@
+# Get all table items
+aws dynamodb scan --table-name plaax-items-dev
+
+
+# Get all projects of a user
+aws dynamodb query \
+--table-name plaax-user-project-dev \
+--key-condition-expression "userId = :userId" \
+--expression-attribute-values  '{":userId":{"N":"1005"}}'
+
+
+# Get all items of a project
+aws dynamodb query \
+--table-name plaax-items-dev \
+--key-condition-expression "projectId = :projectId" \
+--expression-attribute-values  '{":projectId":{"N":"1002"}}'
+
+
+# Get 1 specific item
+# (for get-item, key must always specify both partition and sort keys)
+aws dynamodb get-item \
+--table-name plaax-items-dev \
+--key '{"projectId":{"N":"1002"},"itemId":{"N":"1171"}}'
+
+
+# Get user calendar of a specific interval
+aws dynamodb query \
+--table-name plaax-user-calendar-dev \
+--key-condition-expression "userId = :userId" \
+--filter-expression "beginTs >= :beginTs AND endTs <= :endTs" \
+--expression-attribute-values \
+  '{":userId":{"N":"1006"},":beginTs":{"N":"1680028200000"},":endTs":{"N":"1680106500000"}}'
+
+
+# Get all items assigned to 1 user of 1 project
+aws dynamodb query \
+--table-name plaax-items-dev \
+--key-condition-expression "projectId = :projectId" \
+--filter-expression "contains(assignedUserIds, :userId)" \
+--expression-attribute-values '{":projectId":{"N":"1002"},":userId":{"N":"1005"}}'
+
+
+# Get all items assigned to 1 user of 1 project
+aws dynamodb query \
+--table-name plaax-items-dev \
+--key-condition-expression "projectId = :projectId" \
+--filter-expression "contains(assignedUserIds, :userId)" \
+--expression-attribute-values  '{":projectId":{"N":"1002"},":userId":{"N":"1005"}}'
+
+
+# Get all items owned by 1 user of 1 project
+aws dynamodb query \
+--table-name plaax-items-dev \
+--key-condition-expression "projectId = :projectId" \
+--filter-expression "ownerUserId = :userId" \
+--expression-attribute-values  '{":projectId":{"N":"1002"},":userId":{"N":"1005"}}'

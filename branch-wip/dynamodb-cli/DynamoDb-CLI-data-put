@@ -1,0 +1,23 @@
+# Create/update item
+aws dynamodb put-item \
+--table-name plaax-items-dev \
+--item file://branch-wip/temp-dummy-data/dummy-data.json
+
+
+# Create/update unique-ids
+aws dynamodb put-item \
+--table-name plaax-unique-ids-dev \
+--item file://branch-wip/temp-dummy-data/dummy-data.json
+
+
+# Create/update user-calendar
+# > change item on calendar (set new beginTs and/or endTs)
+aws dynamodb put-item \
+--table-name plaax-user-calendar-dev \
+--item file://branch-wip/temp-dummy-data/dummy-data.json
+
+
+# Create/update user-project
+aws dynamodb put-item \
+--table-name plaax-user-project-dev \
+--item file://branch-wip/temp-dummy-data/dummy-data.json

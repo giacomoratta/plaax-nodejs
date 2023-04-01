@@ -1,0 +1,35 @@
+{
+  "projectId": {
+    "N": "1001"
+  },
+  "itemId": {
+    "N": "1075"
+  },
+  "ownerUserId": {
+    "N": "1006"
+  },
+  "assignedUserIds": {
+    "NS": [
+      "1005",
+      "1006"
+    ]
+  },
+  "listId": {
+    "N": "1021"
+  },
+  "activityId": {
+    "N": "1052"
+  },
+  "title": {
+    "S": "Task 1075 for 1001"
+  },
+  "createTs": {
+    "N": "1680326578558"
+  },
+  "updateTs": {
+    "N": "1680499378558"
+  },
+  "archivedTs": {
+    "N": "1680499378558"
+  }
+}

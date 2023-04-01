@@ -1,0 +1,368 @@
+[
+  {
+    "projectId": 1001,
+    "ownerUserId": 1005,
+    "assignedUserIds": [1005, 1006],
+    "lists": [
+      {
+        "itemId": 1021,
+        "activities": [
+          {
+            "itemId": 1051,
+            "tasks": [
+              { "itemId": 1071 },
+              {
+                "itemId": 1072,
+                "assignedUserIds": [1005, 1006],
+                "calByUser": {
+                  "1005": {
+                    "calBeginStringDate": "2023-03-28 18:15:00",
+                    "calEndStringDate": "2023-03-28 18:45:00"
+                  },
+                  "1006": {
+                    "calBeginStringDate": "2023-03-28 22:15:00",
+                    "calEndStringDate": "2023-03-29 03:45:00"
+                  }
+                }
+              },
+              {
+                "itemId": 1073,
+                "calBeginStringDate": "2023-03-27 11:15:00",
+                "calEndStringDate": "2023-03-27 11:45:00"
+              }
+            ]
+          },
+          {
+            "itemId": 1052,
+            "tasks": [
+              {
+                "itemId": 1075,
+                "ownerUserId": 1006,
+                "calBeginStringDate": "2023-03-29 16:45:00",
+                "calEndStringDate": "2023-03-29 18:15:00"
+              },
+              {
+                "itemId": 1076
+              },
+              {
+                "itemId": 1077,
+                "ownerUserId": 1006
+              },
+              {
+                "itemId": 1078,
+                "calBeginStringDate": "2023-03-30 22:45:00",
+                "calEndStringDate": "2023-03-31 04:15:00"
+              }
+            ]
+          },
+          {
+            "itemId": 1053,
+            "tasks": [],
+            "calBeginStringDate": "2023-03-29 08:30:00",
+            "calEndStringDate": "2023-03-29 10:15:00"
+          },
+          {
+            "itemId": 1054,
+            "tasks": [
+              {
+                "itemId": 1091,
+                "assignedUserIds": [1005, 1006],
+                "calByUser": {
+                  "1005": {
+                    "calBeginStringDate": "2023-04-02 14:15:00",
+                    "calEndStringDate": "2023-04-02 14:45:00"
+                  },
+                  "1006": {
+                    "calBeginStringDate": "2023-03-31 23:15:00",
+                    "calEndStringDate": "2023-04-01 02:45:00"
+                  }
+                }
+              },
+              {
+                "itemId": 1092,
+                "assignedUserIds": [1005, 1006]
+              },
+              {
+                "itemId": 1093,
+                "calBeginStringDate": "2023-03-28 15:30:00",
+                "calEndStringDate": "2023-03-28 15:45:00"
+              },
+              { "itemId": 1094 }
+            ]
+          },
+          {
+            "itemId": 1165,
+            "ownerUserId": 1006,
+            "tasks": [],
+            "calBeginStringDate": "2023-03-27 09:30:00",
+            "calEndStringDate": "2023-03-27 10:45:00"
+          },
+          {
+            "itemId": 1166,
+            "assignedUserIds": [1005, 1006],
+            "tasks": [],"calByUser": {
+              "1005": {
+                "calBeginStringDate": "2023-03-25 19:15:00",
+                "calEndStringDate": "2023-03-28 19:45:00"
+              },
+              "1006": {
+                "calBeginStringDate": "2023-03-25 21:15:00",
+                "calEndStringDate": "2023-03-29 00:45:00"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "itemId": 1022,
+        "activities": [
+          {
+            "itemId": 1055,
+            "tasks": [
+              {
+                "itemId": 1081,
+                "calBeginStringDate": "2023-03-26 12:15:00",
+                "calEndStringDate": "2023-03-26 12:45:00"
+              },
+              { "itemId": 1082 },
+              {
+                "itemId": 1083,
+                "calByUser": {
+                  "1005": {
+                    "calBeginStringDate": "2023-03-28 10:45:00",
+                    "calEndStringDate": "2023-03-28 11:15:00"
+                  },
+                  "1006": {
+                    "calBeginStringDate": "2023-03-28 20:30:00",
+                    "calEndStringDate": "2023-03-29 21:45:00"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "itemId": 1056,
+            "tasks": [
+              { "itemId": 1084 },
+              { "itemId": 1085, "assignedUserIds": [1005, 1006] },
+              { "itemId": 1086 },
+              { "itemId": 1087, "ownerUserId": 1006 },
+              { "itemId": 1088, "assignedUserIds": [1005, 1006] }
+            ]
+          },
+          {
+            "itemId": 1057,
+            "tasks": [
+              { "itemId": 1089 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": 1002,
+    "ownerUserId": 1005,
+    "assignedUserIds": [1005, 1007, 1008],
+    "lists": [
+      {
+        "itemId": 1121,
+        "activities": [
+          {
+            "itemId": 1151,
+            "tasks": [
+              { "itemId": 1171, "ownerUserId": 1008 },
+              {
+                "itemId": 1172,
+                "assignedUserIds": [1007, 1008],
+                "calByUser": {
+                  "1007": {
+                    "calBeginStringDate": "2023-03-26 21:45:00",
+                    "calEndStringDate": "2023-03-28 22:15:00"
+                  },
+                  "1008": {
+                    "calBeginStringDate": "2023-03-28 17:45:00",
+                    "calEndStringDate": "2023-03-29 19:45:00"
+                  }
+                }
+              },
+              {
+                "itemId": 1173,
+                "calBeginStringDate": "2023-03-30 06:45:00",
+                "calEndStringDate": "2023-03-30 08:00:00"
+              }
+            ]
+          },
+          {
+            "itemId": 1152,
+            "tasks": [
+              { "itemId": 1175 },
+              {
+                "itemId": 1176,
+                "assignedUserIds": [1007, 1008],
+                "calByUser": {
+                  "1007": {
+                    "calBeginStringDate": "2023-03-25 22:15:00",
+                    "calEndStringDate": "2023-03-25 22:30:00"
+                  },
+                  "1008": {
+                    "calBeginStringDate": "2023-03-26 15:45:00",
+                    "calEndStringDate": "2023-03-26 16:30:00"
+                  }
+                }
+              },
+              {
+                "itemId": 1177,
+                "assignedUserIds": [1005, 1008],
+                "calByUser": {
+                  "1005": {
+                    "calBeginStringDate": "2023-03-29 16:15:00",
+                    "calEndStringDate": "2023-03-29 19:30:00"
+                  },
+                  "1008": {
+                    "calBeginStringDate": "2023-03-31 12:45:00",
+                    "calEndStringDate": "2023-03-31 13:30:00"
+                  }
+                }
+              },
+              {
+                "itemId": 1178,
+                "calBeginStringDate": "2023-03-24 09:45:00",
+                "calEndStringDate": "2023-03-24 11:30:00"
+              }
+            ]
+          },
+          {
+            "itemId": 1153,
+            "ownerUserId": 1008,
+            "tasks": [],
+            "calBeginStringDate": "2023-03-25 22:45:00",
+            "calEndStringDate": "2023-03-26 02:00:00"
+          },
+          {
+            "itemId": 1161,
+            "ownerUserId": 1007,
+            "tasks": [],
+            "calBeginStringDate": "2023-03-26 07:45:00",
+            "calEndStringDate": "2023-03-26 09:00:00"
+          },
+          {
+            "itemId": 1162,
+            "assignedUserIds": [1005, 1008],
+            "tasks": [],
+            "calByUser": {
+              "1005": {
+                "calBeginStringDate": "2023-03-30 13:15:00",
+                "calEndStringDate": "2023-03-30 14:30:00"
+              },
+              "1008": {
+                "calBeginStringDate": "2023-03-31 16:45:00",
+                "calEndStringDate": "2023-03-31 19:30:00"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "itemId": 1122,
+        "activities": [
+          {
+            "itemId": 1155,
+            "tasks": [
+              { "itemId": 1181 },
+              { "itemId": 1182, "ownerUserId": 1008 },
+              {
+                "itemId": 1183,
+                "assignedUserIds": [1007, 1005],
+                "calByUser": {
+                  "1005": {
+                    "calBeginStringDate": "2023-03-31 12:15:00",
+                    "calEndStringDate": "2023-03-31 15:30:00"
+                  },
+                  "1007": {
+                    "calBeginStringDate": "2023-03-31 19:45:00",
+                    "calEndStringDate": "2023-03-31 20:30:00"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "itemId": 1156,
+            "tasks": [
+              {
+                "itemId": 1184,
+                "calBeginStringDate": "2023-03-30 12:15:00",
+                "calEndStringDate": "2023-03-30 15:30:00"
+              },
+              { "itemId": 1185 },
+              {
+                "itemId": 1186,
+                "ownerUserId": 1008,
+                "calBeginStringDate": "2023-03-31 05:45:00",
+                "calEndStringDate": "2023-03-31 07:45:00"
+              },
+              {
+                "itemId": 1187,
+                "calBeginStringDate": "2023-03-31 11:15:00",
+                "calEndStringDate": "2023-03-31 13:30:00"
+              },
+              { "itemId": 1188, "assignedUserIds": [1007, 1008] }
+            ]
+          },
+          {
+            "itemId": 1157,
+            "tasks": [
+              { "itemId": 1189 },
+              {
+                "itemId": 1171,
+                "calBeginStringDate": "2023-03-28 17:45:00",
+                "calEndStringDate": "2023-03-28 18:30:00"
+              },
+              { "itemId": 1172 },
+              { "itemId": 1173, "ownerUserId": 1008 },
+              {
+                "itemId": 1174,
+                "assignedUserIds": [1005, 1008],
+                "calByUser": {
+                  "1005": {
+                    "calBeginStringDate": "2023-03-26 11:15:00",
+                    "calEndStringDate": "2023-03-26 12:30:00"
+                  },
+                  "1008": {
+                    "calBeginStringDate": "2023-03-29 21:45:00",
+                    "calEndStringDate": "2023-03-29 22:30:00"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "itemId": 1158,
+            "tasks": [
+              { "itemId": 1175 },
+              {
+                "itemId": 1176,
+                "calBeginStringDate": "2023-03-27 18:45:00",
+                "calEndStringDate": "2023-03-27 19:45:00"
+              }
+            ]
+          },
+          {
+            "itemId": 1159,
+            "tasks": [
+              { "itemId": 1177 },
+              {
+                "itemId": 1178,
+                "ownerUserId": 1008,
+                "calBeginStringDate": "2023-03-28 13:45:00",
+                "calEndStringDate": "2023-03-28 15:15:00"
+              },
+              { "itemId": 1179 }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

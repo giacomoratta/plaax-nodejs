@@ -1,0 +1,14 @@
+Final JSON data for DynamoDB separated in directories.
+
+Every JSON file has the format accepted by DynamoDB. Example:
+```
+{
+  "projectId": {
+    "N": "1001"
+  },
+  "itemId": {
+    "N": "1001"
+  },
+  ...
+}
+```

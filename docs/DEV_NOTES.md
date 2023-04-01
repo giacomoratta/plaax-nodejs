@@ -10,6 +10,12 @@ $ git config --local user.name 'myusername'
 
 # Quick check of the git config for the current repository:
 $ cat .git/config
+
+# Add ssh keys
+$ ssh-add $HOME/.ssh/<key-name>
+
+# Try ssh-authentication with verbose mode
+$ ssh -vT git@github.com
 ```
 
 #### Set a local npm registry

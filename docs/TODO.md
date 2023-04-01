@@ -71,10 +71,12 @@ The actual initial project: provide a complex UI and use the API layer implement
 #### THE PROJECT (basics)
 - (done) set local configs
 - (done) rename project: backend for Plaax-nodejs; nodejs is the tech, in case I do other backends with different techs
-- create api layer
-- add pino logger
-- prevent console on tests
-- prevent logs on tests
+- define data, table, r/w access
+- add sql-db (mysql) locally
+- add no-sql-db (dynamodb?) locally
+- add pino logger for the code (suppress on tests)
+- add logger for api requests (pino? as middleware?) (suppress on tests)
+- create api layer (focus on the basic features of task manager)
 - use nodemon, better dev env
 
 #### DEPLOYMENT ON AWS AS SERVERLESS
@@ -83,7 +85,7 @@ The actual initial project: provide a complex UI and use the API layer implement
 - arch#1 = lambda, api gateway, script with cloudformation on local
 
 #### THE PROJECT (more)
-- interact with database SQL and noSQL
+- provide API with GraphQL
 - library for a working mock for APIs
 - docker compose with postgres
 - docker compose with dynamodb
