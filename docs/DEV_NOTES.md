@@ -1,14 +1,21 @@
 # Dev Notes
 
+## General steps before developing: local dev config
+- node and npm (nvm use)
+- npm registry
+- github profile
+- aws profile
+
+
 ## Local config for `git`, `npm`, `nvm`
 
-#### Set a local git config
+#### Set a permanent git config for a repository 
 This way will prevent the usage of other git accounts or global settings.
 ```shell
 $ git config --local user.email '878787+myusername@users.noreply.github.com'
 $ git config --local user.name 'myusername'
 
-# Quick check of the git config for the current repository:
+# Quick check of the git config for the current repositories:
 $ cat .git/config
 
 # Add ssh keys

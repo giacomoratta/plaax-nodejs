@@ -4,7 +4,7 @@ interface KeyValueObject {
   [key: string]: string | number | boolean | null | undefined
 }
 
-interface BaseGatewayResponse {
+interface HttpGatewayResponse {
   status: number
   statusText: string
   data: any
@@ -18,7 +18,7 @@ interface RequestConfig {
   headers?: KeyValueObject
 }
 
-export abstract class BaseGateway {
+export abstract class HttpGateway {
   private readonly requestConfig: RequestConfig
 
   protected constructor (requestConfig: RequestConfig) {
@@ -31,7 +31,7 @@ export abstract class BaseGateway {
     queryParams?: KeyValueObject
     headers?: KeyValueObject
     body?: object | string | undefined
-  }): Promise<BaseGatewayResponse | undefined> {
+  }): Promise<HttpGatewayResponse | undefined> {
     const url = `${this.requestConfig.baseUrl}${requestLocalConfig.endpoint}`
 
     const config = {
@@ -43,7 +43,7 @@ export abstract class BaseGateway {
       timeout: this.requestConfig.timeout
     }
 
-    console.debug({ url, config }, 'BaseGateway request')
+    console.debug({ url, config }, 'HttpGateway request')
 
     let axiosResponse
     try {
@@ -80,7 +80,7 @@ export abstract class BaseGateway {
     return undefined
   }
 
-  private handleError (error: AxiosError): BaseGatewayResponse | undefined {
+  private handleError (error: AxiosError): HttpGatewayResponse | undefined {
     if (!axios.isAxiosError(error) || error.response == null) {
       const gatewayError = new Error('Unexpected error' + (error?.message === null ? '' : `: ${error.message}`))
       gatewayError.name = 'Gateway Error'
@@ -88,7 +88,7 @@ export abstract class BaseGateway {
       throw gatewayError
     }
 
-    console.warn({ errorResponse: error.response }, 'BaseGateway request error')
+    console.warn({ errorResponse: error.response }, 'HttpGateway request error')
 
     return {
       status: error.response.status,
