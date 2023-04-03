@@ -1,2 +1,2 @@
-extends BaseGateway
+extends HttpGateway
 accept config/auth as constructor params

@@ -4,3 +4,5 @@ coverage
 .eslintrc.js
 .gitignore
 jest.config.js
+docs
+branch-wip

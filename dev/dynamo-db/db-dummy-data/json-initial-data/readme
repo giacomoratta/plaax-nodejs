@@ -1,0 +1,3 @@
+Initial JSON data for any kind of purposes.
+
+This data should be used by NodeJs scripts to generate the final data for DynamoDB.

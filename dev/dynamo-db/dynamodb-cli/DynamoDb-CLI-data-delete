@@ -1,0 +1,48 @@
+# Remove assigned user to activity/task (change array of item)
+
+# >> remove from array
+aws dynamodb update-item \
+--table-name plaax-items-dev \
+--key '{"projectId":{"N":"1002"},"itemId":{"N":"1121"}}' \
+--update-expression "DELETE assignedUserIds :userId" \
+--expression-attribute-values '{":userId": {"NS":["5555"]}}' \
+--return-values ALL_NEW
+
+# >> remove from calendar
+aws dynamodb delete-item \
+--table-name plaax-user-calendar-dev \
+--key '{"userId":{"N":"5555"},"itemId":{"N":"1121"}}' \
+--return-values ALL_OLD
+
+
+
+# Set item as 'archived'
+aws dynamodb update-item \
+--table-name plaax-items-dev \
+--key '{"projectId":{"N":"1002"},"itemId":{"N":"1121"}}' \
+--update-expression "SET archivedTs = :archivedTs" \
+--expression-attribute-values '{":archivedTs": {"N":"1680499378558"}}' \
+--return-values ALL_NEW
+
+# Unset item as 'archived'
+aws dynamodb update-item \
+--table-name plaax-items-dev \
+--key '{"projectId":{"N":"1002"},"itemId":{"N":"1121"}}' \
+--update-expression "REMOVE archivedTs" \
+--return-values ALL_NEW
+
+
+
+# Remove an item permanently
+aws dynamodb delete-item \
+--table-name plaax-items-dev \
+--key '{"projectId":{"N":"1002"},"itemId":{"N":"1121"}}' \
+--return-values ALL_OLD
+
+
+
+# Remove assigned user from project
+# validity check: user must be removed from all related items of the project
+# validity check: user must be removed from all owned tasks of the project
+# validity check: user must not be the owner of the project
+# ...todo...

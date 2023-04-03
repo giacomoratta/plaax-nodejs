@@ -1,0 +1,18 @@
+# Get a new unique id
+aws dynamodb update-item \
+--table-name plaax-unique-ids-dev \
+--key '{"recordType":{"S":"item"}}' \
+--update-expression "SET #field = #field + :incr, #ts = :newTs " \
+--expression-attribute-names '{ "#field": "lastId", "#ts": "updateTs" }' \
+--expression-attribute-values '{ ":incr": {"N":"1"}, ":newTs": {"N": "1679934109999"} }' \
+--return-values ALL_NEW
+
+
+# Set assigned user to activity/task (change array of item)
+# validity check: user must be already assigned to a project
+aws dynamodb update-item \
+--table-name plaax-items-dev \
+--key '{"projectId":{"N":"1002"},"itemId":{"N":"1121"}}' \
+--update-expression "ADD assignedUserIds :userId" \
+--expression-attribute-values '{":userId": {"NS":["5555"]}}' \
+--return-values ALL_NEW

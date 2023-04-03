@@ -1,0 +1,14 @@
+# Delete table 'plaax-items-dev'
+aws dynamodb delete-table --table-name plaax-items-dev
+
+
+# Delete table 'plaax-unique-ids-dev'
+aws dynamodb delete-table --table-name plaax-unique-ids-dev
+
+
+# Delete table 'plaax-user-calendar-dev'
+aws dynamodb delete-table --table-name plaax-user-calendar-dev
+
+
+# Delete table 'plaax-user-project-dev'
+aws dynamodb delete-table --table-name plaax-user-project-dev

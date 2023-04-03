@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios'
-import { BaseGateway } from '../index'
+import { HttpGateway } from '../index'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -46,7 +46,7 @@ const TEST_SERVICE = {
   timeout: 4000
 }
 
-class TestGateway extends BaseGateway {
+class TestGateway extends HttpGateway {
   constructor () {
     super({
       baseUrl: TEST_SERVICE.url,
@@ -71,7 +71,7 @@ class TestGateway extends BaseGateway {
   }
 }
 
-describe('BaseGateway', () => {
+describe('HttpGateway', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
