@@ -53,7 +53,7 @@ export const handler: APIGatewayProxyHandlerV2 =
 
 const getProjectHandler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
   log.debug('Call from apiControllers!')
-  const project = await getFullProject(event.pathParameters?.projectId)
+  await getFullProject(event.pathParameters?.projectId)
   // event.pathParameters['projectId']
   // return Controller(): LambdaApiResponse
   return genericJsonServerError({

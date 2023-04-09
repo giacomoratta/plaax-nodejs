@@ -1,0 +1,21 @@
+// GET /rest/v1/board/:userId
+// get user projects
+// get user items
+// sort everything, nest object, etc.
+
+// GET /rest/v1/calendar/:userId/:from/:to
+// GET /rest/v1/calendar/:userId/:projectId/:from/:to
+
+// POST /rest/v1/item (create/update item)
+
+// POST /rest/v1/calendar/item (create/update item)
+
+// const PlaaxDynamoDbGateway = {}
+//
+// export const getBoard = (userId: number) => {
+//     // return big type
+// }
+//
+// export const getCalendar = (userId: number) => {
+//     // return big type
+// }
