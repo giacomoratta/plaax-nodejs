@@ -20,6 +20,8 @@ $ cat .git/config
 
 # Add ssh keys
 $ ssh-add $HOME/.ssh/<key-name>
+$ ssh-add -K ~/.ssh/<key-name> #add permanently
+$ ssh-add --apple-use-keychain ~/.ssh/<key-name> #add permanently (macOs 2023)
 
 # Try ssh-authentication with verbose mode
 $ ssh -vT git@github.com
