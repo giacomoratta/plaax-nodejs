@@ -1,0 +1,15 @@
+Definitions of the domain-specific objects
+
+1. BoardItem is the smallest interface shared by all plaax-items,
+   with the most common properties.
+   
+2. "Item" vs "Full": distinction between atomic item and molecular item.
+   "Item" is just a the single plaax-item with all primitive values in the properties. 
+   "Full" is the single plaax-item like "Item" extended with nested plaax-items (if present).
+   
+3. Why "Item/Full" instead of optional properties?
+   For a better code readability.
+   If we see a function returning "ActivityFull", we expect (for sure!) to have an array of tasks inside,
+   which could be empty or not, but present.
+   In general, if we read a function returning "ProjectFull" we can expect an huge amount of data comparing to
+   the simpler "ProjectItem" (made by simple properties).

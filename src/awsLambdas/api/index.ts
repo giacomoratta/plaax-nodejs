@@ -53,7 +53,7 @@ export const handler: APIGatewayProxyHandlerV2 =
 
 const getProjectHandler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
   log.debug('Call from apiControllers!')
-  const project = await getFullProject(event.pathParameters?.projectId)
+  await getFullProject(event.pathParameters?.projectId)
   // event.pathParameters['projectId']
   // return Controller(): LambdaApiResponse
   return genericJsonServerError({
@@ -66,6 +66,8 @@ Implementation
 - call specific handler
   - validate path params (validators)
   - validate query params (validators)
+  - use models
+  - follow the structure board-calendar
   - do the logic
 
 - (done) Use types:
