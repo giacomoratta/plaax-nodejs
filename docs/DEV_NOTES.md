@@ -72,6 +72,10 @@ Running processes in the container as the root user is a precarious security pra
 - If PID1 is our app, it does not handle child-process signals, so they remain as zombie with reserved resources.
 - When PID1 is 'tini' and our app terminates, the init system takes care of cleaning the process table.
 
+#### Naming conventions of Docker files
+- `Dockerfile.testRunner`
+- `testRunner.Dockerfile`
+
 #### REFERENCES
 - https://towardsdev.com/writing-a-docker-file-for-your-node-js-typescript-micro-service-c5170b957893
 - https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf

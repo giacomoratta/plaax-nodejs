@@ -1,6 +1,10 @@
+.DS_Store
 .idea
+
+/dist
+/build
+/node_modules
+/coverage
+
 .env
-dist
-build
-node_modules
-coverage
+*.zip
