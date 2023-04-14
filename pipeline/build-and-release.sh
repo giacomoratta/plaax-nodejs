@@ -9,7 +9,6 @@
 # Run. This script must be executed from the main level of repo (same level of "src" directory).
 
 ENV_NAME="dev"
-GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
 RELEASE_ZIP_FILENAME="release-"$GIT_COMMIT_SHORT".zip"
 S3_RELEASES_DIRECTORY="s3://plaax-releases/"$ENV_NAME"/"
 
@@ -20,6 +19,13 @@ if [ $# -ne 1 ]
     return 1
 else
   ENV_NAME=$1
+fi
+
+# Check mandatory env. var. GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
+if [ -z $GIT_COMMIT_SHORT ]
+then
+    echo "\$GIT_COMMIT_SHORT is empty"
+    return 1
 fi
 
 echo "\nBuilding the release..."

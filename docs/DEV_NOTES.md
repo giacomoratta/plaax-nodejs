@@ -58,9 +58,22 @@ registry=https://registry.npmjs.org/
 - Use `--chowm` if we need to set another user.
 - `COPY --chown=${USER_GROUP} ./src ./src`
 
+#### Remove container after the execution
+- `docker run --rm ...`
+
 #### ENV vs. ARG
 - `ENV` should be used for environment variables for the running software.
 - `ARG` should be used for arguments inside the docker file.
+
+#### Environment variables
+- Image: `docker build --build-arg var_name ...`
+- Container: `docker run --env var_name ...`
+
+#### Secrets inside images and containers
+- Keeping secrets in the image is an unsafe solution: look for alternative approaches.
+- Containers are always accessible, so do not keep secrets in containers where other people can access them;
+- if we run a container in a controlled environment (e.g. local env.), secrets are quite safe;
+- ...otherwise, there are other methods to access and use secrets.
 
 #### Good practice: do not run processes as root
 Running processes in the container as the root user is a precarious security practice: use a low privileged user and proper filesystem permissions. Builder stages are run as root because 1) it requires less docker instructions and 2) as far as I know - it does not represent a security issue. 

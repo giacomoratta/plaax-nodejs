@@ -7,7 +7,8 @@ WORKDIR ${CONTAINER_WORKING_DIR}
 
 COPY ./package.json ./
 
-RUN npm install
+# npm clean-install
+RUN npm ci
 
 
 FROM basebuilder AS distbuilder
@@ -41,7 +42,8 @@ WORKDIR ${CONTAINER_WORKING_DIR}
 COPY --from=distbuilder ${CONTAINER_WORKING_DIR}/dist ./dist
 COPY --from=distbuilder ${CONTAINER_WORKING_DIR}/package.json .
 
-RUN npm install --omit=dev # no dev dependencies
+# npm clean-install
+RUN npm ci --omit=dev # no dev dependencies
 
 RUN apt-get update
 RUN apt-get install -y procps

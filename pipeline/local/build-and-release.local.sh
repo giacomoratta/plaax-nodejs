@@ -1,11 +1,11 @@
-# This script is a wrapper for build-push-release.sh in order to be executed in a local environment,
+# This script is a wrapper for build-and-release.sh in order to be executed in a local environment,
 # with some additional configurations (aws, node, npm, etc.).
 
-# How-to RUN. This script must be executed from its directory: "source ./build-push-release.local.sh".
+# How-to RUN. This script must be executed from its directory: "source ./build-and-release.local.sh".
 
 
 # Prepare local env for aws
-source ./set-aws-local-env.sh
+source utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -19,7 +19,7 @@ cd ../../
 # Prepare local env for node/npm
 nvm use
 
-source ./pipeline/build-push-release.sh dev
+source ./pipeline/build-and-release.sh dev
 RETURNED_VALUE=$?
 
 if [ $RETURNED_VALUE -eq 1 ]
