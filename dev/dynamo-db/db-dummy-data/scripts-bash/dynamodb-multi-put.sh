@@ -1,3 +1,11 @@
+# This generic script reads all JSON files from given directory
+# and it runs 1 PUT command per file for the given dynamodb table.
+#
+# The script shows the file list first, then ask for a confirmation before
+# proceeding with the multiple PUT commands.
+#
+# Usage: ./script <dir-with-source-files> <dynamodb-table>
+
 source $HOME/.zshrc
 aws-set-env-giacomoratta1
 

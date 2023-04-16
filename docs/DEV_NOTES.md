@@ -3,8 +3,8 @@
 ## General steps before developing: local dev config
 - node and npm (nvm use)
 - npm registry
-- github profile
-- aws profile
+- GitHub profile
+- AWS profile
 
 
 ## Local config for `git`, `npm`, `nvm`
@@ -50,6 +50,13 @@ registry=https://registry.npmjs.org/
   # next time, just run:
   $ nvm use
   ```
+  
+#### Exclusions in .gitignore
+```text
+*
+!.gitignore
+!readme
+```
 
 ## Docker
 

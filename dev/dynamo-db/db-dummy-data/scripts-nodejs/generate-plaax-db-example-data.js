@@ -1,9 +1,14 @@
+/**
+ * Generate the data that DynamoDB should accept or return
+ * from the file "/json-initial-data/plaax-example-data-env.json".
+ */
+
 const path = require('path')
 const fs = require('fs')
 
 const FILES_GENERATION_ENABLED = true
 
-const { convertItemToDynamoDbItem } = require('./utils')
+const { convertItemToDynamoDbItem } = require('../../../utils/utils')
 
 const currentDir = path.dirname(process.argv[1])
 const jsonFilePath = path.join('..','json-initial-data','plaax-example-data-env.json')

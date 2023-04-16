@@ -1,12 +1,16 @@
+/**
+ * Generate the data that APIs should accept or return
+ * from the file "/json-initial-data/plaax-example-data-env.json".
+ */
+
 const path = require('path')
-const fs = require('fs')
 
 const FILES_GENERATION_ENABLED = true
 
-const { readJsonDataFromFile, randomTimestamp, writeArrayItemsToFiles } = require('./utils')
+const { readJsonDataFromFile, randomTimestamp, writeArrayItemsToFiles } = require('../../../utils/utils')
 
 const currentDir = path.dirname(process.argv[1])
-const jsonFilePath = path.join('..','json-initial-data','plaax-example-data-env.json')
+const jsonFilePath = path.join('..','dynamo-db','db-dummy-data','json-initial-data','plaax-example-data-env.json')
 
 const destDirPlaaxApiData = path.resolve(path.join(currentDir,'..','json-final-data','plaax-api-data'))
 // const destDirPlaaxUserProjects = path.resolve(path.join(currentDir,'..','json-final-data','plaax-user-project'))
@@ -14,7 +18,7 @@ const destDirPlaaxApiData = path.resolve(path.join(currentDir,'..','json-final-d
 
 const jsonData = readJsonDataFromFile(jsonFilePath)
 
-// Final data for DynamoDb
+// Final data for APIs
 const plaaxItemsBoardArray = []
 const plaaxUserProjectsArray = []
 const plaaxUserCalendarArray = []
@@ -22,7 +26,7 @@ const plaaxUserCalendarArray = []
 const addUserCalendarRecords = (userId, item) => {
   if (item['calByUser']) {
     Object.keys(item['calByUser']).forEach(kUserId => {
-      plaaxUserCalendarArray.push(convertItemToDynamoDbItem({
+      plaaxUserCalendarArray.push(({
         "userId": parseInt(kUserId),
         "itemId": item.itemId,
         "beginTs": (new Date(item['calByUser'][kUserId]['calBeginStringDate'])).getTime(),
@@ -33,7 +37,7 @@ const addUserCalendarRecords = (userId, item) => {
   }
 
   if (item['calBeginStringDate'] && item['calEndStringDate']) {
-    plaaxUserCalendarArray.push(convertItemToDynamoDbItem({
+    plaaxUserCalendarArray.push(({
       "userId": userId,
       "itemId": item.itemId,
       "beginTs": (new Date(item['calBeginStringDate'])).getTime(),
@@ -58,14 +62,14 @@ jsonData.forEach(project => {
   }
   plaaxItemsBoardArray.push(projectApiData)
 
-  // plaaxUserProjectsArray.push(convertItemToDynamoDbItem({
+  // plaaxUserProjectsArray.push(({
   //   "userId": project.ownerUserId,
   //   "projectId": project.projectId,
   // }))
   //
   // if (project.assignedUserIds && project.assignedUserIds.length > 0) {
   //   project.assignedUserIds.forEach((userId) => {
-  //     plaaxUserProjectsArray.push(convertItemToDynamoDbItem({
+  //     plaaxUserProjectsArray.push(({
   //       "userId": userId,
   //       "projectId": project.projectId,
   //     }))
