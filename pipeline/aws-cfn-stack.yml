@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  EnvName:
+    Type: String
+  GitCommitShort:
+    Type: String
+  StackPrefix:
+    Type: String
+    Default: "plaax-test1"
+
+Resources:
+  Test1LambdaRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub "${StackPrefix}-${EnvName}-lambda-role"
+      Policies:
+        - PolicyName: !Sub "${StackPrefix}-${EnvName}-lambda-cloudwatch-logs-policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: "lambda.amazonaws.com"
+            Action: sts:AssumeRole
+
+  Test1Lambda:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Code:
+        S3Bucket: "plaax-releases"
+        S3Key: !Sub "dev/release-${GitCommitShort}.zip"
+      Description: "Just a simple lambda"
+      FunctionName: !Sub "${StackPrefix}-${EnvName}-lambda"
+      Handler: "sampleHandler.handler" # = <path?><fileNameNoExt>.handler
+      PackageType: "Zip"
+      Role: !GetAtt "Test1LambdaRole.Arn"
+      Runtime: "nodejs18.x"
+      #MemorySize: 256
+      #Timeout: 30
+      Environment:
+        Variables:
+          NODE_OPTIONS: "--enable-source-maps"
+
+  Test1LambdaLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${Test1Lambda}"
+      RetentionInDays: 7
+
+
+#Outputs:
+#  LambdaFunctionOutput:
+#    Value: !Ref Test1Lambda
+#    Description: Return Value of Lambda Function

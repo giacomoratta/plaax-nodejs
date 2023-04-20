@@ -1,10 +1,14 @@
-# This script executes (and kills) a docker container from build-and-release.dockerfile
+#!/bin/bash
+
+# This script executes (and kills) a docker container from deploy.dockerfile
 # by passing arguments with some local sensitive data.
 
-# Build docker image for build-release
+DOCKER_IMAGE_NAME="gr/plaax-nodejs/deploy"
+
+# Build docker image for deploy
 if [[ "$1" = "--build" ]]
 then
-  docker build -t gr/plaax-nodejs/build-release -f ../build-and-release.dockerfile ../../
+  docker build -t $DOCKER_IMAGE_NAME -f ../deploy.dockerfile ../../
 fi
 
 
@@ -14,7 +18,7 @@ RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
   # not the correct aws local setup!
-  return
+  exit
 fi
 
 
@@ -34,13 +38,13 @@ docker run --rm \
   --env AWS_DEFAULT_REGION \
   --env AWS_REGION \
   --env AWS_DEFAULT_OUTPUT \
-  gr/plaax-nodejs/build-release
+  $DOCKER_IMAGE_NAME
 
 # Notes:
 # 1) do not use "--env AWS_PROFILE" to prevent the error: "The config profile (...) could not be found"
 
 # Useful commands to build and run
-# 1 dir-levels behind:  docker build -t gr/plaax-nodejs/build-release -f ./pipeline/build-and-release.dockerfile .
-# 2 dir-levels behind:  docker build -t gr/plaax-nodejs/build-release -f build-and-release.dockerfile ../
-# This dir-level:       docker build -t gr/plaax-nodejs/build-release -f build-and-release.dockerfile ../../
-# Run as SH and remove: docker run --rm -it gr/plaax-nodejs/build-release sh
+# 1 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f ./pipeline/deploy.dockerfile .
+# 2 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f deploy.dockerfile ../
+# This dir-level:       docker build -t gr/plaax-nodejs/deploy -f deploy.dockerfile ../../
+# Run as SH and remove: docker run --rm -it gr/plaax-nodejs/deploy sh

@@ -52,7 +52,7 @@
 
 #### DEPLOYMENT ON AWS AS SERVERLESS
 - deploy on AWS as DEV environment
-  - create script AWS-CF to create db tables w/ env variable
+  - create script AWS-CFN to create db tables w/ env variable
   - create AWS-CLI script for initial data w/ env variable
 - deploy on AWS as ACC environment
 - define architecture
@@ -74,7 +74,7 @@
   - dynamodb
   - lambda handler for api
   - aws auth. for api
-- deployment with local AWS-CF script with params: env, ...?
+- deployment with local AWS-CFN script with params: env, ...?
 
 
 

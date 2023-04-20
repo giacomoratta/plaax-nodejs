@@ -14,34 +14,28 @@
 - simple AWS-CloudFormation script for 1 lambda, 1 api-gw, no dynamodb-tables
 - test error logs to see source-map (for TS line numbers)
 
-
 #### Work-in-progress
-- Build 1
-  - (done) Upload zip to S3 with commit short
-  - (done) Bash-Script for distribution
-  - (done) Create a docker image for build and release
+- Build and deploy local zip files with CFN
+  - just replace lambda code (script for build, zip, replace lambda code) ?
+  - (or) local scripts uses a different hash
+  - make release hash generic (not linked to git commit short)
+- Deploy API-Gateway
+  - deploy stand-alone GW with CFN
+  - trigger lambda with GW
+  - add simple controller to lambda (hello-world)
+  - add controller for full project from DynamoDb
+  - permissions for lambda, gw, dynamodb, etc.
+  - automatic logs for gw ?
+- Deploy DynamoDb table
+  - try with a different name first (to prevent overwriting/deleting)
 
-- Deploy 1
-  - Prepare Cloudformation script
-  - CF-Deploy Lambda, Log, Authorizer in 1 YAML file
-  - Accept external params for env-name
-  - Split YAML file in multiple files (?)
-
-- Deploy 2
-  - Create 1 Bash script for deployment
-  - Create a docker image for deployment
-
-- Build 2
-  - Create a simple index file (no koa server)
-  - Unify all scripts in 1-Bash with external params (for env-name)
-
-- Distribute and deploy basic lambda with hello-world endpoint
-- Simple API endpoint: get full project
+#### Next work
+- Local-dev with server, koa (dev dependency only!), docker, etc.
+  - to test api with requests to aws cloud
+  - setup a full local aws env?
 - Unit-Test single api controller
 - Unit-Test data repository
 - Unit-Test dynamodb-gateway
-- CF-Deploy DynamoDb table
-- CF-Deploy Api-Gateway
 
 
 #### Nice-to-have
@@ -51,4 +45,7 @@
   - define directories to differentiate what to delete and what to keep
 - Pipelines on GitHub
   - Setup GitHub simple actions
-  - Setup GitHub action for build-and-release
+  - Setup GitHub action for build-release
+- Cloudformation templates
+  - split in multiple files
+  - export output values

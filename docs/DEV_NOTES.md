@@ -58,6 +58,17 @@ registry=https://registry.npmjs.org/
 !readme
 ```
 
+
+## Bash Scripting
+
+- `#!/bin/bash` is needed to run the script as executable (e.g. `./script.sh`);
+- `exit` must be used instead of `return` in order to stop a script execution;
+- `set -e`: exit immediately if a command exits with a non-zero status;
+- `alias` must be avoided in the scripts: it is made for terminal usage; use functions instead;
+- `printf` is preferable to `echo` (which does not process escape characters like `\n`; `echo -e` does it!).
+
+
+
 ## Docker
 
 #### COPY always as 'root' user
