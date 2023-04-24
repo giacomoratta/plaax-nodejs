@@ -20,7 +20,7 @@ set -e
 # Variables and parameters
 ENV_NAME=$1
 COMMAND=$2
-STACK_NAME="StackTest-$ENV_NAME"
+STACK_NAME="PlaaxStackT1-$ENV_NAME"
 
 printf "\nScript parameters:\n"
 printf " param \$1 (env-name) = $1\n"

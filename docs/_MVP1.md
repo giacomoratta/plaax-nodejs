@@ -19,10 +19,15 @@
   - just replace lambda code (script for build, zip, replace lambda code) ?
   - (or) local scripts uses a different hash
   - make release hash generic (not linked to git commit short)
+  - rename zip files with "plaax-<hash>.zip"
 - Deploy API-Gateway
-  - deploy stand-alone GW with CFN
-  - trigger lambda with GW
-  - add simple controller to lambda (hello-world)
+  - (ref) https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ApiGatewayV2.html
+  - (ref) https://gist.github.com/toddlers/7c324e39c2ef3058d6c50b895076b16f
+  - (done) deploy stand-alone GW with CFN
+  - (done) trigger lambda with GW
+  - (done) fix names for api-gw stuff in CFN template, fix Stack name
+  - (time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources")
+  - finalize the simple controller to lambda (hello-world)
   - add controller for full project from DynamoDb
   - permissions for lambda, gw, dynamodb, etc.
   - automatic logs for gw ?
@@ -49,3 +54,6 @@
 - Cloudformation templates
   - split in multiple files
   - export output values
+- Create one-time cloudformation templates
+  - create S3 bucket for release with retention days
+  - create dynamo-db tables by env

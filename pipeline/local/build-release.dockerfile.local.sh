@@ -28,6 +28,16 @@ export ENV_NAME="dev"
 export GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
 
 
+# release-hash-to-delete=432g86g23
+# release-hash=g23984g3f
+# aws s3 rm s3://mybucket/test2.txt
+
+# read release-hash-latest
+# aws s3 delete previous release hash (no errors if not exists)
+# generate new hash and save to release-hash-latest
+# set GIT_COMMIT_SHORT with timestamp ...  date +"%s"
+
+
 # Run container for publishing release
 # --rm: remove after the execution
 docker run --rm \
