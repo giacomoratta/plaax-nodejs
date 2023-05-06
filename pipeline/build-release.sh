@@ -14,27 +14,37 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Variables and parameters
+# Variables from script parameters
 ENV_NAME="dev"
-RELEASE_ZIP_FILENAME="release-"$GIT_COMMIT_SHORT".zip"
-S3_RELEASES_DIRECTORY="s3://plaax-releases/"$ENV_NAME"/"
-
+RELEASE_HASH=""
+RELEASE_HASH_TO_DELETE=$3
 
 # Check arguments
-if [ $# -ne 1 ]
+if [ $# -lt 2 ]
   then
-    printf "Missing argument #1 env-name (e.g. 'dev').\n"
+    printf "Missing mandatory arguments:\n"
+    printf " 1) env-name (e.g. 'dev').\n"
+    printf " 2) release-hash (e.g. '31805e9').\n"
     exit 1
 else
   ENV_NAME=$1
+  RELEASE_HASH=$2
 fi
 
-# Check mandatory env. var. GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
-if [ -z $GIT_COMMIT_SHORT ]
+# Script variables
+RELEASE_ZIP_FILENAME="release-"$RELEASE_HASH".zip"
+S3_RELEASES_DIRECTORY="s3://plaax-releases/"$ENV_NAME"/"
+
+
+# Delete an old release
+if [ ${#RELEASE_HASH_TO_DELETE} -gt 2 ]
 then
-    printf "\$GIT_COMMIT_SHORT is empty\n"
-    exit 1
+    RELEASE_TO_DELETE_ZIP_FILENAME="release-"$RELEASE_HASH_TO_DELETE".zip"
+    printf "\nDeleting old release: $RELEASE_TO_DELETE_ZIP_FILENAME from $S3_RELEASES_DIRECTORY...\n"
+    aws s3 rm $S3_RELEASES_DIRECTORY""$RELEASE_TO_DELETE_ZIP_FILENAME
+    printf "\n\n"
 fi
+
 
 printf "\nBuilding the release...\n"
 npm run clean

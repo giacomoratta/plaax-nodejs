@@ -15,22 +15,29 @@
 - test error logs to see source-map (for TS line numbers)
 
 #### Work-in-progress
-- Build and deploy local zip files with CFN
+- ((DONE)) Build and deploy local zip files with CFN
   - just replace lambda code (script for build, zip, replace lambda code) ?
   - (or) local scripts uses a different hash
   - make release hash generic (not linked to git commit short)
   - rename zip files with "plaax-<hash>.zip"
-- Deploy API-Gateway
+  - handle missing release hash
+- ((DONE)) Deploy API-Gateway
   - (ref) https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ApiGatewayV2.html
-  - (ref) https://gist.github.com/toddlers/7c324e39c2ef3058d6c50b895076b16f
-  - (done) deploy stand-alone GW with CFN
-  - (done) trigger lambda with GW
-  - (done) fix names for api-gw stuff in CFN template, fix Stack name
-  - (time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources")
+  - (ref / api-gw-cfn) https://gist.github.com/toddlers/7c324e39c2ef3058d6c50b895076b16f
+  - deploy stand-alone GW with CFN
+  - trigger lambda with GW
+  - fix names for api-gw stuff in CFN template, fix Stack name
+- ((WIP)) Create the final API-Layer
   - finalize the simple controller to lambda (hello-world)
+    - functions directory
+    - functions/apiLambdaHandler.ts
+    - (above) add meaningful logs for incoming requests
+    - api directory is for controllers (add readme?) ... that can be integrated everywhere
+    - create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
   - add controller for full project from DynamoDb
   - permissions for lambda, gw, dynamodb, etc.
   - automatic logs for gw ?
+  - (time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources") - when everything is working!
 - Deploy DynamoDb table
   - try with a different name first (to prevent overwriting/deleting)
 

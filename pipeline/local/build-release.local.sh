@@ -6,10 +6,14 @@ set -e
 
 # How-to RUN. This script must be executed from its directory: "source ./build-release.local.sh".
 
+# Prepare release hashes
+source utility.release-hash.local.sh --generate
 
-# Set other env. variables for the container
-export ENV_NAME="dev"
-export GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
+# Set variables for the container
+ENV_NAME="dev"
+RELEASE_HASH=$RELEASE_HASH_GENERATED
+RELEASE_HASH_TO_DELETE=$RELEASE_HASH_PREVIOUS
+
 
 # Prepare local env for aws
 source utility.set-aws-env.local.sh
@@ -26,8 +30,10 @@ cd ../../
 # Prepare local env for node/npm
 nvm use
 
-source ./pipeline/build-release.sh $ENV_NAME
+source ./pipeline/build-release.sh $ENV_NAME $RELEASE_HASH $RELEASE_HASH_TO_DELETE
 RETURNED_VALUE=$?
+
+printf "\n\n"
 
 if [ $RETURNED_VALUE -eq 1 ]
 then
@@ -36,7 +42,7 @@ then
 fi
 
 printf "Cleaning...\n"
-RELEASE_ZIP_FILENAME="release-"$GIT_COMMIT_SHORT".zip"
+RELEASE_ZIP_FILENAME="release-"$RELEASE_HASH".zip"
 printf "- $RELEASE_ZIP_FILENAME\n" && rm -f $RELEASE_ZIP_FILENAME
 printf "\n\n"
 

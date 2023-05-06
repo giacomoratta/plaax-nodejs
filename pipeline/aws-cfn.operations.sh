@@ -19,18 +19,20 @@ set -e
 
 # Variables and parameters
 ENV_NAME=$1
-COMMAND=$2
+RELEASE_HASH=$2
+OPERATION=$3
 STACK_NAME="PlaaxStackT1-$ENV_NAME"
 
 printf "\nScript parameters:\n"
 printf " param \$1 (env-name) = $1\n"
-printf " param \$2 (operation) = $2\n"
+printf " param \$2 (release-hash) = $2\n"
+printf " param \$3 (operation) = $3\n"
 
 printf "\nVariables:\n"
 printf " ENV_NAME = $ENV_NAME\n"
-printf " COMMAND = $COMMAND\n"
+printf " OPERATION = $OPERATION\n"
 printf " STACK_NAME = $STACK_NAME\n"
-printf " GIT_COMMIT_SHORT = $GIT_COMMIT_SHORT\n"
+printf " RELEASE_HASH = $RELEASE_HASH\n"
 printf "\n"
 
 
@@ -39,22 +41,15 @@ if [ $# -lt 2 ]
   then
     printf "Missing some mandatory arguments:\n"
     printf "  Argument #1 env-name (e.g. 'dev', 'prd', etc.).\n"
-    printf "  Argument #2 operation (e.g. '--delete', '--deploy', etc.).\n"
+    printf "  Argument #2 release-hash (e.g. 'f8734f2').\n"
+    printf "  Argument #3 operation (e.g. '--delete', '--deploy', etc.).\n"
     printf "\n"
     exit 1
 fi
 
 
-# Check mandatory env. var. GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
-if [ -z $GIT_COMMIT_SHORT ]
-then
-    printf "\$GIT_COMMIT_SHORT is empty\n"
-    exit 1
-fi
-
-
 # Deploy stack
-if [[ "$COMMAND" = "--deploy" ]]
+if [[ "$OPERATION" = "--deploy" ]]
 then
   # Deploys the specified AWS CloudFormation template by creating and then executing a change set.
   # The command terminates after AWS CloudFormation executes the change set.
@@ -70,13 +65,13 @@ then
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
     EnvName=$ENV_NAME \
-    GitCommitShort=$GIT_COMMIT_SHORT
+    ReleaseHash=$RELEASE_HASH
   exit
 fi
 
 
 # Delete stack
-if [[ "$COMMAND" = "--delete" ]]
+if [[ "$OPERATION" = "--delete" ]]
 then
   printf "Deleting stack '$STACK_NAME'...\n\n"
   aws cloudformation delete-stack --stack-name $STACK_NAME
@@ -85,7 +80,7 @@ fi
 
 
 # Get stack events
-if [[ "$COMMAND" = "--events" ]]
+if [[ "$OPERATION" = "--events" ]]
 then
   printf "Events of the stack '$STACK_NAME':\n\n"
   aws cloudformation describe-stack-events --stack-name $STACK_NAME
@@ -94,7 +89,7 @@ fi
 
 
 # Describe stack
-if [[ "$COMMAND" = "--describe" ]]
+if [[ "$OPERATION" = "--describe" ]]
 then
   printf "Stack info for '$STACK_NAME':\n\n"
   aws cloudformation describe-stacks --stack-name $STACK_NAME
@@ -103,7 +98,7 @@ fi
 
 
 # Get active stacks
-if [[ "$COMMAND" = "--active-stacks" ]]
+if [[ "$OPERATION" = "--active-stacks" ]]
 then
   printf "Listing all stacks with status 'CREATE_COMPLETE'...\n\n"
   aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE
@@ -120,3 +115,5 @@ fi
 #  --parameters ParameterKey=EnvName,ParameterValue=env008
 #  --parameters EnvName=env006
 #  --parameters Env=ImageId,ParameterValue=myLatestAMI
+
+printf "\nUnknown operation.\n\n"

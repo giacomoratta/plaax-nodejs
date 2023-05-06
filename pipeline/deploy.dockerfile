@@ -26,6 +26,6 @@ WORKDIR ${CONTAINER_WORKING_DIR}
 COPY ./pipeline/aws-cfn-stack.yml ./
 COPY --chmod=755 ./pipeline/aws-cfn.operations.sh ./
 
-CMD ./aws-cfn.operations.sh $ENV_NAME --deploy
+CMD ./aws-cfn.operations.sh $ENV_NAME $RELEASE_HASH --deploy
 
 # Note: CMD is overridden when container is run with -it...sh

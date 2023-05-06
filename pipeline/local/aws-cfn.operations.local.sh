@@ -6,9 +6,20 @@
 # How-to RUN. This script must be executed from its directory: "source ./aws-cfn-stack.local.sh".
 
 
-# Variables and parameters
-export ENV_NAME="dev"
-export GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
+# Prepare release hashes
+source utility.release-hash.local.sh --load
+RETURNED_VALUE=$?
+if [ $RETURNED_VALUE -ne 0 ]
+then
+  # no release hash found!
+  exit
+fi
+
+
+# Set variables for the container
+ENV_NAME="dev"
+RELEASE_HASH=$RELEASE_HASH_LOADED
+
 
 # Check arguments
 if [ $# -ne 1 ]
@@ -31,6 +42,6 @@ CURRENT_DIRECTORY=$(pwd)
 cd ../
 
 # Run the main script
-source ./aws-cfn.operations.sh $ENV_NAME $1
+source ./aws-cfn.operations.sh $ENV_NAME $RELEASE_HASH $1
 
 cd $CURRENT_DIRECTORY

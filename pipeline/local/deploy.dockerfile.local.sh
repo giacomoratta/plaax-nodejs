@@ -22,9 +22,19 @@ then
 fi
 
 
+# Prepare release hashes
+source utility.release-hash.local.sh --load
+RETURNED_VALUE=$?
+if [ $RETURNED_VALUE -ne 0 ]
+then
+  # no release hash found!
+  exit
+fi
+
+
 # Set other env. variables for the container
 export ENV_NAME="dev"
-export GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
+export RELEASE_HASH=$RELEASE_HASH_LOADED
 
 
 # Run container for publishing release
@@ -32,7 +42,7 @@ export GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
 docker run --rm \
   --platform linux/x86_64 \
   --env ENV_NAME \
-  --env GIT_COMMIT_SHORT \
+  --env RELEASE_HASH \
   --env AWS_ACCESS_KEY_ID \
   --env AWS_SECRET_ACCESS_KEY \
   --env AWS_DEFAULT_REGION \

@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Parameters:
   EnvName:
     Type: String
-  GitCommitShort:
+  ReleaseHash:
     Type: String
   StackPrefix:
     Type: String
@@ -18,7 +18,7 @@ Resources:
       Handler: "sampleHandler.handler" # = <path?><fileNameNoExt>.handler
       Code:
         S3Bucket: "plaax-releases"
-        S3Key: !Sub "${EnvName}/release-${GitCommitShort}.zip"
+        S3Key: !Sub "${EnvName}/release-${ReleaseHash}.zip"
       PackageType: "Zip"
       Role: !GetAtt "LambdaT1Role.Arn"
       Runtime: "nodejs18.x"

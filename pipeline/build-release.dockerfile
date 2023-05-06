@@ -61,4 +61,4 @@ COPY --chmod=755 ./pipeline/build-release.sh ./
 RUN npm test
 
 # Note: CMD is overridden when container is run with -it...sh
-CMD ./build-release.sh $ENV_NAME
+CMD ./build-release.sh $ENV_NAME $RELEASE_HASH $RELEASE_HASH_TO_DELETE
