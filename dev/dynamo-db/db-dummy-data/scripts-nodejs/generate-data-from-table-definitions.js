@@ -1,6 +1,12 @@
+/**
+ * Generate the data that DynamoDB should accept or return
+ * from the directory "/table-definitions".
+ */
+
 const path = require('path')
 const fs = require('fs')
 
+const { convertItemToDynamoDbItem } = require('../../../utils/utils')
 
 const jsonFileName = process.argv[2]
 

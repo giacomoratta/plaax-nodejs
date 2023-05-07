@@ -1,0 +1,141 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  EnvName:
+    Type: String
+  ReleaseHash:
+    Type: String
+  StackPrefix:
+    Type: String
+    Default: "plaax-test1"
+
+Resources:
+  LambdaT1:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Description: "Just a test lambda LambdaT1"
+      FunctionName: !Sub "${StackPrefix}-${EnvName}-lambda"
+      Handler: "sampleHandler.handler" # = <path?><fileNameNoExt>.handler
+      Code:
+        S3Bucket: "plaax-releases"
+        S3Key: !Sub "${EnvName}/release-${ReleaseHash}.zip"
+      PackageType: "Zip"
+      Role: !GetAtt "LambdaT1Role.Arn"
+      Runtime: "nodejs18.x"
+      #MemorySize: 256
+      #Timeout: 30
+      Environment:
+        Variables:
+          NODE_OPTIONS: "--enable-source-maps"
+
+  LambdaT1LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      # Description: "Log group for LambdaT1" # property not allowed for AWS::Logs::LogGroup
+      LogGroupName: !Sub "/aws/lambda/${LambdaT1}"
+      RetentionInDays: 7
+
+  LambdaT1Role:
+    Type: "AWS::IAM::Role"
+    Properties:
+      Description: "Role and policies for LambdaT1 to write logs"
+      RoleName: !Sub "${StackPrefix}-${EnvName}-lambda-t1-role"
+      Policies:
+        - PolicyName: !Sub "${StackPrefix}-${EnvName}-lambda-t1-cloudwatch-policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: "lambda.amazonaws.com"
+            Action: sts:AssumeRole
+
+  ApiGw1Rest:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Description: "Just an API Gateway Gw1 which triggers LambdaT1"
+      ProtocolType: HTTP
+      Name: !Sub "${StackPrefix}-${EnvName}-gw1"
+
+  ApiGw1IamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Description: "Role and policies for Gateway1 to access lambda"
+      RoleName: !Sub "${StackPrefix}-${EnvName}-gw1-role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: ""
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "apigateway.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: "access-to-lambda-t1"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "lambda:*"
+                Resource: !GetAtt LambdaT1.Arn
+
+  ApiGw1IntegrationWithLambdaT1:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      Description: "Definition of how LambdaT1 and Gateway1 should interact"
+      ApiId: !Ref ApiGw1Rest
+      ConnectionType: INTERNET # or VPC_LINK for internal connections: todo!
+      CredentialsArn: !GetAtt ApiGw1IamRole.Arn
+      PassthroughBehavior: WHEN_NO_MATCH # send the request 'as it is' to AWS service
+      TimeoutInMillis: 29000
+      IntegrationMethod: POST # mandatory for lambda invocations
+      IntegrationType: AWS_PROXY # send the request 'as it is' to AWS service
+      PayloadFormatVersion: "2.0"
+      IntegrationUri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaT1.Arn}/invocations"
+
+  ApiGw1RouteToLambdaT1:
+    Type: AWS::ApiGatewayV2::Route
+    DependsOn:
+      - LambdaT1
+      - ApiGw1Rest
+      - ApiGw1IntegrationWithLambdaT1
+    Properties:
+      # Description: "Route to LambdaT1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
+      ApiId: !Ref ApiGw1Rest
+      RouteKey: GET /lambda-test
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref ApiGw1IntegrationWithLambdaT1
+
+  ApiGw1Deployment:
+    Type: AWS::ApiGatewayV2::Deployment
+    DependsOn:
+      - ApiGw1IntegrationWithLambdaT1
+    Properties:
+      Description: "Deployment for API Gateway1"
+      ApiId: !Ref ApiGw1Rest
+
+  ApiGw1StageV1:
+    Type: AWS::ApiGatewayV2::Stage
+    Properties:
+      Description: "Stage v1 for API Gateway1"
+      StageName: "v1"
+      ApiId: !Ref ApiGw1Rest
+      DeploymentId: !Ref ApiGw1Deployment
+
+#Outputs:
+#  LambdaFunctionOutput:
+#    Value: !Ref LambdaT1
+#    Description: Return Value of Lambda Function

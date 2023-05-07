@@ -3,8 +3,8 @@
 ## General steps before developing: local dev config
 - node and npm (nvm use)
 - npm registry
-- github profile
-- aws profile
+- GitHub profile
+- AWS profile
 
 
 ## Local config for `git`, `npm`, `nvm`
@@ -20,6 +20,8 @@ $ cat .git/config
 
 # Add ssh keys
 $ ssh-add $HOME/.ssh/<key-name>
+$ ssh-add -K ~/.ssh/<key-name> #add permanently
+$ ssh-add --apple-use-keychain ~/.ssh/<key-name> #add permanently (macOs 2023)
 
 # Try ssh-authentication with verbose mode
 $ ssh -vT git@github.com
@@ -48,6 +50,24 @@ registry=https://registry.npmjs.org/
   # next time, just run:
   $ nvm use
   ```
+  
+#### Exclusions in .gitignore
+```text
+*
+!.gitignore
+!readme
+```
+
+
+## Bash Scripting
+
+- `#!/bin/bash` is needed to run the script as executable (e.g. `./script.sh`);
+- `exit` must be used instead of `return` in order to stop a script execution;
+- `set -e`: exit immediately if a command exits with a non-zero status;
+- `alias` must be avoided in the scripts: it is made for terminal usage; use functions instead;
+- `printf` is preferable to `echo` (which does not process escape characters like `\n`; `echo -e` does it!).
+
+
 
 ## Docker
 
@@ -56,9 +76,22 @@ registry=https://registry.npmjs.org/
 - Use `--chowm` if we need to set another user.
 - `COPY --chown=${USER_GROUP} ./src ./src`
 
+#### Remove container after the execution
+- `docker run --rm ...`
+
 #### ENV vs. ARG
 - `ENV` should be used for environment variables for the running software.
 - `ARG` should be used for arguments inside the docker file.
+
+#### Environment variables
+- Image: `docker build --build-arg var_name ...`
+- Container: `docker run --env var_name ...`
+
+#### Secrets inside images and containers
+- Keeping secrets in the image is an unsafe solution: look for alternative approaches.
+- Containers are always accessible, so do not keep secrets in containers where other people can access them;
+- if we run a container in a controlled environment (e.g. local env.), secrets are quite safe;
+- ...otherwise, there are other methods to access and use secrets.
 
 #### Good practice: do not run processes as root
 Running processes in the container as the root user is a precarious security practice: use a low privileged user and proper filesystem permissions. Builder stages are run as root because 1) it requires less docker instructions and 2) as far as I know - it does not represent a security issue. 
@@ -69,6 +102,10 @@ Running processes in the container as the root user is a precarious security pra
 **Solution**: use `tini` or `dumb-init`.
 - If PID1 is our app, it does not handle child-process signals, so they remain as zombie with reserved resources.
 - When PID1 is 'tini' and our app terminates, the init system takes care of cleaning the process table.
+
+#### Naming conventions of Docker files
+- `Dockerfile.testRunner`
+- `testRunner.Dockerfile`
 
 #### REFERENCES
 - https://towardsdev.com/writing-a-docker-file-for-your-node-js-typescript-micro-service-c5170b957893

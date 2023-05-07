@@ -8,6 +8,9 @@ Docker images for Node: https://hub.docker.com/_/node
 ```
 # Build the image
 docker build -t gr/plaax-nodejs .
+
+# Check image content
+docker run -it gr/plaax-nodejs sh
 ```
 
 #### Containers
@@ -42,11 +45,14 @@ $ docker rmi $(docker images -q)
 # Stop all containers
 $ docker container stop $(docker ps -a -q)
 
+# Remove all exited containers
+$ docker rm $(docker container ls -a | awk '/Exited/ {print $1}')
+
 # Remove all containers
 $ docker rm $(docker ps -a -q)
 
 # print all image IDs of intermediates <none>
 # the size is cumulative, so nothing to care about... just look at the list sometimes 
-$ docker images -a | awk '/none/ {print $3}'
-$ docker rmi $(docker images -a | awk '/none/ {print $3}')
+$ docker image ls | awk '/none/ {print $3}'
+$ docker rmi $(docker image ls | awk '/none/ {print $3}')
 ```

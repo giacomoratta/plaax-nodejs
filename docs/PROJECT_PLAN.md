@@ -52,23 +52,43 @@
 
 #### DEPLOYMENT ON AWS AS SERVERLESS
 - deploy on AWS as DEV environment
-  - create script AWS-CF to create db tables w/ env variable
+  - create script AWS-CFN to create db tables w/ env variable
   - create AWS-CLI script for initial data w/ env variable
 - deploy on AWS as ACC environment
 - define architecture
 - arch#1 = lambda, api gateway, script with cloudformation on local
 
+#### THE PROJECT (extended): backend
+- API authentication layer w/ Lambda Authorizer or other on AWS
+- secure connection to API (use credentials, get token, api controllers checks current user)
+- script for cleaning docker stuff from this project
+
+#### Final MVP1: requirements
+- clean architecture
+- unit tests
+- tech/repo documentation (init, install, run, clean, stop, etc.)
+- good api documentation on .md files
+- control distributed code on lambda(s)
+- clear and simple aws architecture:
+  - api gateway
+  - dynamodb
+  - lambda handler for api
+  - aws auth. for api
+- deployment with local AWS-CFN script with params: env, ...?
+
+
+
+## More challenges
+
 #### THE PROJECT (more)
-- provide API with GraphQL
-- library for a working mock for APIs
+- split code in more lambdas and api gateways (not needed for now, but good to know)
 - docker compose with postgres
 - docker compose with dynamodb
-- script for cleaning docker stuff from this project
 - integration tests
 
 #### THE PROJECT (pro/optionals)
+- provide API with GraphQL
 - e2e tests
-- api auth layer (passport?) for my APIs
 - websocket
 - interact with external API (with oAuth or JWT or ...?)
 
@@ -84,3 +104,10 @@
 
 #### Local development (optionals)
 - create scripts for generating dummy data (npm libs)
+
+#### FRONTEND
+- basic interface with React+Typescript
+- basic UI with common libraries (e.g. Bootstrap)
+- connect with SSO, Cognito, etc. ?
+- implement SSR
+- js bundlers: Webpack5 (or alternatives)
