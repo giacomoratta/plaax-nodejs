@@ -1,12 +1,5 @@
 # Dev Notes
 
-## General steps before developing: local dev config
-- node and npm (nvm use)
-- npm registry
-- GitHub profile
-- AWS profile
-
-
 ## Local config for `git`, `npm`, `nvm`
 
 #### Set a permanent git config for a repository 

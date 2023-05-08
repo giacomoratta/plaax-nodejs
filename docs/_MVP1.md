@@ -15,29 +15,19 @@
 - test error logs to see source-map (for TS line numbers)
 
 #### Work-in-progress
-- ((DONE)) Build and deploy local zip files with CFN
-  - just replace lambda code (script for build, zip, replace lambda code) ?
-  - (or) local scripts uses a different hash
-  - make release hash generic (not linked to git commit short)
-  - rename zip files with "plaax-<hash>.zip"
-  - handle missing release hash
-- ((DONE)) Deploy API-Gateway
-  - (ref) https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ApiGatewayV2.html
-  - (ref / api-gw-cfn) https://gist.github.com/toddlers/7c324e39c2ef3058d6c50b895076b16f
-  - deploy stand-alone GW with CFN
-  - trigger lambda with GW
-  - fix names for api-gw stuff in CFN template, fix Stack name
-- ((WIP)) Create the final API-Layer
+- ((WIP)) Create the initial form of a final API-Layer
   - finalize the simple controller to lambda (hello-world)
-    - functions directory
-    - functions/apiLambdaHandler.ts
-    - (above) add meaningful logs for incoming requests
-    - api directory is for controllers (add readme?) ... that can be integrated everywhere
-    - create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
+    - (done) functions directory
+    - (done) functions/apiLambdaHandler.ts
+    - (done) api directory is for controllers (add readme?) ... that can be integrated everywhere
+    - (done) decide the most important endpoints (at the moment)
+    - (done) create API routes for some basic endpoints
+    - (wip) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
+    - add meaningful logs for incoming requests in main lambda api handler
   - add controller for full project from DynamoDb
   - permissions for lambda, gw, dynamodb, etc.
   - automatic logs for gw ?
-  - (time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources") - when everything is working!
+  - (done - time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources"): not possible from local yml files
 - Deploy DynamoDb table
   - try with a different name first (to prevent overwriting/deleting)
 
@@ -64,3 +54,5 @@
 - Create one-time cloudformation templates
   - create S3 bucket for release with retention days
   - create dynamo-db tables by env
+- Copy only handler and code specific for a lambda
+  - with handler in the main level (no function dir)

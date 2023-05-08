@@ -2,6 +2,14 @@
 
 A backend layer for PLAAX service, build with NodeJS and Typescript.
 
+### Pre-req: set local dev config
+See [DEV_NOTES.md](docs%2FDEV_NOTES.md) for "how-to" documentation.
+- node and npm: `nvm use` (set locally into `.nvmrc`)
+- npm registry: `default` (set locally into `.npmrc`)
+- GitHub profile (set to `local config`)
+- AWS profile (from `.aws` credentials or scripts)
+
+
 ### Install the project
 ```bash
 # set local git config (username, email)
