@@ -32,30 +32,54 @@ else
 fi
 
 # Script variables
-RELEASE_ZIP_FILENAME="release-"$RELEASE_HASH".zip"
 S3_RELEASES_DIRECTORY="s3://plaax-releases/"$ENV_NAME"/"
+RELEASE_BASE_ZIP_FILENAME="release-base.zip"
+RELEASE_LBAPI1_LABEL="release-lbapi1"
+RELEASE_LBAPI1_ZIP_FILENAME=$RELEASE_LBAPI1_LABEL"-"$RELEASE_HASH".zip"
 
 
-# Delete an old release
+# Delete an old releases
 if [ ${#RELEASE_HASH_TO_DELETE} -gt 2 ]
 then
-    RELEASE_TO_DELETE_ZIP_FILENAME="release-"$RELEASE_HASH_TO_DELETE".zip"
-    printf "\nDeleting old release: $RELEASE_TO_DELETE_ZIP_FILENAME from $S3_RELEASES_DIRECTORY...\n"
-    aws s3 rm $S3_RELEASES_DIRECTORY""$RELEASE_TO_DELETE_ZIP_FILENAME
-    printf "\n\n"
+    RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME=$RELEASE_LBAPI1_LABEL"-"$RELEASE_HASH_TO_DELETE".zip"
+    printf "\nDeleting old release lbapi1: $RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME from $S3_RELEASES_DIRECTORY...\n"
+    aws s3 rm $S3_RELEASES_DIRECTORY""$RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME
+    rm -f $RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME 2>/dev/null
 fi
 
 
-printf "\nBuilding the release...\n"
+printf "\n\nBuilding the release...\n"
 npm run clean
 npm run build
 
-printf "\nCreating release zip file...\n"
-# TODO: add node_modules, package.json, etc. (?)
-rm -f $RELEASE_ZIP_FILENAME 2>/dev/null
+
+printf "\n\nCreating base release zip file...\n"
+rm -f $RELEASE_BASE_ZIP_FILENAME 2>/dev/null
+zip $RELEASE_BASE_ZIP_FILENAME ./package.json
+zip $RELEASE_BASE_ZIP_FILENAME ./package-lock.json
+zip -r $RELEASE_BASE_ZIP_FILENAME ./node_modules >/dev/null # install with npm ci
+
+
+printf "\n\nCreating lbapi1 release zip file...\n"
+rm -f $RELEASE_LBAPI1_ZIP_FILENAME 2>/dev/null
+cp $RELEASE_BASE_ZIP_FILENAME $RELEASE_LBAPI1_ZIP_FILENAME
 cd ./dist/
-zip -r ../$RELEASE_ZIP_FILENAME .
+zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./apiControllers
+zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./gateways
+zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./repositories
+zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./awsLambdas/api
 cd ..
 
-printf "\nUploading file "$RELEASE_ZIP_FILENAME" to "$S3_RELEASES_DIRECTORY" ...\n"
-aws s3 cp $RELEASE_ZIP_FILENAME $S3_RELEASES_DIRECTORY
+
+printf "\n\nUploading releases to "$S3_RELEASES_DIRECTORY"\n"
+printf "> uploading file "$RELEASE_LBAPI1_ZIP_FILENAME" ...\n"
+aws s3 cp $RELEASE_LBAPI1_ZIP_FILENAME $S3_RELEASES_DIRECTORY
+
+
+# remove temp files
+rm -f $RELEASE_BASE_ZIP_FILENAME 2>/dev/null
+rm -f $RELEASE_LBAPI1_ZIP_FILENAME 2>/dev/null
+# rm -f $RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME 2>/dev/null (see above)
+
+
+printf "\n\n"

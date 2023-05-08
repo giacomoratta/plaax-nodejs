@@ -10,6 +10,12 @@ DOCKER_IMAGE_NAME="gr/plaax-nodejs/build-release"
 if [[ "$1" = "--build" ]]
 then
   docker build -t $DOCKER_IMAGE_NAME -f ../build-release.dockerfile ../../
+else
+  if [[ "$1" != "--run" ]]
+  then
+    printf "Parameter #1 not valid (current $1). Accepted options: --build or --run.\n\n"
+    exit
+  fi
 fi
 
 

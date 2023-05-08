@@ -41,9 +41,4 @@ then
   exit
 fi
 
-printf "Cleaning...\n"
-RELEASE_ZIP_FILENAME="release-"$RELEASE_HASH".zip"
-printf "- $RELEASE_ZIP_FILENAME\n" && rm -f $RELEASE_ZIP_FILENAME
-printf "\n\n"
-
 cd $CURRENT_DIRECTORY

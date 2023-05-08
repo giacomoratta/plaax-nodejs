@@ -22,6 +22,7 @@
     - (done) api directory is for controllers (add readme?) ... that can be integrated everywhere
     - (done) decide the most important endpoints (at the moment)
     - (done) create API routes for some basic endpoints
+    - (done) copy only handler and code specific for a lambda
     - (wip) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
     - add meaningful logs for incoming requests in main lambda api handler
   - add controller for full project from DynamoDb
@@ -54,5 +55,3 @@
 - Create one-time cloudformation templates
   - create S3 bucket for release with retention days
   - create dynamo-db tables by env
-- Copy only handler and code specific for a lambda
-  - with handler in the main level (no function dir)

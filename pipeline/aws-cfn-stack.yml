@@ -18,7 +18,7 @@ Resources:
       Handler: "awsLambdas/api/index.handler" # = <path?><fileNameNoExt>.handler
       Code:
         S3Bucket: "plaax-releases"
-        S3Key: !Sub "${EnvName}/release-${ReleaseHash}.zip"
+        S3Key: !Sub "${EnvName}/release-lbapi1-${ReleaseHash}.zip"
       PackageType: "Zip"
       Role: !GetAtt "LambdaApi1Role.Arn"
       Runtime: "nodejs18.x"
