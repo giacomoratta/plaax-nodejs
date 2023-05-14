@@ -163,7 +163,7 @@ Resources:
     Properties:
       # Description: "Route to LambdaApi1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
       ApiId: !Ref ApiGw1Rest
-      RouteKey: GET /user/{userId}/calendar #?beginTs=123&endTs=456 - change names
+      RouteKey: GET /user/{userId}/calendar
       Target: !Join
         - /
         - - integrations
