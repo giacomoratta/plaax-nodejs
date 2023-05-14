@@ -1,21 +1,13 @@
+import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda'
 import { assertHttpStatusCodeIsValid, HttpStatusCode } from '../../shared/httpStatusCode'
 import { FileMimeTypes } from '../../shared/fileMimeType'
 
 type ResponsePayload = Record<string, any>
 
-export interface LambdaApiResponse {
-  statusCode: HttpStatusCode
-  body: string
-  headers?: {
-    'Content-Type': FileMimeTypes
-  }
-  isBase64Encoded: boolean
-}
-
 export const buildJsonResponse = (statusCode: HttpStatusCode, responseData: {
   message: string
   payload: ResponsePayload
-}): LambdaApiResponse => {
+}): APIGatewayProxyStructuredResultV2 => {
   assertHttpStatusCodeIsValid(statusCode)
   return {
     statusCode,
@@ -27,7 +19,7 @@ export const buildJsonResponse = (statusCode: HttpStatusCode, responseData: {
   }
 }
 
-export const genericJsonServerError = (errorData: ResponsePayload): LambdaApiResponse =>
+export const genericJsonServerError = (errorData: ResponsePayload): APIGatewayProxyStructuredResultV2 =>
   buildJsonResponse(HttpStatusCode.INTERNAL_SERVER_ERROR, {
     message: 'Internal server error.',
     payload: errorData
