@@ -17,6 +17,14 @@ module.exports = {
   ],
   rules: {
     'no-console': 0,
-    '@typescript-eslint/no-explicit-any': 0
+    '@typescript-eslint/no-explicit-any': 0,
+    'max-len': [
+      // https://eslint.org/docs/latest/rules/max-len (todo: use prettier for auto-format)
+      'error',
+      {
+        'code': 128,
+        'tabWidth': 2
+      }
+    ]
   }
 }
