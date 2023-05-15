@@ -108,9 +108,9 @@ Resources:
     Type: AWS::ApiGatewayV2::Deployment
     DependsOn:
       # Prevents the error: "Unable to deploy API because no routes exist in this API..."
-      - ApiGw1RouteGetProject
+      - ApiGw1RouteGetBoardOfUser
       - ApiGw1RouteCreateItem
-      - ApiGw1RouteGetUserCalendar
+      - ApiGw1RouteGetCalendarOfUser
       - ApiGw1RouteGetUserProjects
     Properties:
       Description: "Deployment for API Gateway1"
@@ -127,7 +127,7 @@ Resources:
       ApiId: !Ref ApiGw1Rest
       DeploymentId: !Ref ApiGw1Deployment
 
-  ApiGw1RouteGetProject:
+  ApiGw1RouteGetBoardOfUser:
     Type: AWS::ApiGatewayV2::Route
     DependsOn:
       - ApiGw1Rest
@@ -135,7 +135,7 @@ Resources:
     Properties:
       # Description: "Route to LambdaApi1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
       ApiId: !Ref ApiGw1Rest
-      RouteKey: GET /project/{projectId}
+      RouteKey: GET /board/user/{userId}
       Target: !Join
         - /
         - - integrations
@@ -155,7 +155,7 @@ Resources:
         - - integrations
           - !Ref ApiGw1IntegrationWithLambdaApi1
 
-  ApiGw1RouteGetUserCalendar:
+  ApiGw1RouteGetCalendarOfUser:
     Type: AWS::ApiGatewayV2::Route
     DependsOn:
       - ApiGw1Rest
@@ -163,7 +163,7 @@ Resources:
     Properties:
       # Description: "Route to LambdaApi1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
       ApiId: !Ref ApiGw1Rest
-      RouteKey: GET /user/{userId}/calendar
+      RouteKey: GET /calendar/user/{userId}
       Target: !Join
         - /
         - - integrations

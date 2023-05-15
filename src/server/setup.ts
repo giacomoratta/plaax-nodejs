@@ -3,8 +3,8 @@ import KoaRouter from '@koa/router'
 import serverStateMiddleware from './state.middleware'
 
 import * as apiHelloWorld from '../apiControllers/helloWorld'
-import * as apiBoard from '../apiControllers/board'
-import * as apiCalendar from '../apiControllers/calendar'
+import * as apiBoard from '../apiControllers/__toMove__/board'
+import * as apiCalendar from '../apiControllers/__toMove__/calendar'
 
 export const server = new Koa()
 

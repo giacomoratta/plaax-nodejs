@@ -1,0 +1,5 @@
+This directory is an infrastructure-detached implementation of API controllers.
+
+The controllers should be not aware about the infrastructure, server, handlers, etc. that will use them.
+
+They should only take some parameters and return some data that will be packed into the infra-specific response.

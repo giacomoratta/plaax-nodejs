@@ -5,6 +5,7 @@ import { ListFull } from '../../models/listFull'
 import { ActivityFull } from '../../models/activityFull'
 import { TaskItem } from '../../models/taskItem'
 
+// todo: temp function, the translation should be returned by repo
 export const jsonToProjectFull = (jsonData): ProjectFull => {
   return {
     projectId: jsonData.projectId,

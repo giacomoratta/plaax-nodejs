@@ -3,7 +3,7 @@ import {
   InternalLambdaHandlersMap
 } from './types'
 
-import { getFullProject } from '../../apiControllers/getFullProject'
+import { getBoard } from '../../apiControllers/getBoard'
 
 import { genericJsonServerError } from './responseBuilders'
 import { createLogger } from '../../logger'
@@ -11,11 +11,11 @@ import { createLogger } from '../../logger'
 const log = createLogger('awsLambda/api/index')
 
 const handlersMap: InternalLambdaHandlersMap = {
-  'GET /project/{projectId}': {
+  'GET /board/user/{userId}': {
     enabled: true,
     fn: async (event) => {
       log.debug('Call from apiControllers!')
-      await getFullProject(event.pathParameters?.projectId)
+      await getBoard(event.pathParameters?.projectId)
       // event.pathParameters['projectId']
       // return Controller(): LambdaApiResponse
       return genericJsonServerError({
@@ -23,9 +23,9 @@ const handlersMap: InternalLambdaHandlersMap = {
       })
     }
   }
+  // 'GET /calendar/user/{userId}': { enabled: true, fn: () }
   // 'GET /user/{userId}/projects': { enabled: true, fn: () }
-  // 'GET /user/{userId}/calendar': { enabled: true, fn: () }
-  // ''POST /item'': { enabled: true, fn: () }
+  // 'POST /item': { enabled: true, fn: () }
 }
 
 export const handler: LambdaHandler =
