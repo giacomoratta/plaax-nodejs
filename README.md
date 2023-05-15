@@ -22,10 +22,11 @@ nvm use
 npm install 
 ```
 
-### Linting
-* `npm run lint`: check the code
-* `npm run lint-fix`: check and fix the code
-* `npm run lint-debug`: check the code and show the analyzed files
+### Linting & Checking
+* `npm run ts-check`: check the typescript code
+* `npm run lint`: check the code syntax
+* `npm run lint-fix`: check and fix the code syntax
+* `npm run lint-debug`: check the code syntax and show the analyzed files
 
 ### Testing
 * `npm test`: run all tests

@@ -19,6 +19,12 @@ export const buildJsonResponse = (statusCode: HttpStatusCode, responseData: {
   }
 }
 
+export const notFoundJsonServerError = (message: string): LambdaResponse =>
+  buildJsonResponse(HttpStatusCode.NOT_FOUND, {
+    message,
+    payload: {}
+  })
+
 export const genericJsonServerError = (errorData: ResponsePayload): LambdaResponse =>
   buildJsonResponse(HttpStatusCode.INTERNAL_SERVER_ERROR, {
     message: 'Internal server error.',

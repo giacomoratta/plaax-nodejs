@@ -3,8 +3,6 @@ import KoaRouter from '@koa/router'
 import serverStateMiddleware from './state.middleware'
 
 import * as apiHelloWorld from '../apiControllers/helloWorld'
-import * as apiBoard from '../apiControllers/__toMove__/board'
-import * as apiCalendar from '../apiControllers/__toMove__/calendar'
 
 export const server = new Koa()
 
@@ -15,12 +13,12 @@ export const router = new KoaRouter({
 
 router
   .get('/hello/world/:id', apiHelloWorld.getById)
-  .get('/board/:userId', apiBoard.getByUserId)
-  .get('/board/:userId/:projectId', apiBoard.getByUserProjectId)
-  .post('/board/item', apiBoard.createItem)
-  .get('/calendar/:userId/:from/:to', apiCalendar.getByUserId)
-  .get('/calendar/:userId/:projectId/:from/:to', apiCalendar.getByUserProjectId)
-  .post('/calendar/item', apiCalendar.addItemToCalendar)
+  // .get('/board/:userId', apiBoard.getByUserId)
+  // .get('/board/:userId/:projectId', apiBoard.getByUserProjectId)
+  // .post('/board/item', apiBoard.createItem)
+  // .get('/calendar/:userId/:from/:to', apiCalendar.getByUserId)
+  // .get('/calendar/:userId/:projectId/:from/:to', apiCalendar.getByUserProjectId)
+  // .post('/calendar/item', apiCalendar.addItemToCalendar)
 
 server
   .use(serverStateMiddleware)

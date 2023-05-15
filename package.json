@@ -13,6 +13,7 @@
     "lint-debug": "DEBUG=eslint:cli-engine npm run lint",
     "test": "jest",
     "test-coverage": "jest --coverage",
+    "ts-check": "npx tsc --noEmit",
     "build": "npx tsc",
     "dev": "npm run build && NODE_ENV=development node dist/server/start",
     "start": "NODE_ENV=production node dist/server/start",

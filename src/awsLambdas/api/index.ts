@@ -2,11 +2,14 @@ import {
   LambdaHandler,
   InternalLambdaHandlersMap
 } from './types'
+import {
+  buildJsonResponse,
+  genericJsonServerError,
+  notFoundJsonServerError
+} from './responseBuilders'
+import { createLogger } from '../../logger'
 
 import { getBoard } from '../../apiControllers/getBoard'
-
-import { genericJsonServerError } from './responseBuilders'
-import { createLogger } from '../../logger'
 
 const log = createLogger('awsLambda/api/index')
 
@@ -14,12 +17,14 @@ const handlersMap: InternalLambdaHandlersMap = {
   'GET /board/user/{userId}': {
     enabled: true,
     fn: async (event) => {
-      log.debug('Call from apiControllers!')
-      await getBoard(event.pathParameters?.projectId)
-      // event.pathParameters['projectId']
-      // return Controller(): LambdaApiResponse
-      return genericJsonServerError({
-        reason: 'No handler found for route: ' + event.routeKey
+      const userId = (event.pathParameters?.userId ?? '')
+      const data = await getBoard(userId)
+      if (data == null) {
+        return notFoundJsonServerError('Board not found for user ' + userId)
+      }
+      return buildJsonResponse(200, {
+        message: 'Board for user ' + userId,
+        payload: data
       })
     }
   }
@@ -53,30 +58,3 @@ export const handler: LambdaHandler =
       })
     }
   }
-
-/*
-Implementation
-- call specific handler
-  - validate path params (validators)
-  - validate query params (validators)
-  - use models
-  - ?? DO NOT follow the structure board-calendar: keep everything smaller and separate?
-  - do the logic
-
-- (done) Use types:
-  https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/aws-lambda/trigger/api-gateway-proxy.d.ts
-
-(done) Pre-requisites
-- (done) check routeKey (method + path)
-- (done) check request: method (no path params, query params - inside the controller logic, below)
-- (done) uniform responses
-    {
-      statusCode,
-      body: JSON.stringify({ message, payload }),
-      headers: {
-        'Content-Type': CONTENT_TYPE_JSON
-      },
-      isBase64Encoded: false
-    }
-- (done) log full event
-*/

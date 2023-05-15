@@ -1,12 +1,10 @@
 /* move inside __tests__, set jest to skip any non "test.ts" file */
 
-import { ProjectFull } from '../../models/projectFull'
-import { ListFull } from '../../models/listFull'
-import { ActivityFull } from '../../models/activityFull'
-import { TaskItem } from '../../models/taskItem'
+import { ProjectExpanded, ListExpanded, ActivityExpanded } from '../../models/ItemsExpanded'
+import { TaskItem } from '../../models/Items'
 
 // todo: temp function, the translation should be returned by repo
-export const jsonToProjectFull = (jsonData): ProjectFull => {
+export const jsonToProjectExpanded = (jsonData): ProjectExpanded => {
   return {
     projectId: jsonData.projectId,
     itemId: jsonData.itemId,
@@ -16,7 +14,7 @@ export const jsonToProjectFull = (jsonData): ProjectFull => {
     createTs: jsonData.createTs,
     updateTs: jsonData.updateTs,
     archivedTs: jsonData.archivedTs ?? null,
-    lists: ((jsonData.lists === undefined ? [] : jsonData.lists)).map((jsonList): ListFull => {
+    lists: ((jsonData.lists === undefined ? [] : jsonData.lists)).map((jsonList): ListExpanded => {
       return {
         projectId: jsonList.projectId,
         itemId: jsonList.itemId,
@@ -26,7 +24,7 @@ export const jsonToProjectFull = (jsonData): ProjectFull => {
         createTs: jsonList.createTs,
         updateTs: jsonList.updateTs,
         archivedTs: jsonList.archivedTs ?? null,
-        activities: ((jsonList.activities === undefined ? [] : jsonList.activities)).map((jsonActivity): ActivityFull => {
+        activities: ((jsonList.activities === undefined ? [] : jsonList.activities)).map((jsonActivity): ActivityExpanded => {
           return {
             projectId: jsonActivity.projectId,
             itemId: jsonActivity.itemId,
