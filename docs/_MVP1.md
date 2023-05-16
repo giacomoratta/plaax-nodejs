@@ -30,6 +30,10 @@
       - jest mock aws in __mock__ folder
       - unit-tests for Repository
         - get real data from scripts in 'dev' folder
+        - save aws data (json files) in repo/__tests__/__data__
+        - save repo data (ts files) in repo/__tests__/__data__
+        - use repo data (ts files) in repo tests as expected data
+        - use repo data (ts files) in higher levels for mocking response from repo
       - unit-tests for ApiControllers
       - unit-tests for internalLambdaApiHandler
       - use DynamoDb (lambda permissions?)
@@ -47,6 +51,7 @@
 - Unit-Test single api controller
 - Unit-Test data repository
 - Unit-Test dynamodb-gateway
+- !! Mind the package.json dependencies for Lambda bundle
 
 
 #### Nice-to-have

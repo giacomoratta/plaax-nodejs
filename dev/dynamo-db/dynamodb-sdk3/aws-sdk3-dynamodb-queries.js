@@ -1,5 +1,7 @@
 const { getLocalConfig } = require('./aws-sdk3-local-config');
 const { DynamoDBClient, ListTablesCommand, QueryCommand, GetItemCommand } = require("@aws-sdk/client-dynamodb");
+const fs = require('fs');
+const path = require('path');
 
 const ddbClient = new DynamoDBClient({
   ...getLocalConfig()
@@ -10,6 +12,9 @@ const runDbCommand = async (command, processFn) => {
     const results = await ddbClient.send(command);
     if (processFn) processFn(results);
     else console.log(results);
+    fs.writeFileSync(path.join(__dirname, '__results.json'),
+      JSON.stringify(results, null, 2)
+    )
   } catch (err) {
     console.error(err);
   }
@@ -73,7 +78,7 @@ const ddbFunctions = {
 
 // const defaultFunctionName = "getUserCalendarByInterval"
 const defaultFunctionName = Object.keys(ddbFunctions).slice(-1)
-const selectedFunctionName = process.argv[2] || defaultFunctionName;
+const selectedFunctionName = process.argv[2] || defaultFunctionName
 
 const listAllFunctions = () => {
   console.log(
