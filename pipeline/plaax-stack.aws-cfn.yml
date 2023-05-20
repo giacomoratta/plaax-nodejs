@@ -5,28 +5,29 @@ Parameters:
     Type: String
   ReleaseHash:
     Type: String
-  StackPrefix:
+  ResourcePrefix:
     Type: String
-    Default: "plaax"
 
 Resources:
   LambdaApi1:
     Type: "AWS::Lambda::Function"
     Properties:
       Description: "Just a test lambda LambdaApi1"
-      FunctionName: !Sub "${StackPrefix}-${EnvName}-lbapi1"
+      FunctionName: !Sub "${ResourcePrefix}-lbapi1"
       Handler: "awsLambdas/api/index.handler" # = <path?><fileNameNoExt>.handler
       Code:
-        S3Bucket: "plaax-releases"
-        S3Key: !Sub "${EnvName}/release-lbapi1-${ReleaseHash}.zip"
+        S3Bucket: !Sub "${ResourcePrefix}-releases"
+        S3Key: !Sub "release-lbapi1-${ReleaseHash}.zip"
       PackageType: "Zip"
       Role: !GetAtt "LambdaApi1Role.Arn"
       Runtime: "nodejs18.x"
-      #MemorySize: 256
-      #Timeout: 30
+      MemorySize: 128
+      Timeout: 10
       Environment:
         Variables:
           NODE_OPTIONS: "--enable-source-maps"
+          ENV_NAME: !Sub "${EnvName}"
+          RESOURCE_PREFIX: !Sub "${ResourcePrefix}"
 
   LambdaApi1LogGroup:
     Type: AWS::Logs::LogGroup
@@ -39,9 +40,9 @@ Resources:
     Type: "AWS::IAM::Role"
     Properties:
       Description: "Role and policies for LambdaApi1 to write logs"
-      RoleName: !Sub "${StackPrefix}-${EnvName}-lbapi1-role"
+      RoleName: !Sub "${ResourcePrefix}-lbapi1-role"
       Policies:
-        - PolicyName: !Sub "${StackPrefix}-${EnvName}-lbapi1-cloudwatch-policy"
+        - PolicyName: !Sub "${ResourcePrefix}-lbapi1-cloudwatch-policy"
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -50,7 +51,28 @@ Resources:
                   - logs:CreateLogGroup
                   - logs:CreateLogStream
                   - logs:PutLogEvents
-                Resource: arn:aws:logs:*:*:*
+                Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${ResourcePrefix}-lbapi1:*"
+                # Resource: arn:aws:logs:*:*:* # todo: remove
+        - PolicyName: !Sub "${ResourcePrefix}-lbapi1-dynamodb"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:BatchGetItem
+                  - dynamodb:BatchWriteItem
+                  - dynamodb:DeleteItem
+                  - dynamodb:GetItem
+                  - dynamodb:PutItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:Scan
+                  - dynamodb:Query
+                Resource:
+                  #- !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*"  # todo: remove
+                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-items"
+                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-unique-ids"
+                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-user-calendar"
+                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-user-project"
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow
@@ -63,13 +85,13 @@ Resources:
     Properties:
       Description: "Just an API Gateway Gw1 which triggers LambdaApi1"
       ProtocolType: HTTP
-      Name: !Sub "${StackPrefix}-${EnvName}-gw1"
+      Name: !Sub "${ResourcePrefix}-gw1"
 
   ApiGw1IamRole:
     Type: AWS::IAM::Role
     Properties:
       Description: "Role and policies for Gateway1 to access lambda"
-      RoleName: !Sub "${StackPrefix}-${EnvName}-gw1-role"
+      RoleName: !Sub "${ResourcePrefix}-gw1-role"
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -87,7 +109,7 @@ Resources:
             Version: "2012-10-17"
             Statement:
               - Effect: "Allow"
-                Action: "lambda:*"
+                Action: "lambda:*" # could be more restrictive but Resource is referring to a specific lambda
                 Resource: !GetAtt LambdaApi1.Arn
 
   ApiGw1IntegrationWithLambdaApi1:
@@ -133,7 +155,7 @@ Resources:
       - ApiGw1Rest
       - ApiGw1IntegrationWithLambdaApi1
     Properties:
-      # Description: "Route to LambdaApi1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
+      # Description: "..."
       ApiId: !Ref ApiGw1Rest
       RouteKey: GET /board/user/{userId}
       Target: !Join
@@ -147,7 +169,7 @@ Resources:
       - ApiGw1Rest
       - ApiGw1IntegrationWithLambdaApi1
     Properties:
-      # Description: "Route to LambdaApi1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
+      # Description: "..."
       ApiId: !Ref ApiGw1Rest
       RouteKey: POST /item # body with userId and projectId mandatory
       Target: !Join
@@ -161,7 +183,7 @@ Resources:
       - ApiGw1Rest
       - ApiGw1IntegrationWithLambdaApi1
     Properties:
-      # Description: "Route to LambdaApi1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
+      # Description: "..."
       ApiId: !Ref ApiGw1Rest
       RouteKey: GET /calendar/user/{userId}
       Target: !Join
@@ -175,7 +197,7 @@ Resources:
       - ApiGw1Rest
       - ApiGw1IntegrationWithLambdaApi1
     Properties:
-      # Description: "Route to LambdaApi1 for API Gateway1" # property not allowed for AWS::ApiGatewayV2::Route
+      # Description: "..."
       ApiId: !Ref ApiGw1Rest
       RouteKey: GET /user/{userId}/projects
       Target: !Join

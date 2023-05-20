@@ -1,24 +1,12 @@
 [
   {
-    "recordType": {
-      "S": "user"
-    },
-    "lastId": {
-      "N": "1000"
-    },
-    "updateTs": {
-      "N": "1679934106568"
-    }
+    "recordType": "user",
+    "lastId": 1000,
+    "updateTs": 1679934106568
   },
   {
-    "recordType": {
-      "S": "item"
-    },
-    "lastId": {
-      "N": "1000"
-    },
-    "updateTs": {
-      "N": "1679934106568"
-    }
+    "recordType": "item",
+    "lastId": 1000,
+    "updateTs": 1679934106568
   }
 ]

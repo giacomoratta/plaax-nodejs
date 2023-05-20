@@ -53,6 +53,9 @@ registry=https://registry.npmjs.org/
 
 
 ## Bash Scripting
+> N.b. Pay attention to the Unix shell with which you are running the script
+> because something might fail for no clear reasons (e.g. 'file' not found).
+> Make sure you run the script with the correct `/bin/bash` or `/bin/zsh`.
 
 - `#!/bin/bash` is needed to run the script as executable (e.g. `./script.sh`);
 - `exit` must be used instead of `return` in order to stop a script execution;

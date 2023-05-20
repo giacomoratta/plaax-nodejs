@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script is a wrapper for aws-cfn.operations.sh in order to be executed in a local environment,
+# This script is a wrapper for plaax-stack.aws-cfn.operations.sh in order to be executed in a local environment,
 # with some additional configurations (aws, node, npm, etc.).
 
 # How-to RUN. This script must be executed from its directory: "source ./aws-cfn-stack.local.sh".
@@ -42,6 +42,6 @@ CURRENT_DIRECTORY=$(pwd)
 cd ../
 
 # Run the main script
-source ./aws-cfn.operations.sh $ENV_NAME $RELEASE_HASH $1
+source ./plaax-stack.aws-cfn.operations.sh $ENV_NAME $RELEASE_HASH $1
 
 cd $CURRENT_DIRECTORY

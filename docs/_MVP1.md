@@ -24,10 +24,15 @@
     - (done) create API routes for some basic endpoints
     - (done) copy only handler and code specific for a lambda
     - (done) add meaningful logs for incoming requests in main lambda api handler
+    - (done) handle static resources with aws cloudformation
+      - (done) stack for lambda, api, etc.
+      - (done) stack for s3, dynamodb, etc.
+      - (done) script for stack-static operations
+      - (done) renamed dynamodb tables as "stack-env-..."
     - (wip-paused) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
     - (wip) focus on 1 controller for 'getBoard' and implement the whole chain
       - install aws libs as dev dependencies (already present in lambda node-runtime)
-      - jest mock aws in __mock__ folder
+      - jest mock aws in __mocks__ folder
       - unit-tests for Repository
         - get real data from scripts in 'dev' folder
         - save aws data (json files) in repo/__tests__/__data__
@@ -36,13 +41,9 @@
         - use repo data (ts files) in higher levels for mocking response from repo
       - unit-tests for ApiControllers
       - unit-tests for internalLambdaApiHandler
-      - use DynamoDb (lambda permissions?)
       - define returned types (undefined, empty array.. ??)
   - automatic logs for gw ?
   - (done - time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources"): not possible from local yml files
-- Add DynamoDb table to CFN template
-  - try with a different name first (to prevent overwriting/deleting)
-  - add initial data from CFN template
 
 #### Next work
 - Local-dev with server, koa (dev dependency only!), docker, etc.
@@ -52,6 +53,7 @@
 - Unit-Test data repository
 - Unit-Test dynamodb-gateway
 - !! Mind the package.json dependencies for Lambda bundle
+- Centralize DynamoDb config (and functions?) w/ dependency on ENV_NAME
 
 
 #### Nice-to-have
@@ -65,6 +67,7 @@
 - Cloudformation templates
   - split in multiple files
   - export output values
-- Create one-time cloudformation templates
-  - create S3 bucket for release with retention days
-  - create dynamo-db tables by env
+- (done) Create one-time cloudformation templates
+  - (done) create S3 bucket for release
+  - (done) create dynamo-db tables by env
+  - apply retention days on s3 buckets?

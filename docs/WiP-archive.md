@@ -21,8 +21,8 @@ _(sorted by descending date)_
 
 - Deploy 2
   - (done) Create 1 Bash script for deployment
-  - (done) rename "aws-cfn-stack.sh" to "aws-cfn.operations.sh" (+local)
-  - (not-needed... too many layers) create "deploy.sh"/"deploy.local.sh" (wrap "aws-cfn.operations.sh")
+  - (done) rename "aws-cfn-stack.sh" to "plaax-stack.aws-cfn.operations.sh" (+local)
+  - (not-needed... too many layers) create "deploy.sh"/"deploy.local.sh" (wrap "plaax-stack.aws-cfn.operations.sh")
   - (done) Create a docker image for deployment
     - (done) "deploy.dockerfile"
     - (postponed - todo added) basic linux image

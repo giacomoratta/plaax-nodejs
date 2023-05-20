@@ -2,7 +2,7 @@
 
 # ABOUT THE SCRIPT
 # - it is a multi-purpose script for some cloudformation most used commands;
-# - for "--deploy" operation, it deploys the CloudFormation stack from the template "aws-cfn-stack.yml",
+# - for "--deploy" operation, it deploys the CloudFormation stack from the template "plaax-stack-static.aws-cfn.yml",
 #   with some additional template parameters.
 
 # ARGUMENTS
@@ -19,30 +19,28 @@ set -e
 
 # Variables and parameters
 ENV_NAME=$1
-RELEASE_HASH=$2
-OPERATION=$3
-STACK_NAME="PlaaxStackT1-$ENV_NAME"
+OPERATION=$2
+STACK_NAME="PlaaxStack-Static-$ENV_NAME"
+RESOURCE_PREFIX="plaax-$ENV_NAME"
 
 printf "\nScript parameters:\n"
 printf " param \$1 (env-name) = $1\n"
-printf " param \$2 (release-hash) = $2\n"
-printf " param \$3 (operation) = $3\n"
+printf " param \$2 (operation) = $2\n"
 
 printf "\nVariables:\n"
-printf " ENV_NAME = $ENV_NAME\n"
 printf " OPERATION = $OPERATION\n"
 printf " STACK_NAME = $STACK_NAME\n"
-printf " RELEASE_HASH = $RELEASE_HASH\n"
+printf " ENV_NAME = $ENV_NAME\n"
+printf " RESOURCE_PREFIX = $RESOURCE_PREFIX\n"
 printf "\n"
 
 
 # Check arguments
-if [ $# -lt 2 ]
+if [ $# -lt 1 ]
   then
     printf "Missing some mandatory arguments:\n"
     printf "  Argument #1 env-name (e.g. 'dev', 'prd', etc.).\n"
-    printf "  Argument #2 release-hash (e.g. 'f8734f2').\n"
-    printf "  Argument #3 operation (e.g. '--delete', '--deploy', etc.).\n"
+    printf "  Argument #2 operation (e.g. '--delete', '--deploy', etc.).\n"
     printf "\n"
     exit 1
 fi
@@ -60,12 +58,12 @@ then
   # Deploy Stack
   printf "Deploying the stack '$STACK_NAME'...\n\n"
   aws cloudformation deploy \
-  --template-file ./aws-cfn-stack.yml \
+  --template-file ./plaax-stack-static.aws-cfn.yml \
   --stack-name $STACK_NAME \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
     EnvName=$ENV_NAME \
-    ReleaseHash=$RELEASE_HASH
+    ResourcePrefix=$RESOURCE_PREFIX
   exit
 fi
 
@@ -106,14 +104,19 @@ then
 fi
 
 
-# Create/Update Stack
-## aws cloudformation update-stack \
-#  aws cloudformation create-stack \
-#  --stack-name StackTest008 \
-#  --template-body file://../aws-cfn-stack.yml \
-#  --capabilities CAPABILITY_NAMED_IAM \
-#  --parameters ParameterKey=EnvName,ParameterValue=env008
-#  --parameters EnvName=env006
-#  --parameters Env=ImageId,ParameterValue=myLatestAMI
+# Create initial data
+if [[ "$OPERATION" = "--init-data" ]]
+then
+  printf "Creating initial data for some resources...\n\n"
+  plaaxUniqueIdsFiles=( ./initial-static-data/plaax-unique-ids/*.json )
+  for entry in $plaaxUniqueIdsFiles
+    do
+      echo $entry
+      aws dynamodb put-item \
+      --table-name "$RESOURCE_PREFIX-unique-ids" \
+      --item file://$entry
+    done
+  exit
+fi
 
 printf "\nUnknown operation.\n\n"

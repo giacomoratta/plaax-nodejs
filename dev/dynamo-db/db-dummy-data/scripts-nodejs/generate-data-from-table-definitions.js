@@ -21,8 +21,9 @@ const currentDir = path.dirname(process.argv[1])
 let jsonData = null
 
 try {
-  jsonData = require('../table-definitions/' + jsonFileName)
+  jsonData = require('../../table-definitions/' + jsonFileName)
 } catch (e) {
+  console.error(e)
   console.error('Cannot open file ', jsonFileName)
   process.exit()
 }
