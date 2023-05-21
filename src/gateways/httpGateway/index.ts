@@ -1,4 +1,7 @@
 import axios, { AxiosError } from 'axios'
+import { createLogger } from '../../logger'
+
+const log = createLogger('httpGateway')
 
 interface KeyValueObject {
   [key: string]: string | number | boolean | null | undefined
@@ -43,7 +46,7 @@ export abstract class HttpGateway {
       timeout: this.requestConfig.timeout
     }
 
-    console.debug({ url, config }, 'HttpGateway request')
+    log.debug({ url, config }, 'HttpGateway request')
 
     let axiosResponse
     try {
@@ -84,11 +87,11 @@ export abstract class HttpGateway {
     if (!axios.isAxiosError(error) || error.response == null) {
       const gatewayError = new Error('Unexpected error' + (error?.message === null ? '' : `: ${error.message}`))
       gatewayError.name = 'Gateway Error'
-      console.error({ gatewayError, error })
+      log.error({ gatewayError, error })
       throw gatewayError
     }
 
-    console.warn({ errorResponse: error.response }, 'HttpGateway request error')
+    log.warn({ errorResponse: error.response }, 'HttpGateway request error')
 
     return {
       status: error.response.status,

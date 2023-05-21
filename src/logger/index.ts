@@ -7,9 +7,19 @@ interface Logger {
   error: loggerFunction
 }
 
-export const createLogger = (moduleName): Logger => {
+const createLoggerTests = (moduleName): Logger => {
+  return {
+    debug: function (): void { return undefined },
+    info: function (): void { return undefined },
+    warn: function (): void { return undefined },
+    error: function (): void { return undefined }
+  }
+}
+
+let createLogger = (moduleName): Logger => {
   return {
     debug: function (params: Record<string, any> | string, message?: string | undefined): void {
+      // eslint-disable-next-line no-console
       console.log({
         module: moduleName,
         ...(typeof params !== 'string' ? params : {})
@@ -17,6 +27,7 @@ export const createLogger = (moduleName): Logger => {
     },
 
     info: function (params: Record<string, any> | string, message?: string | undefined): void {
+      // eslint-disable-next-line no-console
       console.info({
         module: moduleName,
         ...(typeof params !== 'string' ? params : {})
@@ -24,6 +35,7 @@ export const createLogger = (moduleName): Logger => {
     },
 
     warn: function (params: Record<string, any> | string, message?: string | undefined): void {
+      // eslint-disable-next-line no-console
       console.warn({
         module: moduleName,
         ...(typeof params !== 'string' ? params : {})
@@ -31,6 +43,7 @@ export const createLogger = (moduleName): Logger => {
     },
 
     error: function (params: Record<string, any> | string, message?: string | undefined): void {
+      // eslint-disable-next-line no-console
       console.error({
         module: moduleName,
         ...(typeof params !== 'string' ? params : {})
@@ -38,3 +51,9 @@ export const createLogger = (moduleName): Logger => {
     }
   }
 }
+
+if (process.env.NODE_ENV === 'test') {
+  createLogger = createLoggerTests
+}
+
+export { createLogger }
