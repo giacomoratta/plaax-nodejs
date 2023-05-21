@@ -29,8 +29,9 @@
       - (done) stack for s3, dynamodb, etc.
       - (done) script for stack-static operations
       - (done) renamed dynamodb tables as "stack-env-..."
-    - (wip-paused) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
-    - (wip) focus on 1 controller for 'getBoard' and implement the whole chain
+    - (wip) focus on 1 simple controller for 'getUserProjects'
+      - working api
+      - concept for jest tests and mocks
       - install aws libs as dev dependencies (already present in lambda node-runtime)
       - jest mock aws in __mocks__ folder
       - unit-tests for Repository
@@ -42,7 +43,12 @@
       - unit-tests for ApiControllers
       - unit-tests for internalLambdaApiHandler
       - define returned types (undefined, empty array.. ??)
-  - automatic logs for gw ?
+    - (wip-paused) focus on 1 controller for 'getBoard' and implement the whole chain
+      - working api (complex with many calls and data processing)
+      - more unit-tests
+      - more stuff to do in repo
+    - (wip-paused) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
+  - research possibilities for automatic logs from API-Gateway
   - (done - time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources"): not possible from local yml files
 
 #### Next work
