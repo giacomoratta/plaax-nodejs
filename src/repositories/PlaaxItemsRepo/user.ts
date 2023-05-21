@@ -1,5 +1,39 @@
-import { UserProjectsList } from '../../models/User'
+import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb'
+import { DynamoDBClientConfiguration, DynamoDbTables } from './DynamoDb.config'
+import { UserProjectIdsList, UserProjectsList } from '../../models/User'
+import { createLogger } from '../../logger'
 
-export const getUserProjectsList = async (userId: string): Promise<UserProjectsList | undefined> => {
+const log = createLogger('repository/user')
+const ddbClient = new DynamoDBClient(DynamoDBClientConfiguration)
+
+export const getUserProjectIdsList = async (userId: number): Promise<UserProjectIdsList | undefined> => {
+  const command = new QueryCommand({
+    TableName: DynamoDbTables.USER_PROJECTS,
+    KeyConditionExpression: 'userId = :userId',
+    ExpressionAttributeValues: { ':userId': { N: userId.toString() } }
+  })
+
+  const results = await ddbClient.send(command)
+  if (results == null || (results.Items == null)) {
+    log.debug({ results }, 'Empty result')
+    return undefined
+  }
+
+  const userProjects: UserProjectIdsList = []
+  results.Items.forEach(dbItem => {
+    const intProjectId = parseInt(dbItem.projectId?.N ?? '')
+    if (isNaN(intProjectId)) {
+      log.debug({ dbItem }, 'Unexpected data found')
+      return
+    }
+    userProjects.push(intProjectId)
+  })
+
+  log.debug({ userProjects }, 'Final user projects')
+  if (userProjects.length === 0) return undefined
+  return userProjects
+}
+
+export const getUserProjectsList = async (userId: number): Promise<UserProjectsList | undefined> => {
   return undefined
 }
