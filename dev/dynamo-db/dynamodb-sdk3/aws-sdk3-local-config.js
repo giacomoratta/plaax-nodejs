@@ -10,6 +10,8 @@ const personalAwsProfile = 'giacomoratta1'
 // }
 
 const getCredentialsFromEnvVars = () => {
+    // Troubleshooting:
+    // - run the script for aws env variables in the same console of this script
     if (process.env.AWS_PROFILE !== personalAwsProfile) {
         throw new Error('Unexpected AWS profile in the environment variables. ' +
           'AWS_PROFILE = ' + process.env.AWS_PROFILE)

@@ -1,5 +1,5 @@
 const { getLocalConfig } = require('./aws-sdk3-local-config');
-const { DynamoDBClient, ListTablesCommand, QueryCommand, GetItemCommand } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBClient, ListTablesCommand, QueryCommand, GetItemCommand, BatchGetItemCommand } = require("@aws-sdk/client-dynamodb");
 const fs = require('fs');
 const path = require('path');
 
@@ -16,7 +16,7 @@ const runDbCommand = async (command, processFn) => {
       JSON.stringify(results, null, 2)
     )
   } catch (err) {
-    console.error(err);
+    console.error('ERROR in runDbCommand:\n', err);
   }
 }
 
@@ -29,7 +29,7 @@ const ddbFunctions = {
   },
   getAllUserProjects: async (userId = "1005") => {
     const command = new QueryCommand({
-      TableName: "plaax-user-project-dev",
+      TableName: "plaax-dev-user-project",
       KeyConditionExpression: "userId = :userId",
       ExpressionAttributeValues: {":userId":{"N":userId}}
     });
@@ -40,7 +40,7 @@ const ddbFunctions = {
   },
   getAllProjectItems: async (projectId = "1002") => {
     const command = new QueryCommand({
-      TableName: "plaax-items-dev",
+      TableName: "plaax-dev-items",
       KeyConditionExpression: "projectId = :projectId",
       ExpressionAttributeValues: {":projectId":{"N":projectId}}
     });
@@ -51,7 +51,7 @@ const ddbFunctions = {
   },
   getOneItem: async (projectId = "1002", itemId = "1171") => {
     const command = new GetItemCommand({
-      TableName: "plaax-items-dev",
+      TableName: "plaax-dev-items",
       Key: {"projectId":{"N":projectId},"itemId":{"N":itemId}}
     });
     await runDbCommand(command, (results) => {
@@ -64,7 +64,7 @@ const ddbFunctions = {
     endTs = "1680106500000"
   ) => {
     const command = new QueryCommand({
-      TableName: "plaax-user-calendar-dev",
+      TableName: "plaax-dev-user-calendar",
       KeyConditionExpression: "userId = :userId",
       FilterExpression: "beginTs >= :beginTs AND endTs <= :endTs",
       ExpressionAttributeValues: {":userId":{"N":userId},":beginTs":{"N":beginTs},":endTs":{"N":endTs}}
@@ -73,7 +73,45 @@ const ddbFunctions = {
       console.log(results.Items);
       console.log("\nItems count:", results.Count);
     });
-  }
+  },
+  getProjectsById: async (projectIds = ["1002","1003"]) => {
+    const command = new BatchGetItemCommand({
+      RequestItems: {
+        "plaax-dev-items": {
+          // Each entry in Keys is an object that specifies a primary key.
+          Keys: [
+            {
+              "projectId": {
+                N: "1001"
+              },
+              "itemId": {
+                N: "1001"
+              }
+            },
+            {
+              "projectId": {
+                N: "1002"
+              },
+              "itemId": {
+                N: "1002"
+              }
+            },
+          ],
+          // ProjectionExpression: "projectId",
+        },
+      },
+    }
+    // {
+    //   TableName: "plaax-dev-items",
+    //   KeyConditionExpression: "projectId = :projectId",
+    //   ExpressionAttributeValues: {":projectId":{"N":projectId}}
+    // }
+    );
+    await runDbCommand(command, (results) => {
+      console.log(results.Responses['plaax-dev-items']);
+      // console.log("\nItems count:", results.Count);
+    });
+  },
 }
 
 // const defaultFunctionName = "getUserCalendarByInterval"

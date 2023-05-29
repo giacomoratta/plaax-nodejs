@@ -21,3 +21,7 @@ export interface TaskItem extends GenericItem {
   listId: number
   activityId: number
 }
+
+export type ProjectIdsList = number[]
+
+export type ProjectItemsList = ProjectItem[]

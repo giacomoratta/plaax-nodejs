@@ -30,16 +30,17 @@
       - (done) script for stack-static operations
       - (done) renamed dynamodb tables as "stack-env-..."
     - (wip) focus on 1 simple controller for 'getUserProjects'
-      - working api
-      - concept for jest tests and mocks
-      - install aws libs as dev dependencies (already present in lambda node-runtime)
-      - jest mock aws in __mocks__ folder
-      - unit-tests for Repository
-        - get real data from scripts in 'dev' folder
-        - save aws data (json files) in repo/__tests__/__data__
-        - save repo data (ts files) in repo/__tests__/__data__
-        - use repo data (ts files) in repo tests as expected data
-        - use repo data (ts files) in higher levels for mocking response from repo
+      - (done) continue tests [index.test.ts](..%2Fsrc%2Frepositories%2FPlaaxItemsRepo%2Fboard%2F__tests__%2Findex.test.ts)
+      - (done) concept for jest tests and mocks
+      - (done) install aws libs as dev dependencies (already present in lambda node-runtime)
+      - (done) jest mock aws in __mocks__ folder
+      - (done) unit-tests for Repository
+        - (done) get real data from scripts in 'dev' folder
+        - (done) save aws data (json files) in repo/__tests__/__data__
+        - (done) save repo data (ts files) in repo/__tests__/__data__
+        - (done) use repo data (ts files) in repo tests as expected data
+        - (done) use repo data (ts files) in higher levels for mocking response from repo
+      - working api: integrate user+board repo calls in API + lambdaAPI
       - unit-tests for ApiControllers
       - unit-tests for internalLambdaApiHandler
       - define returned types (undefined, empty array.. ??)

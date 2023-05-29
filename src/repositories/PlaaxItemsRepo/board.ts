@@ -1,8 +1,14 @@
-import { ProjectExpanded } from '../../models/ItemsExpanded'
-import { getUserProjectsList } from './user'
+import { ProjectExpanded } from '../../models/ItemExpanded'
 
-export const getExpandedUserBoard = async (userId: string): Promise<ProjectExpanded[] | undefined> => {
-  const userProjectsList = await getUserProjectsList(userId)
+import { getUserProjectIdsList } from './userProjects'
+import { getExpandedProject } from './items'
+
+import { createLogger } from '../../logger'
+
+const log = createLogger('repo/plaaxItems/board')
+
+export const getExpandedUserBoard = async (userId: number): Promise<ProjectExpanded[] | undefined> => {
+  const userProjectsList = await getUserProjectIdsList(userId)
   if (userProjectsList === undefined) return undefined
 
   const projectBoardPromises =
@@ -19,10 +25,9 @@ export const getExpandedUserBoard = async (userId: string): Promise<ProjectExpan
     }
   })
 
-  if (projectBoard.length === 0) return undefined
+  if (projectBoard.length === 0) {
+    log.debug(`No projects on the board for user ${userId}`)
+    return undefined
+  }
   return projectBoard
-}
-
-const getExpandedProject = async (projectId: number): Promise<ProjectExpanded | undefined> => {
-  return undefined
 }

@@ -1,4 +1,4 @@
-import { ProjectItem, ListItem, ActivityItem, TaskItem } from './Items'
+import { ProjectItem, ListItem, ActivityItem, TaskItem } from './Item'
 
 export interface ProjectExpanded extends ProjectItem {
   lists: ListExpanded[]

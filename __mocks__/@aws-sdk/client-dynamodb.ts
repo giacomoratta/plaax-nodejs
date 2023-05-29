@@ -10,23 +10,13 @@ class _CommandGenericMock {
   }
 }
 
-export class PutItemCommand extends _CommandGenericMock {
-  // constructor (input) {
-  //   super(input)
-  // }
-}
+export class PutItemCommand extends _CommandGenericMock { }
 
-export class GetItemCommand extends _CommandGenericMock {
-  // constructor (input) {
-  //   super(input)
-  // }
-}
+export class GetItemCommand extends _CommandGenericMock { }
 
-export class QueryCommand extends _CommandGenericMock {
-  // constructor (input) {
-  //   super(input)
-  // }
-}
+export class QueryCommand extends _CommandGenericMock { }
+
+export class BatchGetItemCommand extends _CommandGenericMock { }
 
 export class DynamoDBClient {
   public send: jest.Mock<any, any>

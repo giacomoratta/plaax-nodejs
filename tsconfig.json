@@ -17,7 +17,7 @@
     "node_modules",
     "jest.config.js",
     "**/*.test.ts",
-    "**/__tests__"
+    "**/__test*",
   ],
   "include": [
     "src/**/*.ts"
