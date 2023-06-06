@@ -3,7 +3,7 @@ import { DynamoDbTables } from '../DynamoDb.config'
 
 import { cloneJsonObject, getMockedImplForDdbClient } from '../../../__tests__/testUtils'
 import projectItemsP1001P002 from '../__test-data-ddb__/projectItems-getBatch-p1001-p1002.json'
-import { projectItemsArrayP1001P1002 } from '../../../__test-data-models__/projectItemsArray-p1001-p1002'
+import { projectItemsArrayP1001P1002 } from '../../../__tests__/__data-models__/projectItemsArray-p1001-p1002'
 
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 const ddbClient = new DynamoDBClient({})

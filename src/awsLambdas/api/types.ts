@@ -16,7 +16,7 @@ export type LambdaResponse = APIGatewayProxyStructuredResultV2
 export type InternalLambdaEventHandler =
   (event: APIGatewayProxyEventV2, context?: LambdaContext) => Promise<APIGatewayProxyStructuredResultV2>
 
-export type InternalLambdaHandlersMap = Record<string, {
+export type LambdaApiRoutesHandlerMap = Record<string, {
   enabled: boolean
   fn: InternalLambdaEventHandler
 }>

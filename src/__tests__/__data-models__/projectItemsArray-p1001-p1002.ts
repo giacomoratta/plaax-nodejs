@@ -1,4 +1,4 @@
-import { ProjectItem } from '../models/Item'
+import { ProjectItem } from '../../models/Item'
 
 export const projectItemsArrayP1001P1002: ProjectItem[] = [
   {
