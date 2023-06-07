@@ -18,7 +18,7 @@ describe('PlaaxItemsRepo: USER', () => {
 
   describe('getUserProjectIdsList: get a list of numeric ids of projects associated to a specific user', () => {
     it('should return a list of projects where user=1005 is working on', async () => {
-      ddbClientSendMockImpl(async () => { return userProjectsU1005json })
+      ddbClientSendMockImpl(async () => { return cloneJsonObject(userProjectsU1005json) })
       const userId = 1005
       expect(await getUserProjectIdsList(userId)).toMatchObject([1001, 1002])
     })
@@ -74,10 +74,10 @@ describe('PlaaxItemsRepo: USER', () => {
       expect(mockedRepoItems.getProjectsById).not.toHaveBeenCalled()
     })
 
-    it('should return nothing when user has no projects', async () => {
+    it('should return a list of projects when user does have projects', async () => {
       ddbClientSendMockImpl(async () => {
         /* ddb response for getUserProjectIdsList */
-        return userProjectsU1005json
+        return cloneJsonObject(userProjectsU1005json)
       })
       const userId = 1005
       await getUserProjectsList(userId)
@@ -93,7 +93,7 @@ describe('PlaaxItemsRepo: USER', () => {
     it('should throw when db request for project items fails', async () => {
       ddbClientSendMockImpl(async () => {
         /* ddb response for getUserProjectIdsList */
-        return userProjectsU1005json
+        return cloneJsonObject(userProjectsU1005json)
       })
       mockedRepoItems.getProjectsById.mockImplementation(async () => {
         throw new Error('Unexpected failure on project items.')

@@ -9,6 +9,6 @@ export const getMockedImplForDdbClient = (ddbClientInstance) => {
 
   return (fn): void => {
     // @@ts-expect-error: aws lib imported from __mock__ (fix TS2339)
-    ddbClientInstance.send.mockImplementation(fn)
+    ddbClientInstance.send.mockImplementationOnce(fn)
   }
 }

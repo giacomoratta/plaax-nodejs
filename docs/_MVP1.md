@@ -29,7 +29,7 @@
       - (done) stack for s3, dynamodb, etc.
       - (done) script for stack-static operations
       - (done) renamed dynamodb tables as "stack-env-..."
-    - (wip) focus on 1 simple controller for 'userProjects'
+    - (done) focus on 1 simple controller for 'userProjects'
       - (done) concept for jest tests and mocks
       - (done) install aws libs as dev dependencies (already present in lambda node-runtime)
       - (done) jest mock aws in __mocks__ folder
@@ -44,13 +44,13 @@
       - (done) unit-tests for internalLambdaApiHandler
       - (done) create integration test stub
       - (done) deploy and test with new handler, test entire flow
-      - create initial integration test for api lambda
-      - define returned types (undefined, empty array.. ??)
-    - (wip-paused) focus on 1 controller for 'getUserBoard' and implement the whole chain
+      - (done) create initial integration test for api lambda
+    - (wip) focus on 1 controller for 'getUserBoard' and implement the whole chain
       - working api (complex with many calls and data processing)
       - more unit-tests
       - more stuff to do in repo
     - (wip-paused) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
+    - define returned types (undefined, empty array.. ??)
   - research possibilities for automatic logs from API-Gateway
   - (done - time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources"): not possible from local yml files
 
