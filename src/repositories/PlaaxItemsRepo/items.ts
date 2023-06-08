@@ -1,4 +1,4 @@
-import { DynamoDBClient, BatchGetItemCommand } from '@aws-sdk/client-dynamodb'
+import { DynamoDBClient, BatchGetItemCommand, QueryCommand } from '@aws-sdk/client-dynamodb'
 import { DynamoDBClientConfiguration, DynamoDbTables } from './DynamoDb.config'
 
 import { ProjectIdsList, ProjectItemsList } from '../../models/Item'
@@ -13,7 +13,19 @@ const log = createLogger('repo/plaaxItems/items')
 const ddbClient = new DynamoDBClient(DynamoDBClientConfiguration)
 
 export const getExpandedProject = async (projectId: number): Promise<ProjectExpanded | undefined> => {
-  return undefined
+  const command = new QueryCommand({
+    TableName: DynamoDbTables.ITEMS,
+    KeyConditionExpression: 'projectId = :projectId',
+    ExpressionAttributeValues: { ':projectId': { N: projectId.toString() } }
+  })
+
+  const results = await ddbClient.send(command)
+  if (results == null || results.Items == null || results.Count === 0 || results.Items.length === 0) {
+    log.debug({ results }, 'Empty result')
+    return undefined
+  }
+
+  return translateFromDb.fromDbProjectItemsToProjectExpanded(results.Items)
 }
 
 export const getProjectsById = async (projectIds: ProjectIdsList): Promise<ProjectItemsList | undefined> => {

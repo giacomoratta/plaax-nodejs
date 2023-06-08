@@ -19,9 +19,11 @@ export const getExpandedUserBoard = async (userId: number): Promise<ProjectExpan
   const fullProjects = await Promise.all(projectBoardPromises)
 
   const projectBoard: ProjectExpanded[] = []
-  fullProjects.forEach((project) => {
+  fullProjects.forEach((project, index) => {
     if (project !== undefined) {
       projectBoard.push(project)
+    } else {
+      log.warn(`Project ${userProjectsList[index]} not found.`)
     }
   })
 
