@@ -48,7 +48,7 @@
     - (wip) focus on 1 controller for 'getUserBoard' and implement the whole chain
       - (done) add repo function + tests
       - (done) add api controller + tests
-      - add lambda route handler + tests
+      - (done) add lambda route handler + tests
       - deploy and test
       - add lambda integration tests?
       - working api (complex with many calls and data processing)

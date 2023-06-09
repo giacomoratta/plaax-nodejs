@@ -9,7 +9,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 const ddbClient = new DynamoDBClient({})
 const ddbClientSendMockImpl = getMockedImplForDdbClient(ddbClient)
 
-describe('PlaaxItemsRepo: BOARD', () => {
+describe('PlaaxItemsRepo: ITEMS', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })

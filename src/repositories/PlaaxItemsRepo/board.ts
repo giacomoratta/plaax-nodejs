@@ -15,7 +15,11 @@ export const getExpandedUserBoard = async (userId: number): Promise<ProjectExpan
 
   const projectBoardPromises =
       userProjectsList.map(async (projectId): Promise<ProjectExpanded | undefined> => {
-        return await getExpandedProject(projectId)
+        try {
+          return await getExpandedProject(projectId)
+        } catch (error) {
+          log.error({ error }, `getExpandedProject failure on project ${projectId}`)
+        }
       })
 
   const fullProjects = await Promise.all(projectBoardPromises)
