@@ -49,12 +49,25 @@
       - (done) add repo function + tests
       - (done) add api controller + tests
       - (done) add lambda route handler + tests
-      - deploy and test
-      - add lambda integration tests?
-      - working api (complex with many calls and data processing)
-      - more unit-tests
-      - more stuff to do in repo
-      - add "status" for Activity and Task (new: default, ready, progress, waiting, done)
+      - (done) add lambda integration tests
+      - (wip!) deploy and test
+      - try a core change - add "status" for Activity and Task (new: default, ready, progress, waiting, done)
+      - redefine the goal of this mvp1
+        - finish some changes
+        - start mvp2 with the following stuff
+        - no more API controllers
+        - cfn multiple files
+        - local dev with koa + local dynamodb
+        - github actions
+    - (done) extra-work and nice-to-have
+      - (done) Unit-Test single api controller
+      - (done) Unit-Test data repository
+      - (done) Unit-Test dynamodb-gateway
+      - (done) Centralize DynamoDb config (and functions?) w/ dependency on ENV_NAME
+      - (done) Create one-time cloudformation templates
+      - (done) create S3 bucket for release
+      - (done) create dynamo-db tables by env
+      - apply retention days on s3 buckets?
     - (wip-paused) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
     - define returned types (undefined, empty array.. ??)
   - research possibilities for automatic logs from API-Gateway
@@ -64,12 +77,7 @@
 - Local-dev with server, koa (dev dependency only!), docker, etc.
   - to test api with requests to aws cloud
   - setup a full local aws env?
-- Unit-Test single api controller
-- Unit-Test data repository
-- Unit-Test dynamodb-gateway
 - !! Mind the package.json dependencies for Lambda bundle
-- Centralize DynamoDb config (and functions?) w/ dependency on ENV_NAME
-
 
 #### Nice-to-have
 - set lifecycle for releases on S3
@@ -82,7 +90,3 @@
 - Cloudformation templates
   - split in multiple files
   - export output values
-- (done) Create one-time cloudformation templates
-  - (done) create S3 bucket for release
-  - (done) create dynamo-db tables by env
-  - apply retention days on s3 buckets?
