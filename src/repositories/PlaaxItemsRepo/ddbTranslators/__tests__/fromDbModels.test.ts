@@ -10,6 +10,8 @@ import { cloneJsonObject } from '../../../../__tests__/testUtils'
 import ddbProjectItemsFromDdb from '../../__test-data-ddb__/projectItems-getBatch-p1001-p1002.json'
 import allProjectItemsP1001FromDdb from '../../__test-data-ddb__/allProjectItems-p1001.json'
 
+import { projectExpandedP1001 } from '../../../../__tests__/__data-models__/projectExpanded-p1001'
+
 const getDdbProjectItems = (): Record<string, any> => {
   return ddbProjectItemsFromDdb.Responses[DynamoDbTables.ITEMS]
 }
@@ -80,6 +82,7 @@ describe('fromDbProjectItemsToProjectExpanded', () => {
     const ddbItems = cloneJsonObject(allProjectItemsP1001FromDdb).Items
     const project = fromDbProjectItemsToProjectExpanded(ddbItems)
 
+    expect(project).toMatchObject(projectExpandedP1001)
     expect(project).toBeTruthy()
     expect(ddbItems).toHaveLength(countProjectExpandedItems(project))
   })

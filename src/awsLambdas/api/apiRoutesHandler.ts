@@ -5,8 +5,8 @@ import {
   notFoundJsonServerError
 } from './responseBuilders'
 
-import { getUserBoard } from '../../apiControllers/board.controller'
-import { getUserProjects } from '../../apiControllers/userProjects.controller'
+import * as boardApiController from '../../apiControllers/board.controller'
+import * as userProjectsApiController from '../../apiControllers/userProjects.controller'
 
 // import { createLogger } from '../../logger'
 // const log = createLogger('awsLambda/api/routesHandler')
@@ -16,7 +16,7 @@ export const routesHandlerMap: LambdaApiRoutesHandlerMap = {
     enabled: true,
     fn: async (event) => {
       const userId = (event.pathParameters?.userId ?? '')
-      const data = await getUserProjects(userId)
+      const data = await userProjectsApiController.getUserProjects(userId)
       if (data == null) {
         return notFoundJsonServerError(`The user ${userId} is not associated to any project yet.`)
       }
@@ -27,12 +27,12 @@ export const routesHandlerMap: LambdaApiRoutesHandlerMap = {
     }
   },
   'GET /board/user/{userId}': {
-    enabled: false,
+    enabled: true,
     fn: async (event) => {
       const userId = (event.pathParameters?.userId ?? '')
-      const data = await getUserBoard(userId)
+      const data = await boardApiController.getUserBoard(userId)
       if (data == null) {
-        return notFoundJsonServerError('Board not found for user ' + userId)
+        return notFoundJsonServerError(`Board not found for user ${userId}.`)
       }
       return buildJsonResponse(200, {
         message: 'Board for user ' + userId,
