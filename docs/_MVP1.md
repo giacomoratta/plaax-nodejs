@@ -46,9 +46,15 @@
       - (done) deploy and test with new handler, test entire flow
       - (done) create initial integration test for api lambda
     - (wip) focus on 1 controller for 'getUserBoard' and implement the whole chain
+      - (done) add repo function + tests
+      - (done) add api controller + tests
+      - add lambda route handler + tests
+      - deploy and test
+      - add lambda integration tests?
       - working api (complex with many calls and data processing)
       - more unit-tests
       - more stuff to do in repo
+      - add "status" for Activity and Task (new: default, ready, progress, waiting, done)
     - (wip-paused) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
     - define returned types (undefined, empty array.. ??)
   - research possibilities for automatic logs from API-Gateway

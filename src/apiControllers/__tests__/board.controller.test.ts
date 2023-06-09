@@ -1,38 +1,31 @@
 import { getUserBoard } from '../board.controller'
 
-import project1001FullBoardApi from '../__test-data__/project-1001-full-api.json'
-
-import * as PlaaxItemsRepo from '../../repositories/PlaaxItemsRepo/board'
-import { jsonToProjectExpanded } from './test.utils'
+import * as PlaaxBoardRepo from '../../repositories/PlaaxItemsRepo/board'
 
 jest.mock('../../repositories/PlaaxItemsRepo/board')
-const mockedPlaaxItemsRepo = PlaaxItemsRepo as jest.Mocked<typeof PlaaxItemsRepo>
+const mockedPlaaxBoardRepo = PlaaxBoardRepo as jest.Mocked<typeof PlaaxBoardRepo>
 
-describe.skip('API Controller: board', () => {
-  describe('GET user board of 1 project', () => {
-    it('should respond with 200', async () => {
-      // todo: remove ctx because is not infra-detached (related to Koa)
-      const ctx = {
-        params: { userId: '1005', projectId: '1001' },
-        status: undefined,
-        body: undefined
-      }
-
-      mockedPlaaxItemsRepo.getExpandedUserBoard.mockImplementation(
-        // @ts-expect-error: it could return undefined
-        async () => {
-          // todo: return data as models
-          // todo: try to return data from api controller... maybe the test will fail
-          return jsonToProjectExpanded(project1001FullBoardApi)
-        })
-
-      await getUserBoard('1234')
-
-      expect(mockedPlaaxItemsRepo.getExpandedUserBoard).toHaveBeenCalledTimes(1) // todo: called with...
-      expect(ctx.body).toMatchObject(project1001FullBoardApi)
-      expect(ctx.status).toEqual(200)
-    })
+describe('API Controller: board', () => {
+  beforeEach(() => {
+    jest.resetAllMocks()
   })
 
-  // describe('GET full user board with many projects', () => {})
+  describe('getUserBoard: Get the full board of one user', () => {
+    it('should call the right repo function with the correct parameter', async () => {
+      await getUserBoard('1002')
+      expect(mockedPlaaxBoardRepo.getExpandedUserBoard).toHaveBeenCalledWith(1002)
+    })
+
+    it('should throw when repo function throws', async () => {
+      mockedPlaaxBoardRepo.getExpandedUserBoard.mockImplementation(async () => {
+        throw new Error('Unexpected failure.')
+      })
+      await expect(async () => await getUserBoard('1002')).rejects.toThrow('Unexpected failure.')
+    })
+
+    it('should throw when userId is not valid', async () => {
+      await expect(async () => await getUserBoard('0dfa02'))
+        .rejects.toThrow('Invalid userId (\'0dfa02\'). Expected numbers only.')
+    })
+  })
 })

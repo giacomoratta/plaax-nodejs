@@ -5,8 +5,9 @@ const isNumericString = (data: string): boolean => {
   return NUMBER_REGEX.test(data)
 }
 
-export const assertValidUserId = (userId: string): void => {
+export const assertValidUserId = (userId: string): number => {
   if (!isNumericString(userId)) {
     throw new TypeError(`Invalid userId ('${userId}'). Expected numbers only.`)
   }
+  return parseInt(userId)
 }

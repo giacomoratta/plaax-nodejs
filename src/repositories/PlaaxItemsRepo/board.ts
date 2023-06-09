@@ -11,6 +11,8 @@ export const getExpandedUserBoard = async (userId: number): Promise<ProjectExpan
   const userProjectsList = await getUserProjectIdsList(userId)
   if (userProjectsList === undefined) return undefined
 
+  // todo: filter out archived projects and items?
+
   const projectBoardPromises =
       userProjectsList.map(async (projectId): Promise<ProjectExpanded | undefined> => {
         return await getExpandedProject(projectId)
