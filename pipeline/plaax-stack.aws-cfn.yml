@@ -1,5 +1,10 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
+# NOTES
+# 1) [2023-05] split yml templates in multiple files:
+#   > not possible with local yml files
+#   > only possible when yml files are stored on S3 buckets
+
 Parameters:
   EnvName:
     Type: String
@@ -52,7 +57,6 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${ResourcePrefix}-lbapi1:*"
-                # Resource: arn:aws:logs:*:*:* # todo: remove
         - PolicyName: !Sub "${ResourcePrefix}-lbapi1-dynamodb"
           PolicyDocument:
             Version: "2012-10-17"
@@ -68,7 +72,6 @@ Resources:
                   - dynamodb:Scan
                   - dynamodb:Query
                 Resource:
-                  #- !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*"  # todo: remove
                   - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-items"
                   - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-unique-ids"
                   - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-user-calendar"
