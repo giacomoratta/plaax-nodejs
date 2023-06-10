@@ -14,7 +14,7 @@ then
   export RELEASE_HASH_PREVIOUS=$(cat $RELEASE_HASH_FILE)
   echo $RELEASE_HASH_GENERATED > $RELEASE_HASH_FILE
   printf " RELEASE_HASH_GENERATED = $RELEASE_HASH_GENERATED \n"
-  printf " RELEASE_HASH_PREVIOUS = $RELEASE_HASH_PREVIOUS \n"
+  printf " RELEASE_HASH_PREVIOUS = $RELEASE_HASH_PREVIOUS \n\n"
 fi
 
 if [[ "$1" = "--load" ]]
@@ -25,5 +25,5 @@ then
     printf "No release hash found in $RELEASE_HASH_FILE. Build a release first! \n\n"
     return 1
   fi
-  printf " RELEASE_HASH_LOADED = $RELEASE_HASH_LOADED \n"
+  printf " RELEASE_HASH_LOADED = $RELEASE_HASH_LOADED \n\n"
 fi

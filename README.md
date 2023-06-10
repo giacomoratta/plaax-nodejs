@@ -2,6 +2,14 @@
 
 A backend layer for PLAAX service, build with NodeJS and Typescript.
 
+### Pre-req: set local dev config
+See [DEV_NOTES.md](docs%2FDEV_NOTES.md) for "how-to" documentation.
+- node and npm: `nvm use` (set locally into `.nvmrc`)
+- npm registry: `default` (set locally into `.npmrc`)
+- GitHub profile (set to `local config`)
+- AWS profile (from `.aws` credentials or scripts)
+
+
 ### Install the project
 ```bash
 # set local git config (username, email)
@@ -14,10 +22,11 @@ nvm use
 npm install 
 ```
 
-### Linting
-* `npm run lint`: check the code
-* `npm run lint-fix`: check and fix the code
-* `npm run lint-debug`: check the code and show the analyzed files
+### Linting & Checking
+* `npm run ts-check`: check the typescript code
+* `npm run lint`: check the code syntax
+* `npm run lint-fix`: check and fix the code syntax
+* `npm run lint-debug`: check the code syntax and show the analyzed files
 
 ### Testing
 * `npm test`: run all tests

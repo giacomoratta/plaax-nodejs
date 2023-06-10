@@ -1,0 +1,966 @@
+{
+  "$metadata": {
+    "httpStatusCode": 200,
+    "requestId": "4JPID9HRF1PHHC6EMPJKE5C3O3VV4KQNSO5AEMVJF66Q9ASUAAJG",
+    "attempts": 1,
+    "totalRetryDelay": 0
+  },
+  "Count": 32,
+  "Items": [
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338817"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1006",
+          "1005"
+        ]
+      },
+      "createTs": {
+        "N": "1684562538817"
+      },
+      "itemId": {
+        "N": "1001"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Project 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338817"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "createTs": {
+        "N": "1684562538817"
+      },
+      "itemId": {
+        "N": "1021"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "List 1021 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1022"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "List 1022 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338817"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538817"
+      },
+      "itemId": {
+        "N": "1051"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1051 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1052"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1052 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1053"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1053 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1054"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1054 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1055"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1055 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1056"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1056 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1057"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1057 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1071"
+      },
+      "activityId": {
+        "N": "1051"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1071 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1006",
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1072"
+      },
+      "activityId": {
+        "N": "1051"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1072 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1073"
+      },
+      "activityId": {
+        "N": "1051"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1073 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1075"
+      },
+      "activityId": {
+        "N": "1052"
+      },
+      "ownerUserId": {
+        "N": "1006"
+      },
+      "title": {
+        "S": "Task 1075 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1076"
+      },
+      "activityId": {
+        "N": "1052"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1076 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1077"
+      },
+      "activityId": {
+        "N": "1052"
+      },
+      "ownerUserId": {
+        "N": "1006"
+      },
+      "title": {
+        "S": "Task 1077 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1078"
+      },
+      "activityId": {
+        "N": "1052"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1078 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1081"
+      },
+      "activityId": {
+        "N": "1055"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1081 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1082"
+      },
+      "activityId": {
+        "N": "1055"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1082 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1083"
+      },
+      "activityId": {
+        "N": "1055"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1083 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1084"
+      },
+      "activityId": {
+        "N": "1056"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1084 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1006",
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1085"
+      },
+      "activityId": {
+        "N": "1056"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1085 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1086"
+      },
+      "activityId": {
+        "N": "1056"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1086 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1087"
+      },
+      "activityId": {
+        "N": "1056"
+      },
+      "ownerUserId": {
+        "N": "1006"
+      },
+      "title": {
+        "S": "Task 1087 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1006",
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1088"
+      },
+      "activityId": {
+        "N": "1056"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1088 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1022"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1089"
+      },
+      "activityId": {
+        "N": "1057"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1089 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1006",
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1091"
+      },
+      "activityId": {
+        "N": "1054"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1091 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1006",
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1092"
+      },
+      "activityId": {
+        "N": "1054"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1092 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1093"
+      },
+      "activityId": {
+        "N": "1054"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1093 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1094"
+      },
+      "activityId": {
+        "N": "1054"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Task 1094 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1165"
+      },
+      "ownerUserId": {
+        "N": "1006"
+      },
+      "title": {
+        "S": "Activity 1165 for 1001"
+      }
+    },
+    {
+      "projectId": {
+        "N": "1001"
+      },
+      "updateTs": {
+        "N": "1684735338818"
+      },
+      "assignedUserIds": {
+        "NS": [
+          "1006",
+          "1005"
+        ]
+      },
+      "listId": {
+        "N": "1021"
+      },
+      "createTs": {
+        "N": "1684562538818"
+      },
+      "itemId": {
+        "N": "1166"
+      },
+      "ownerUserId": {
+        "N": "1005"
+      },
+      "title": {
+        "S": "Activity 1166 for 1001"
+      }
+    }
+  ],
+  "ScannedCount": 32
+}

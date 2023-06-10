@@ -19,6 +19,6 @@ Usage: `./script <dir-with-source-files> <dynamodb-table>`
 
 Generate the data that DynamoDB should accept or return from the directory [../table-definitions](..%2Ftable-definitions).
 
-### [scripts-nodejs/generate-plaax-db-example-data.js](scripts-nodejs%2Fgenerate-plaax-db-example-data.js)
+### [scripts-nodejs/generate-data-from-initial-example.js](scripts-nodejs%2Fgenerate-plaax-db-example-data.js)
 
 Generate the data that DynamoDB should accept or return from the file [json-initial-data/plaax-example-data-env.json](json-initial-data%2Fplaax-example-data-env.json).

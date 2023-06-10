@@ -1,0 +1,98 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  EnvName:
+    Type: String
+  ResourcePrefix:
+    Type: String
+
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Sub "${ResourcePrefix}-releases"
+
+  DynamoDbTableItems:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      TableName: !Sub "${ResourcePrefix}-items"
+      AttributeDefinitions:
+        - AttributeName: "projectId"
+          AttributeType: "N"
+        - AttributeName: "itemId"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "projectId"
+          KeyType: "HASH"
+        - AttributeName: "itemId"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      TableClass : "STANDARD"
+      BillingMode : "PROVISIONED"
+      DeletionProtectionEnabled: true
+
+  DynamoDbTableUniqueIds:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      TableName: !Sub "${ResourcePrefix}-unique-ids"
+      AttributeDefinitions:
+        - AttributeName: "recordType"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "recordType"
+          KeyType: "HASH"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      TableClass: "STANDARD"
+      BillingMode: "PROVISIONED"
+      DeletionProtectionEnabled: true
+
+  DynamoDbTableUserCalendar:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      TableName: !Sub "${ResourcePrefix}-user-calendar"
+      AttributeDefinitions:
+        - AttributeName: "userId"
+          AttributeType: "N"
+        - AttributeName: "itemId"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "userId"
+          KeyType: "HASH"
+        - AttributeName: "itemId"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      TableClass: "STANDARD"
+      BillingMode: "PROVISIONED"
+      DeletionProtectionEnabled: true
+
+  DynamoDbTableUserProject:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      TableName: !Sub "${ResourcePrefix}-user-project"
+      AttributeDefinitions:
+        - AttributeName: "userId"
+          AttributeType: "N"
+        - AttributeName: "projectId"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "userId"
+          KeyType: "HASH"
+        - AttributeName: "projectId"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      TableClass: "STANDARD"
+      BillingMode: "PROVISIONED"
+      DeletionProtectionEnabled: true

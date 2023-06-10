@@ -26,6 +26,11 @@
 - (t.b.d.) add sql-db (mysql) locally
 - (t.b.d.) add no-sql-db (dynamodb?) locally
 
+#### THE PROJECT (basics): MVP1
+- simulation of implementation, test, deployment, changes, re-deployment
+- simple cloudformation template with lambda, gateway, dynamodb, etc.
+- add source-map (for TS line numbers)
+
 #### THE PROJECT (basics): concept of backend
 - define structure of api, gateway, repositories, etc. (clear architecture)
 - TDD approach: start from api > repositories > gateway

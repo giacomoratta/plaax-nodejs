@@ -1,0 +1,66 @@
+{
+  "$metadata": {
+    "httpStatusCode": 200,
+    "requestId": "AABGUT92DMN5CBB6SG80P83EGVVV4KQNSO5AEMVJF66Q9ASUAAJG",
+    "attempts": 1,
+    "totalRetryDelay": 0
+  },
+  "Responses": {
+    "plaax-test-items": [
+      {
+        "projectId": {
+          "N": "1002"
+        },
+        "updateTs": {
+          "N": "1684735338818"
+        },
+        "assignedUserIds": {
+          "NS": [
+            "1008",
+            "1007",
+            "1005"
+          ]
+        },
+        "createTs": {
+          "N": "1684562538818"
+        },
+        "itemId": {
+          "N": "1002"
+        },
+        "ownerUserId": {
+          "N": "1005"
+        },
+        "title": {
+          "S": "Project 1002"
+        }
+      },
+      {
+        "projectId": {
+          "N": "1001"
+        },
+        "updateTs": {
+          "N": "1684735338817"
+        },
+        "assignedUserIds": {
+          "NS": [
+            "1006",
+            "1005"
+          ]
+        },
+        "createTs": {
+          "N": "1684562538817"
+        },
+        "itemId": {
+          "N": "1001"
+        },
+        "ownerUserId": {
+          "N": "1005"
+        },
+        "title": {
+          "S": "Project 1001"
+        }
+      }
+    ]
+  },
+  "UnprocessedKeys": {}
+}

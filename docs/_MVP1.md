@@ -14,40 +14,32 @@
 - simple AWS-CloudFormation script for 1 lambda, 1 api-gw, no dynamodb-tables
 - test error logs to see source-map (for TS line numbers)
 
+
 #### Work-in-progress
-- ((DONE)) Build and deploy local zip files with CFN
-  - just replace lambda code (script for build, zip, replace lambda code) ?
-  - (or) local scripts uses a different hash
-  - make release hash generic (not linked to git commit short)
-  - rename zip files with "plaax-<hash>.zip"
-  - handle missing release hash
-- ((DONE)) Deploy API-Gateway
-  - (ref) https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ApiGatewayV2.html
-  - (ref / api-gw-cfn) https://gist.github.com/toddlers/7c324e39c2ef3058d6c50b895076b16f
-  - deploy stand-alone GW with CFN
-  - trigger lambda with GW
-  - fix names for api-gw stuff in CFN template, fix Stack name
-- ((WIP)) Create the final API-Layer
-  - finalize the simple controller to lambda (hello-world)
-    - functions directory
-    - functions/apiLambdaHandler.ts
-    - (above) add meaningful logs for incoming requests
-    - api directory is for controllers (add readme?) ... that can be integrated everywhere
-    - create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
-  - add controller for full project from DynamoDb
-  - permissions for lambda, gw, dynamodb, etc.
-  - automatic logs for gw ?
-  - (time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources") - when everything is working!
-- Deploy DynamoDb table
-  - try with a different name first (to prevent overwriting/deleting)
+T.B.D.
+
+
+#### MVP-Part3
+- redefine the goal of this mvp1
+  - try a core change - add "status" for Activity and Task (new: default, ready, progress, waiting, done)
+  - finish some changes
+  - start mvp2 with the following stuff
+  - no more API controllers
+  - cfn multiple files
+  - local dev with koa + local dynamodb
+  - github actions
+- (wip-paused) create 3-4 controllers GET/POST/PUT/DELETE for expected CRUD operations
+- define returned types (undefined, empty array.. ??)
+- research possibilities for automatic logs from API-Gateway
+- (done - time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources"): not possible from local yml files
+- apply retention days on s3 buckets?
+
 
 #### Next work
 - Local-dev with server, koa (dev dependency only!), docker, etc.
   - to test api with requests to aws cloud
   - setup a full local aws env?
-- Unit-Test single api controller
-- Unit-Test data repository
-- Unit-Test dynamodb-gateway
+- !! Mind the package.json dependencies for Lambda bundle
 
 
 #### Nice-to-have
@@ -61,6 +53,3 @@
 - Cloudformation templates
   - split in multiple files
   - export output values
-- Create one-time cloudformation templates
-  - create S3 bucket for release with retention days
-  - create dynamo-db tables by env
