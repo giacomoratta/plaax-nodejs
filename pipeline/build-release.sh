@@ -67,11 +67,13 @@ cp $RELEASE_BASE_ZIP_FILENAME $RELEASE_LBAPI1_ZIP_FILENAME
 cd ./dist/
 zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./awsLambdas/api # main lambda code
 zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./apiControllers
-zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./gateways
+    zip --delete ../$RELEASE_LBAPI1_ZIP_FILENAME "./apiControllers/helloWorld/*"
 zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./logger
 zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./models
 zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./repositories
+    zip --delete ../$RELEASE_LBAPI1_ZIP_FILENAME "./repositories/sampleErrorThrown.*"
 zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./shared
+#zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./gateways # not needed at the moment
 cd ..
 
 

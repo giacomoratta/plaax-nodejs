@@ -50,7 +50,7 @@
       - (done) add api controller + tests
       - (done) add lambda route handler + tests
       - (done) add lambda integration tests
-      - (wip!) deploy and test
+      - (done) deploy and test
       - try a core change - add "status" for Activity and Task (new: default, ready, progress, waiting, done)
       - redefine the goal of this mvp1
         - finish some changes
