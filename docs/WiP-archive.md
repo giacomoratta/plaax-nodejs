@@ -49,6 +49,7 @@ _(sorted by descending date)_
     - Create one-time cloudformation templates
     - create S3 bucket for release
     - create dynamo-db tables by env
+    - (done/not-possible - time-boxed 1h) try to split api-gw into another file (dir "/aws-cfn-resources"): not possible from local yml files
 
 
 #### PLX-1004: MVP1 part1
