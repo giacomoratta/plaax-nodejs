@@ -32,36 +32,36 @@
 - add source-map (for TS line numbers)
 
 #### THE PROJECT (basics): concept of backend
-- define structure of api, gateway, repositories, etc. (clear architecture)
-- TDD approach: start from api > repositories > gateway
-  - get full test data from dynamo-db
-  - create expected domain data
-- MOCK aws libraries on top level (./src/_\_mocks__)
-- create basic api layer with common operations
-  - get user board (multi project)
-  - get user calendar (between dates)
+- (done) define structure of api, gateway, repositories, etc. (clear architecture)
+- (done) TDD approach: start from api > repositories > gateway
+  - (done) get full test data from dynamo-db
+  - (done) create expected domain data
+- (done) MOCK aws libraries on top level (./src/_\_mocks__)
+- (done) create basic api layer with common operations
+  - (done) get user board (multi project)
+  - (done) get user calendar (between dates)
   - add new item
   - add new item on calendar
-- create specific dynamodb gateway
-  - define db data models
-- create specific app repository
-  - define domain data models
-  - interact with gateway
-  - complex operations with db executed together, return complex domain objects
+- (done) create specific dynamodb gateway
+  - (done) define db data models
+- (done) create specific app repository
+  - (done) define domain data models
+  - (done) interact with gateway
+  - (done) complex operations with db executed together, return complex domain objects
 
 #### THE PROJECT (basics): backend
 - add pino logger for the code (suppress on tests)
 - add logger for api requests (pino? as middleware?) (suppress on tests)
-- create api layer (focus on the basic features of task manager)
+- (done) create api layer (focus on the basic features of task manager)
 - use nodemon, better dev env
 
 #### DEPLOYMENT ON AWS AS SERVERLESS
-- deploy on AWS as DEV environment
-  - create script AWS-CFN to create db tables w/ env variable
-  - create AWS-CLI script for initial data w/ env variable
-- deploy on AWS as ACC environment
-- define architecture
-- arch#1 = lambda, api gateway, script with cloudformation on local
+- (done) deploy on AWS as DEV environment
+  - (done) create script AWS-CFN to create db tables w/ env variable
+  - (done) create AWS-CLI script for initial data w/ env variable
+- (done) deploy on AWS as ACC environment
+- (done) define architecture
+- (done) arch#1 = lambda, api gateway, script with cloudformation on local
 
 #### THE PROJECT (extended): backend
 - API authentication layer w/ Lambda Authorizer or other on AWS
