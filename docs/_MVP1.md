@@ -20,6 +20,20 @@ T.B.D.
 
 
 #### MVP-Part3
+- GitHub actions
+  - GOAL: proper ci/cd setup
+  - STEPS:
+    - start with very basic action
+      - (done) example-wf1.yml
+      - (done) run a bash script
+        https://stackoverflow.com/questions/65609835/run-a-bash-script-located-in-public-folder-github-actions
+      - run into docker containers
+        https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
+      - build with bash?
+      - build with GitHub 3rd-party actions?
+    - setup action for build-release
+    - setup action for deploy
+
 - (wip-waiting) Manage lifecycle for releases on S3
   - GOAL: prevent uncontrolled growth of release packages
   - STEPS:
@@ -35,13 +49,6 @@ T.B.D.
 
 - (done) Research possibilities for automatic logs from API-Gateway
   - GOAL: more knowledge on aws-gw
-
-- GitHub actions
-  - GOAL: proper ci/cd setup
-  - STEPS:
-    - start with very basic actions
-    - setup action for build-release
-    - setup action for deploy
 
 - Local dev with koa + local dynamodb
   - GOAL: play with local aws services and containers
@@ -65,6 +72,15 @@ T.B.D.
 - Add the final logger
   - GOAL: do not log with console
   - Introduce pino-logger (+ research for alternatives)
+
+- Plan and produce some articles based on ./docs or ./dev
+  - GOAL: start presence on medium/hash-node
+
+- Update dependencies and vulnerabilities
+  - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
+  - Get rid of vulnerabilities ASAP
+  - Update with breaking changes
+  - Think about some automations
 
 
 #### Next work

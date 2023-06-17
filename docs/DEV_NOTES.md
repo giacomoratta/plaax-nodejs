@@ -64,7 +64,6 @@ registry=https://registry.npmjs.org/
 - `printf` is preferable to `echo` (which does not process escape characters like `\n`; `echo -e` does it!).
 
 
-
 ## Docker
 
 #### COPY always as 'root' user
@@ -108,3 +107,25 @@ Running processes in the container as the root user is a precarious security pra
 - https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf
 - https://petermalmgren.com/pid-1-child-processes-docker/
 - https://gist.github.com/StevenACoffman/41fee08e8782b411a4a26b9700ad7af5
+
+
+## GitHub Actions
+
+#### Create and run workflows on a branch
+
+1. Create a dummy `.github/workflows/wf1.yml` to test;
+2. Push to your default branch (probably `main`);
+3. Go to "Actions": the new action should appear and the dummy workflow could be run;
+4. Create new branch `test-branch` from default repo branch;
+5. Modify workflow file `.github/workflows/wf1.yml` with the actual workflow;
+6. Commit and push to `test-branch`;
+7. Go to "Actions", click on workflow name and set "Use workflow" from to test-branch;
+8. Click the button "Run workflow".
+9. From now on, many changes can be made on the workflow: name, job or step names, input for the trigger, etc.
+
+In conclusion, the basic idea is that GitHub cannot execute a workflow from a branch if it does not exist in the `main` branch.
+So, when we want to introduce a new workflow and test it into a branch, we need to start by pushing the dummy version of
+this new workflow on the `main` branch.
+
+Credits: https://stackoverflow.com/a/65389878
+
