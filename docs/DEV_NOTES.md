@@ -112,7 +112,7 @@ Running processes in the container as the root user is a precarious security pra
 ## GitHub Actions
 
 #### Create and run workflows on a branch
-
+ 
 1. Create a dummy `.github/workflows/wf1.yml` to test;
 2. Push to your default branch (probably `main`);
 3. Go to "Actions": the new action should appear and the dummy workflow could be run;
@@ -128,4 +128,11 @@ So, when we want to introduce a new workflow and test it into a branch, we need 
 this new workflow on the `main` branch.
 
 Credits: https://stackoverflow.com/a/65389878
+
+
+#### Run workflow with a docker custom image
+
+- There are not many differences on how docker commands are executed;
+- Docker BUILDKIT is needed to enable some new or advanced features: https://docs.docker.com/build/buildkit/;
+  - for example, it is needed in case the docker image has to set permissions on files with `chmod`.
 

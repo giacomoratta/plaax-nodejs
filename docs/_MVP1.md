@@ -27,9 +27,9 @@ T.B.D.
       - (done) example-wf1.yml
       - (done) run a bash script
         https://stackoverflow.com/questions/65609835/run-a-bash-script-located-in-public-folder-github-actions
-      - run into docker containers
+      - (done) run into docker containers
         https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
-      - build with bash?
+      - (wip) build with aws secrets
       - build with GitHub 3rd-party actions?
     - setup action for build-release
     - setup action for deploy
@@ -87,4 +87,6 @@ T.B.D.
 ...
 
 #### Nice-to-have
-...
+- upload base image with node, aws, apk, etc.
+  - use it custom build-release docker images
+  - use it in GitHub workflows
