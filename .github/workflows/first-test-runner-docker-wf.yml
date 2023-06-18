@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests-runner-job:
+  tests-runner-docker-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo under $GITHUB_WORKSPACE to be accessed by the workflow

@@ -111,7 +111,7 @@ Running processes in the container as the root user is a precarious security pra
 
 ## GitHub Actions
 
-#### Create and run workflows on a branch
+### Create and run workflows on a branch
  
 1. Create a dummy `.github/workflows/wf1.yml` to test;
 2. Push to your default branch (probably `main`);
@@ -130,9 +130,25 @@ this new workflow on the `main` branch.
 Credits: https://stackoverflow.com/a/65389878
 
 
-#### Run workflow with a docker custom image
+### Run workflow with a docker custom image
 
 - There are not many differences on how docker commands are executed;
 - Docker BUILDKIT is needed to enable some new or advanced features: https://docs.docker.com/build/buildkit/;
   - for example, it is needed in case the docker image has to set permissions on files with `chmod`.
 
+### Environments, secrets and variables
+
+- Go to "Settings" > "Environments" and create a new environment;
+- Each environment has its own secrets and variables;
+- Secrets and variables can be defined on a global level but
+  - in case of overlap with an env. secret/variable, the latter wins;
+- Got "Settings" > "Secrets and variables" to create secrets and variables or just display them by environment.
+
+**Useful global variables defined by GitHub:**
+- `${{ github.sha }}`: the full commit hash
+- https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
+
+**How to use secrets and variables:**
+- `${{ secrets.AWS_ACCESS_KEY_ID }}`
+- `${{ vars.TEST_VAR }}`
+- (no need to state the env)

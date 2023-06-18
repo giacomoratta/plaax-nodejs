@@ -29,7 +29,9 @@ T.B.D.
         https://stackoverflow.com/questions/65609835/run-a-bash-script-located-in-public-folder-github-actions
       - (done) run into docker containers
         https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
-      - (wip) build with aws secrets
+      - (done) build with aws secrets
+      - (wip) final build-release script (diff. by environment)
+      - final deploy script (diff. by environment)
       - build with GitHub 3rd-party actions?
     - setup action for build-release
     - setup action for deploy
