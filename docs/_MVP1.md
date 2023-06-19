@@ -29,12 +29,11 @@ T.B.D.
         https://stackoverflow.com/questions/65609835/run-a-bash-script-located-in-public-folder-github-actions
       - (done) run into docker containers
         https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
-      - (done) build with aws secrets
-      - (wip) final build-release script (diff. by environment)
-      - final deploy script (diff. by environment)
-      - build with GitHub 3rd-party actions?
-    - setup action for build-release
-    - setup action for deploy
+    - (done) setup action for build-release w/ aws secrets
+    - (done) setup action for deploy w/ aws secrets
+    - final build-deploy script (diff. by environment)
+    - move test workflows into another dir; leave 1 to be used as test/dummy + comments
+    - build with GitHub 3rd-party actions?
 
 - (wip-waiting) Manage lifecycle for releases on S3
   - GOAL: prevent uncontrolled growth of release packages

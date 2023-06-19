@@ -1,26 +1,25 @@
-name: repo-secrets-docker-wf
+name: deploy-wf
 
 on:
   workflow_dispatch:
 
 jobs:
-  repo-secrets-docker-job:
+  deploy-job:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-      - name: Checkout the repo under $GITHUB_WORKSPACE to be accessed by the workflow
+      - name: Repository checkout
         uses: actions/checkout@v3
       - name: Build docker image
-        run: DOCKER_BUILDKIT=1 docker build -t dk2-repo-secrets -f ./pipeline/github-workflows/repo-secrets.dockerfile .
+        run: DOCKER_BUILDKIT=1 docker build -t gr/plaax-nodejs/deploy -f ./pipeline/deploy.dockerfile .
       - name: Run docker image
         run: docker run
           --platform linux/x86_64
           --env ENV_NAME=dev
-          --env RELEASE_HASH=${{ github.sha }}
+          --env RELEASE_HASH=$(git rev-parse --short HEAD)
           --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
           --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
           --env AWS_DEFAULT_REGION=eu-west-1
-          --env AWS_REGION==eu-west-1
+          --env AWS_REGION=eu-west-1
           --env AWS_DEFAULT_OUTPUT=json
-          --env TEST_VAR=${{ vars.TEST_VAR }}
-          dk2-repo-secrets
+          gr/plaax-nodejs/deploy
