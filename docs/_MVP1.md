@@ -31,9 +31,28 @@ T.B.D.
         https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
     - (done) setup action for build-release w/ aws secrets
     - (done) setup action for deploy w/ aws secrets
-    - final build-deploy script (diff. by environment)
+    - (wip - see section below) final build-deploy script (diff. by environment)
     - move test workflows into another dir; leave 1 to be used as test/dummy + comments
     - build with GitHub 3rd-party actions?
+
+- FINAL ACTIONS
+  - ARE DOCKER IMAGES REALLY NEEDED?
+    - run scripts in GitHub container
+    - use aws actions or cli?
+
+  - Workflow: Shared docker image for build and deploy
+     - run job on demand
+     - build and publish on personal docker
+     - get/set secrets for personal docker
+  - Workflow: Build, release, deploy
+    - Test, build, release
+      - run job on demand (prevent useless builds)
+      - build specific image FROM (1)
+      - run container (no ENV)
+    - Deploy
+      - run job on demand
+      - build specific image FROM (1)
+      - run container (by ENV)
 
 - (wip-waiting) Manage lifecycle for releases on S3
   - GOAL: prevent uncontrolled growth of release packages

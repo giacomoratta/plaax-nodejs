@@ -100,6 +100,7 @@
 #### PRODUCTION
 - distinction between dev and prod
 - arch#2 = ecs/ec2, pm2, stability
+- nodejs security: https://link.medium.com/cWMfbbv1SAb
 
 #### CI/CD
 - github pipelines
@@ -115,4 +116,7 @@
 - basic UI with common libraries (e.g. Bootstrap)
 - connect with SSO, Cognito, etc. ?
 - implement SSR
-- js bundlers: Webpack5 (or alternatives)
+- serve fragments w/ Lambda (SSR)
+- js bundlers: Webpack5, Rollup, Esbuild, Parcel, Vite, etc. https://byby.dev/web-bundlers
+  (Vite uses esbuild for dependency bundles, rollup for production bundles)
+- Faster Virtual DOM https://github.com/aidenybai/million

@@ -1,25 +1,29 @@
-name: deploy-wf
+name: build-and-release
 
 on:
   workflow_dispatch:
 
 jobs:
-  deploy-job:
+  release-job:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
       - name: Repository checkout
         uses: actions/checkout@v3
-      - name: Build docker image
-        run: DOCKER_BUILDKIT=1 docker build -t gr/plaax-nodejs/deploy -f ./pipeline/deploy.dockerfile .
-      - name: Run docker image
-        run: docker run
-          --platform linux/x86_64
-          --env ENV_NAME=dev
-          --env RELEASE_HASH=5647218
-          --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-          --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          --env AWS_DEFAULT_REGION=eu-west-1
-          --env AWS_REGION=eu-west-1
-          --env AWS_DEFAULT_OUTPUT=json
-          gr/plaax-nodejs/deploy
+
+      - name: Set permissions to build-release sh files as executables
+        run: chmod +x ./pipeline/build-release/*.sh
+
+      - name: Install, Test, Build
+        run: ./pipeline/build-release/build.sh
+        shell: bash
+
+      - name: Bundle as zip package
+        run: ./pipeline/build-release/bundle-zip.sh ${{ github.sha }}
+        shell: bash
+
+      - name: Release
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: ./pipeline/build-release/release.sh ${{ github.sha }}
+        shell: bash

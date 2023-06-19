@@ -5,7 +5,8 @@
 # - it is supposed to be copied inside the main level of the repository and executed from there.
 
 # ARGUMENTS
-#  $1 = env-name (e.g. "dev", "prd", etc.)
+#  $1 = env-name (e.g. "dev", "prd", etc. - Pattern: /[a-z]{3,3}/ )
+#  $2 = release-hash (e.g. '31805e9' - Pattern: /[a-z0-9]{8,}/ )
 
 # HOW-TO
 # Run. This script must be executed from the main level of repo (same level of "src" directory).

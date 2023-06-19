@@ -111,6 +111,16 @@ Running processes in the container as the root user is a precarious security pra
 
 ## GitHub Actions
 
+### Runners
+We do not need to create a Docker file to run scripts for tests, builds, deployments, etc.
+
+GitHub already provides hosted runners with a lot of pre-installed software: 
+https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+For example, the runner with Ubuntu 22 and its internal packages is described here: 
+https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
+
+
 ### Create and run workflows on a branch
  
 1. Create a dummy `.github/workflows/wf1.yml` to test;
