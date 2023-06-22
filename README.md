@@ -2,6 +2,11 @@
 
 A backend layer for PLAAX service, build with NodeJS and Typescript.
 
+#### What is PLAAX?
+It is a small personal project which is not supposed to be released on production for many users.
+It has the only purpose to gain more hands-on experience with AWS infra, CI/CD, NodeJS, Typescript, etc.
+Everything is built from scratch without the help of frameworks or multi-tools packages. 
+
 ### Pre-req: set local dev config
 See [DEV_NOTES.md](docs%2FDEV_NOTES.md) for "how-to" documentation.
 - node and npm: `nvm use` (set locally into `.nvmrc`)
