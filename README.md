@@ -2,8 +2,7 @@
 
 A backend layer for PLAAX service, build with NodeJS and Typescript.
 
-#### What is PLAAX?
-It is a small personal project which is not supposed to be released on production for many users.
+**What is PLAAX?** It is a small personal project which is not supposed to be released on production for many users.
 It has the only purpose to gain more hands-on experience with AWS infra, CI/CD, NodeJS, Typescript, etc.
 Everything is built from scratch without the help of frameworks or multi-tools packages. 
 
