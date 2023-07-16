@@ -60,4 +60,4 @@ COPY ./__mocks__ ./__mocks__
 RUN npm test
 
 # Note: CMD is overridden when container is run with -it...sh
-# CMD ./build-release.sh $ENV_NAME $RELEASE_HASH $RELEASE_HASH_TO_DELETE
+# CMD ./build-release.sh $RELEASE_HASH

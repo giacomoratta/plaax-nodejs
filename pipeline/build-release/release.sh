@@ -1,6 +1,17 @@
 #!/bin/bash
 
-RELEASE_HASH=$1
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# Expected env. variables
+# $RELEASE_HASH (e.g. '31805e9')
+
+# Check $RELEASE_HASH
+if [ ${#RELEASE_HASH} -lt 2 ]
+  then
+    printf "Missing RELEASE_HASH environment variable! \n"
+    exit 1
+fi
 
 RELEASE_LBAPI1_LABEL="release-lbapi1"
 RELEASE_LBAPI1_ZIP_FILENAME=$RELEASE_LBAPI1_LABEL"-"$RELEASE_HASH".zip"

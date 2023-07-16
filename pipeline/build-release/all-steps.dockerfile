@@ -49,16 +49,18 @@ ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
 
+COPY ./.jest ./.jest
+COPY ./__mocks__ ./__mocks__
+COPY --chmod=755 ./pipeline/build-release ./pipeline/build-release
 COPY ./src ./src
 COPY ./.eslintignore ./
 COPY ./.eslintrc.js ./
+COPY ./.npmrc ./
 COPY ./jest.config.js ./
 COPY ./tsconfig.eslint.json ./
 COPY ./tsconfig.json ./
 
-COPY --chmod=755 ./pipeline/build-release.sh ./
-
 # RUN npm test
 
 # Note: CMD is overridden when container is run with -it...sh
-CMD ./build-release.sh $ENV_NAME $RELEASE_HASH $RELEASE_HASH_TO_DELETE
+CMD ./pipeline/build-release/all-steps.sh

@@ -1,2 +1,29 @@
-- use these scripts into 1?
-- use 1 script for everything?
+why splitting? to make reusable small steps for build, test, release!
+
+implement removal of same release-hash with s3
+> integrate in built-release steps
+> then, remove RELEASE_HASH_TO_DELETE (from local / replace with s3 remove)
+
+--------------------------------------------
+
+create a directory "deploy"
+create a directory "deploy-static"
+move plaax-stack.aws-cfn.operations.sh
+move plaax-stack.aws-cfn.yml
+move plaax-stack-static.aws-cfn.operations.sh
+move plaax-stack-static.aws-cfn.yml
+use plaax-stack.aws-cfn.operations.sh into gh-wf! with --deploy and other options
+>> it's just one operation! the deployment
+
+
+--------------------------------------------
+
+add timestamp to releases
+select newest one based on prefix with hash
+set an auto-removal policy
+or create a script to remove old releases
+
+
+add in "TODO-list"
+- create github action to copy a release when PR is merged into main to "plaax-release-main"
+- replace current s3 plaax-dev-release with plaax-temp-release

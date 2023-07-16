@@ -18,12 +18,15 @@ jobs:
         shell: bash
 
       - name: Bundle as zip package
-        run: ./pipeline/build-release/bundle-zip.sh ${{ github.sha }}
+        env:
+          RELEASE_HASH: ${{ github.sha }}
+        run: ./pipeline/build-release/bundle-zip.sh
         shell: bash
 
       - name: Release
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: ./pipeline/build-release/release.sh ${{ github.sha }}
+          RELEASE_HASH: ${{ github.sha }}
+        run: ./pipeline/build-release/release.sh
         shell: bash

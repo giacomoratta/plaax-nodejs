@@ -9,9 +9,8 @@ set -e
 # Prepare release hashes
 source utility.release-hash.local.sh --generate
 
-# Set variables for the container
-ENV_NAME="dev"
-RELEASE_HASH=$RELEASE_HASH_GENERATED
+# Set environment variables
+export RELEASE_HASH=$RELEASE_HASH_GENERATED
 RELEASE_HASH_TO_DELETE=$RELEASE_HASH_PREVIOUS
 
 
@@ -24,13 +23,24 @@ then
   exit
 fi
 
+# (temp solution) Delete an old releases
+if [ ${#RELEASE_HASH_TO_DELETE} -gt 2 ]
+then
+    S3_RELEASES_DIRECTORY="s3://plaax-dev-releases/"
+    RELEASE_LBAPI1_LABEL="release-lbapi1"
+    RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME=$RELEASE_LBAPI1_LABEL"-"$RELEASE_HASH_TO_DELETE".zip"
+    printf "\nDeleting old release lbapi1: $RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME from $S3_RELEASES_DIRECTORY...\n"
+    aws s3 rm $S3_RELEASES_DIRECTORY""$RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME
+    rm -f $RELEASE_LBAPI1_TO_DELETE_ZIP_FILENAME 2>/dev/null
+fi
+
 CURRENT_DIRECTORY=$(pwd)
 cd ../../
 
 # Prepare local env for node/npm
 nvm use
 
-source ./pipeline/build-release.sh $ENV_NAME $RELEASE_HASH $RELEASE_HASH_TO_DELETE
+source ./pipeline/build-release/all-steps.sh
 RETURNED_VALUE=$?
 
 printf "\n\n"
