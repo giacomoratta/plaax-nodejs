@@ -3,19 +3,18 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Expected env. variables
-# $RELEASE_HASH (e.g. '31805e9')
+# Generate new release filenames
+source ./pipeline/utils/aws-release.utils.sh --generate-new
 
-# Check $RELEASE_HASH
-if [ ${#RELEASE_HASH} -lt 2 ]
+# Check $RELEASE_LBAPI1_ZIP_FILENAME
+if [ ${#RELEASE_LBAPI1_ZIP_FILENAME} -lt 2 ]
   then
-    printf "Missing RELEASE_HASH environment variable! \n"
+    printf "Missing RELEASE_LBAPI1_ZIP_FILENAME! \n\n"
     exit 1
 fi
 
+
 RELEASE_BASE_ZIP_FILENAME="release-base.zip"
-RELEASE_LBAPI1_LABEL="release-lbapi1"
-RELEASE_LBAPI1_ZIP_FILENAME=$RELEASE_LBAPI1_LABEL"-"$RELEASE_HASH".zip"
 
 
 printf "\n\nCreating base release zip file '"$RELEASE_BASE_ZIP_FILENAME"'...\n"
@@ -24,6 +23,10 @@ zip $RELEASE_BASE_ZIP_FILENAME ./package.json
 zip $RELEASE_BASE_ZIP_FILENAME ./package-lock.json
 # not needed for now
 # zip -r $RELEASE_BASE_ZIP_FILENAME ./node_modules >/dev/null # install with npm ci
+
+
+# Delete all local zip files
+source ./pipeline/utils/aws-release.utils.sh --delete-current-local
 
 
 printf "\n\nCreating lbapi1 release zip file '"$RELEASE_LBAPI1_ZIP_FILENAME"'...\n"

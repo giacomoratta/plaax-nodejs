@@ -29,12 +29,8 @@ then
 fi
 
 
-# Prepare release hashes
-source utility.release-hash.local.sh --generate
-
-
 # Set other env. variables for the container
-export RELEASE_HASH=$RELEASE_HASH_GENERATED
+export RELEASE_HASH=$(git rev-parse --short HEAD)
 
 
 # Run container for publishing release

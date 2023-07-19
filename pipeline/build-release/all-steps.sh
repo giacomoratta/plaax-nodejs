@@ -15,9 +15,10 @@ if [ ${#RELEASE_HASH} -lt 2 ]
     exit 1
 fi
 
+chmod +x ./pipeline/utils/*.sh
 chmod +x ./pipeline/build-release/*.sh
 
-./pipeline/build-release/build.sh
+# ./pipeline/build-release/build.sh
 
 ./pipeline/build-release/bundle-zip.sh
 
