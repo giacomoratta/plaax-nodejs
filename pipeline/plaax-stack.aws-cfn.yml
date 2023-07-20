@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 # NOTES
-# 1) [2023-05] split yml templates in multiple files:
+# 1) [2023-05] tried to split yml templates in multiple files:
 #   > not possible with local yml files
 #   > only possible when yml files are stored on S3 buckets
 

@@ -18,7 +18,7 @@ fi
 chmod +x ./pipeline/utils/*.sh
 chmod +x ./pipeline/build-release/*.sh
 
-# ./pipeline/build-release/build.sh
+./pipeline/build-release/build.sh
 
 ./pipeline/build-release/bundle-zip.sh
 

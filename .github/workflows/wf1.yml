@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-job:
+  build-release-job:
     runs-on: ubuntu-latest
     steps:
       - name: Repository checkout

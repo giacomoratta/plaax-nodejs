@@ -1,9 +1,5 @@
 why splitting? to make reusable small steps for build, test, release!
 
-implement removal of same release-hash with s3
-> integrate in built-release steps
-> then, remove RELEASE_HASH_TO_DELETE (from local / replace with s3 remove)
-
 --------------------------------------------
 
 create a directory "deploy"
