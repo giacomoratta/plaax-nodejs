@@ -1,4 +1,4 @@
-name: build-release-wf
+name: build-release-docker-wf
 
 on:
   workflow_dispatch:

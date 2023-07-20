@@ -10,6 +10,6 @@ jobs:
       - name: Checkout the repo under $GITHUB_WORKSPACE to be accessed by the workflow
         uses: actions/checkout@v3
       - name: Build docker image
-        run: DOCKER_BUILDKIT=1 docker build -t dk1-test-runner -f ./pipeline/github-workflows/basic-test.dockerfile .
+        run: DOCKER_BUILDKIT=1 docker build -t dk1-test-runner -f ./pipeline/github-workflows-test/basic-test.dockerfile .
       - name: Run docker image
         run: docker run --platform linux/x86_64 dk1-test-runner

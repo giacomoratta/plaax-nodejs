@@ -14,12 +14,6 @@ use plaax-stack.aws-cfn.operations.sh into gh-wf! with --deploy and other option
 
 --------------------------------------------
 
-add timestamp to releases
-select newest one based on prefix with hash
-set an auto-removal policy
-or create a script to remove old releases
-
-
 add in "TODO-list"
 - create github action to copy a release when PR is merged into main to "plaax-release-main"
 - replace current s3 plaax-dev-release with plaax-temp-release
