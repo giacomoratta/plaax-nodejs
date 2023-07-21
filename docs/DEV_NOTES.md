@@ -64,7 +64,6 @@ registry=https://registry.npmjs.org/
 - `printf` is preferable to `echo` (which does not process escape characters like `\n`; `echo -e` does it!).
 
 
-
 ## Docker
 
 #### COPY always as 'root' user
@@ -108,3 +107,58 @@ Running processes in the container as the root user is a precarious security pra
 - https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf
 - https://petermalmgren.com/pid-1-child-processes-docker/
 - https://gist.github.com/StevenACoffman/41fee08e8782b411a4a26b9700ad7af5
+
+
+## GitHub Actions
+
+### Runners
+We do not need to create a Docker file to run scripts for tests, builds, deployments, etc.
+
+GitHub already provides hosted runners with a lot of pre-installed software: 
+https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+For example, the runner with Ubuntu 22 and its internal packages is described here: 
+https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
+
+
+### Create and run workflows on a branch
+ 
+1. Create a dummy `.github/workflows/wf1.yml` to test;
+2. Push to your default branch (probably `main`);
+3. Go to "Actions": the new action should appear and the dummy workflow could be run;
+4. Create new branch `test-branch` from default repo branch;
+5. Modify workflow file `.github/workflows/wf1.yml` with the actual workflow;
+6. Commit and push to `test-branch`;
+7. Go to "Actions", click on workflow name and set "Use workflow" from to test-branch;
+8. Click the button "Run workflow".
+9. From now on, many changes can be made on the workflow: name, job or step names, input for the trigger, etc.
+
+In conclusion, the basic idea is that GitHub cannot execute a workflow from a branch if it does not exist in the `main` branch.
+So, when we want to introduce a new workflow and test it into a branch, we need to start by pushing the dummy version of
+this new workflow on the `main` branch.
+
+Credits: https://stackoverflow.com/a/65389878
+
+
+### Run workflow with a docker custom image
+
+- There are not many differences on how docker commands are executed;
+- Docker BUILDKIT is needed to enable some new or advanced features: https://docs.docker.com/build/buildkit/;
+  - for example, it is needed in case the docker image has to set permissions on files with `chmod`.
+
+### Environments, secrets and variables
+
+- Go to "Settings" > "Environments" and create a new environment;
+- Each environment has its own secrets and variables;
+- Secrets and variables can be defined on a global level but
+  - in case of overlap with an env. secret/variable, the latter wins;
+- Got "Settings" > "Secrets and variables" to create secrets and variables or just display them by environment.
+
+**Useful global variables defined by GitHub:**
+- `${{ github.sha }}`: the full commit hash
+- https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
+
+**How to use secrets and variables:**
+- `${{ secrets.AWS_ACCESS_KEY_ID }}`
+- `${{ vars.TEST_VAR }}`
+- (no need to state the env)

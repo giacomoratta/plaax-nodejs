@@ -1,4 +1,5 @@
 # TODO: change base image to ubuntu or light linux
+
 FROM --platform=linux/x86_64 node:18-slim AS plaax-nodejs18-aws2-linux
 
 LABEL version="1.0"

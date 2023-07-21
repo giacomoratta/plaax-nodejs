@@ -6,14 +6,8 @@ set -e
 
 # How-to RUN. This script must be executed from its directory: "source ./build-release.local.sh".
 
-# Prepare release hashes
-source utility.release-hash.local.sh --generate
-
-# Set variables for the container
-ENV_NAME="dev"
-RELEASE_HASH=$RELEASE_HASH_GENERATED
-RELEASE_HASH_TO_DELETE=$RELEASE_HASH_PREVIOUS
-
+# Set environment variables
+export RELEASE_HASH=$(git rev-parse --short HEAD)
 
 # Prepare local env for aws
 source utility.set-aws-env.local.sh
@@ -30,15 +24,9 @@ cd ../../
 # Prepare local env for node/npm
 nvm use
 
-source ./pipeline/build-release.sh $ENV_NAME $RELEASE_HASH $RELEASE_HASH_TO_DELETE
+source ./pipeline/build-release/all-steps.sh
 RETURNED_VALUE=$?
 
 printf "\n\n"
-
-if [ $RETURNED_VALUE -eq 1 ]
-then
-  printf "Something went wrong...\n"
-  exit
-fi
 
 cd $CURRENT_DIRECTORY
