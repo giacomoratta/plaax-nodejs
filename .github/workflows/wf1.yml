@@ -1,32 +1,22 @@
-name: build-and-release
+name: deploy-wf
 
 on:
   workflow_dispatch:
 
 jobs:
-  build-release-job:
+  deploy-job:
     runs-on: ubuntu-latest
     steps:
       - name: Repository checkout
         uses: actions/checkout@v3
 
       - name: Set permissions to build-release sh files as executables
-        run: chmod +x ./pipeline/build-release/*.sh
+        run: chmod +x ./pipeline/deploy/*.sh
 
-      - name: Install, Test, Build
-        run: ./pipeline/build-release/build.sh
-        shell: bash
-
-      - name: Bundle as zip package
-        env:
-          RELEASE_HASH: ${{ github.sha }}
-        run: ./pipeline/build-release/bundle-zip.sh
-        shell: bash
-
-      - name: Release
+      - name: Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           RELEASE_HASH: ${{ github.sha }}
-        run: ./pipeline/build-release/release.sh
+        run: ./pipeline/deploy/all-steps.sh
         shell: bash

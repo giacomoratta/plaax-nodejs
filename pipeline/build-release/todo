@@ -1,5 +1,15 @@
 why splitting? to make reusable small steps for build, test, release!
 
+- script: get releases by prefix and select the most recent one
+
+- diff deploy-wf by ENV
+  - keep it simple: work on a single file based on DEV environment
+  - more complex things in the future
+
+
+- clean actions
+- update docs and planning
+
 --------------------------------------------
 
 create a directory "deploy"

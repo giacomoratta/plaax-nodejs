@@ -4,10 +4,9 @@ set -e
 # This script is a wrapper for build-release.sh in order to be executed in a local environment,
 # with some additional configurations (aws, node, npm, etc.).
 
-# How-to RUN. This script must be executed from its directory: "source ./build-release.local.sh".
 
 # Set environment variables
-export RELEASE_HASH=$(git rev-parse --short HEAD)
+export RELEASE_HASH=$(git rev-parse HEAD)
 
 # Prepare local env for aws
 source utility.set-aws-env.local.sh
