@@ -1,0 +1,25 @@
+name: deploy-wf
+
+on:
+  workflow_dispatch:
+
+env:
+  ENV_NAME: "dev"
+
+jobs:
+  deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+
+      - name: Set permissions to build-release sh files as executables
+        run: chmod +x ./pipeline/deploy/*.sh
+
+      - name: Deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          RELEASE_HASH: ${{ github.sha }}
+        run: ./pipeline/deploy/all-steps.sh $ENV_NAME
+        shell: bash

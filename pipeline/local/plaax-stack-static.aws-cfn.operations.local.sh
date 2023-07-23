@@ -3,8 +3,6 @@
 # This script is a wrapper for plaax-stack-static.aws-cfn.operations.sh in order to be executed in a local environment,
 # with some additional configurations (aws, node, npm, etc.).
 
-# How-to RUN. This script must be executed from its directory: "source ./plaax-stack-static.aws-cfn.operations.local.sh".
-
 
 # Set variables for the container
 ENV_NAME="dev"

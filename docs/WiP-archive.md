@@ -1,8 +1,31 @@
 ## Archive of Work-in-Progress
 _(sorted by descending date)_
 
-#### PLX-1005: MVP1 part3
-...
+
+#### PLX-1007: MVP1 part4
+- GitHub actions: introduction
+  - GOAL: final ci/cd setup
+  - ... w.i.p. ...
+
+
+#### PLX-1006: MVP1 part3
+- GitHub actions: introduction
+  - GOAL: preparation for a proper ci/cd setup
+  - start with very basic action
+    - example-wf1.yml
+    - run a bash script
+      https://stackoverflow.com/questions/65609835/run-a-bash-script-located-in-public-folder-github-actions
+    - run into docker containers
+      https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
+  - setup action for build-release w/ aws secrets
+  - setup action for deploy w/ aws secrets
+  - decided to go with bash scripts instead of docker
+  - split build-release.sh into small reusable steps for build, test, release
+  - prepare bash scripts for build-release
+    - make them working locally
+    - make them working locally with docker
+  - introduced aws-release.utils.sh for simple operations, centralize ops, and better clarity
+
 
 #### PLX-1005: MVP1 part2
 - Create the initial form of a final API-Layer
