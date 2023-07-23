@@ -1,10 +1,10 @@
-name: deploy-dev-docker-wf
+name: deploy-dev-docker
 
 on:
   workflow_dispatch:
 
 jobs:
-  deploy-job:
+  deploy-docker-job:
     runs-on: ubuntu-latest
     environment: dev
     steps:

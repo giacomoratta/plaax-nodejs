@@ -1,4 +1,4 @@
-name: deploy-dev-wf
+name: deploy-dev
 
 on:
   workflow_dispatch:

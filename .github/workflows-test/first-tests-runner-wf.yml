@@ -1,10 +1,10 @@
-name: first-tests-runner-wf
+name: first-tests-runner
 
 on:
   workflow_dispatch:
 
 jobs:
-  tests-runner-job:
+  first-tests-runner-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo under $GITHUB_WORKSPACE to be accessed by the workflow

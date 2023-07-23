@@ -1,4 +1,4 @@
-name: first-sample-wf
+name: first-workflow
 
 on:
   workflow_dispatch:
