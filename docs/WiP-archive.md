@@ -12,7 +12,7 @@ _(sorted by descending date)_
     - make them working locally
     - make them working locally with docker
     - differentiate deploy and deploy-static
-  - ... w.i.p. ...
+  - renamed directory "pipeline" to "operations"
 
 
 #### PLX-1006: MVP1 part3

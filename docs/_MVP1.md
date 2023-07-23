@@ -50,7 +50,7 @@
     - created a copy of object + created a rule
     - wait until 11 Jun at 16:00 and something should be deleted
     - try with 1 non-current-version objects retained
-    - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Fpipeline%2Fplaax-stack-static.aws-cfn.yml)
+    - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Foperations%2Fplaax-stack-static.aws-cfn.yml)
 
 - (done) Research possibilities for automatic logs from API-Gateway
   - GOAL: more knowledge on aws-gw
@@ -72,7 +72,7 @@
   - GOAL: try to change the core
 
 - Mind the package.json dependencies for Lambda bundle
-  - GOAL: optimize pipelines
+  - GOAL: optimize operations
 
 - Add the final logger
   - GOAL: do not log with console

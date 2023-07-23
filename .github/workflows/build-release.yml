@@ -11,16 +11,16 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set permissions to build-release sh files as executables
-        run: chmod +x ./pipeline/build-release/*.sh
+        run: chmod +x ./operations/build-release/*.sh
 
       - name: Install, Test, Build
-        run: ./pipeline/build-release/build.sh
+        run: ./operations/build-release/build.sh
         shell: bash
 
       - name: Bundle as zip package
         env:
           RELEASE_HASH: ${{ github.sha }}
-        run: ./pipeline/build-release/bundle-zip.sh
+        run: ./operations/build-release/bundle-zip.sh
         shell: bash
 
       - name: Release
@@ -28,5 +28,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           RELEASE_HASH: ${{ github.sha }}
-        run: ./pipeline/build-release/release.sh
+        run: ./operations/build-release/release.sh
         shell: bash

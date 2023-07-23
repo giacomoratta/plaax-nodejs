@@ -18,7 +18,7 @@ fi
 
 
 # Prepare local env for aws
-source ./pipeline/local/utility.set-aws-env.local.sh
+source ./operations/local/utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -28,7 +28,7 @@ fi
 
 
 # Check $ENV_NAME allowed values
-source ./pipeline/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
+source ./operations/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
 
 # Run the main script
-source ./pipeline/deploy-static/plaax-stack-static.aws-cfn.operations.sh $ENV_NAME $1
+source ./operations/deploy-static/plaax-stack-static.aws-cfn.operations.sh $ENV_NAME $1

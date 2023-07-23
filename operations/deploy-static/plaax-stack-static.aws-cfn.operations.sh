@@ -20,6 +20,8 @@ OPERATION=$2
 STACK_NAME="PlaaxStack-Static-$ENV_NAME"
 RESOURCE_PREFIX="plaax-$ENV_NAME"
 
+printf "\nPLAAX Stack Static - AWS CloudFormation - Operations: \n"
+
 printf "\nScript parameters:\n"
 printf " param \$1 (env-name) = $1\n"
 printf " param \$2 (operation) = $2\n"
@@ -55,7 +57,7 @@ then
   # Deploy Stack
   printf "Deploying the stack '$STACK_NAME'...\n\n"
   aws cloudformation deploy \
-  --template-file ./pipeline/deploy-static/plaax-stack-static.aws-cfn.yml \
+  --template-file ./operations/deploy-static/plaax-stack-static.aws-cfn.yml \
   --stack-name $STACK_NAME \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
@@ -105,7 +107,7 @@ fi
 if [[ "$OPERATION" = "--init-data" ]]
 then
   printf "Creating initial data for some resources...\n\n"
-  plaaxUniqueIdsFiles=( ../pipeline/deploy-static/initial-static-data/plaax-unique-ids/*.json )
+  plaaxUniqueIdsFiles=( ../operations/deploy-static/initial-static-data/plaax-unique-ids/*.json )
   for entry in $plaaxUniqueIdsFiles
     do
       echo $entry

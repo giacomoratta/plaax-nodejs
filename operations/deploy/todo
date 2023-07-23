@@ -1,6 +1,5 @@
 GOAL: final ci/cd setup
 
-- ?? rename "pipeline" to "scripts", "ci_cd_scripts", "operations", "ci-cd-ops"
 
 >> merge and test all scripts
 

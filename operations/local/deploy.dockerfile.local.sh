@@ -8,7 +8,7 @@ DOCKER_IMAGE_NAME="gr/plaax-nodejs/deploy"
 # Build docker image for deploy
 if [[ "$1" = "--build" ]]
 then
-  docker build -t $DOCKER_IMAGE_NAME -f ../deploy/all-steps.dockerfile ../../
+  docker build -t $DOCKER_IMAGE_NAME -f ./operations/deploy/all-steps.dockerfile .
 else
   if [[ "$1" != "--run" ]]
   then
@@ -19,7 +19,7 @@ fi
 
 
 # Prepare local env for aws
-source ./pipeline/local/utility.set-aws-env.local.sh
+source ./operations/local/utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -50,7 +50,7 @@ docker run --rm \
 # 1) do not use "--env AWS_PROFILE" to prevent the error: "The config profile (...) could not be found"
 
 # Useful commands to build and run
-# 1 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f ./pipeline/deploy.dockerfile .
+# 1 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f ./operations/deploy.dockerfile .
 # 2 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f deploy.dockerfile ../
 # This dir-level:       docker build -t gr/plaax-nodejs/deploy -f deploy.dockerfile ../../
 # Run as SH and remove: docker run --rm -it gr/plaax-nodejs/deploy sh

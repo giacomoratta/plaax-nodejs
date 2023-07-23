@@ -17,20 +17,20 @@ if [ ${#RELEASE_HASH} -lt 2 ]
     exit 1
 fi
 
-chmod +x ./pipeline/utils/*.sh
-chmod +x ./pipeline/deploy/*.sh
+chmod +x ./operations/utils/*.sh
+chmod +x ./operations/deploy/*.sh
 
 
 # Check $ENV_NAME allowed values
-source ./pipeline/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
+source ./operations/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
 
 
 # Get the latest published release label ($LATEST_RELEASE_LABEL)
-source ./pipeline/utils/aws-release.utils.sh --check-latest-published-releases
+source ./operations/utils/aws-release.utils.sh --check-latest-published-releases
 
 
 # Deploy the stack
-./pipeline/deploy/plaax-stack.aws-cfn.operations.sh \
+./operations/deploy/plaax-stack.aws-cfn.operations.sh \
   $ENV_NAME \
   $LATEST_RELEASE_LABEL \
   --deploy

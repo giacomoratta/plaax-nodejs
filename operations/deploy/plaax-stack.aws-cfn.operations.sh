@@ -21,6 +21,8 @@ OPERATION=$3
 STACK_NAME="PlaaxStack-$ENV_NAME"
 RESOURCE_PREFIX="plaax-$ENV_NAME"
 
+printf "\nPLAAX Stack - AWS CloudFormation - Operations: \n"
+
 printf "\nScript parameters:\n"
 printf " param \$1 (env-name) = $1\n"
 printf " param \$2 (release-hash) = $2\n"
@@ -59,7 +61,7 @@ then
   # Deploy Stack
   printf "Deploying the stack '$STACK_NAME'...\n\n"
   aws cloudformation deploy \
-  --template-file ./pipeline/deploy/plaax-stack.aws-cfn.yml \
+  --template-file ./operations/deploy/plaax-stack.aws-cfn.yml \
   --stack-name $STACK_NAME \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \

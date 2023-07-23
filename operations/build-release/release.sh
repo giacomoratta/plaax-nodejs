@@ -5,8 +5,8 @@ set -e
 
 
 # Keep S3 bucket clean (versioning is disabled, so no lifecycle rules)
-source ./pipeline/utils/aws-release.utils.sh --delete-current-published-release
+source ./operations/utils/aws-release.utils.sh --delete-current-published-release
 
 
 # Publish current release from local bundle files
-source ./pipeline/utils/aws-release.utils.sh --publish-current-local-release
+source ./operations/utils/aws-release.utils.sh --publish-current-local-release

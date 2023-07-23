@@ -24,9 +24,9 @@ ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
 
-COPY ./pipeline/plaax-stack.aws-cfn.yml ./
-COPY --chmod=755 ./pipeline/plaax-stack.aws-cfn.operations.sh ./
+COPY --chmod=755 ./operations/utils ./operations/utils
+COPY --chmod=755 ./operations/deploy ./operations/deploy
 
-CMD ./plaax-stack.aws-cfn.operations.sh $ENV_NAME $RELEASE_HASH --deploy
+CMD ./operations/deploy/all-steps.sh
 
 # Note: CMD is overridden when container is run with -it...sh

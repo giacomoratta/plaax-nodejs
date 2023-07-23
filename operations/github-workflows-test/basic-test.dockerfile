@@ -6,8 +6,6 @@ with extra packages (aws-cli2, zip, etc.)."
 
 RUN apt-get -y update
 
-RUN printenv
-
 ## basic packages
 #RUN apt-get -y install curl
 #RUN apt-get -y install unzip
@@ -55,13 +53,11 @@ COPY ./jest.config.js ./
 COPY ./tsconfig.eslint.json ./
 COPY ./tsconfig.json ./
 
-COPY --chmod=755 ./pipeline/build-release.sh ./
+COPY --chmod=755 ./operations/build-release.sh ./
 
-#COPY ./.jest ./.jest
-#COPY ./__mocks__ ./__mocks__
-#RUN npm test
-
-CMD printenv
+COPY ./.jest ./.jest
+COPY ./__mocks__ ./__mocks__
+RUN npm test
 
 # Note: CMD is overridden when container is run with -it...sh
 # CMD ./build-release.sh $RELEASE_HASH
