@@ -1,4 +1,4 @@
-name: deploy-docker-wf
+name: deploy-dev-docker-wf
 
 on:
   workflow_dispatch:
