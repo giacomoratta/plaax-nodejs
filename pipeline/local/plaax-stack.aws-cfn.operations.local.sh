@@ -4,19 +4,9 @@
 # with some additional configurations (aws, node, npm, etc.).
 
 
-# Prepare release hashes
-source utility.release-hash.local.sh --load
-RETURNED_VALUE=$?
-if [ $RETURNED_VALUE -ne 0 ]
-then
-  # no release hash found!
-  exit
-fi
-
-
-# Set variables for the container
-ENV_NAME="dev"
-RELEASE_HASH=$RELEASE_HASH_LOADED
+# Set environment variables
+export RELEASE_HASH=$(git rev-parse HEAD)
+export ENV_NAME="dev"
 
 
 # Check arguments
@@ -28,7 +18,7 @@ fi
 
 
 # Prepare local env for aws
-source ./utility.set-aws-env.local.sh
+source ./pipeline/local/utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -36,10 +26,14 @@ then
   exit
 fi
 
-CURRENT_DIRECTORY=$(pwd)
-cd ../
+
+# Check $ENV_NAME allowed values
+source ./pipeline/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
+
+
+# Get the latest published release label ($LATEST_RELEASE_LABEL)
+source ./pipeline/utils/aws-release.utils.sh --check-latest-published-releases
+
 
 # Run the main script
-source ./plaax-stack.aws-cfn.operations.sh $ENV_NAME $RELEASE_HASH $1
-
-cd $CURRENT_DIRECTORY
+source ./pipeline/deploy/plaax-stack.aws-cfn.operations.sh $ENV_NAME $LATEST_RELEASE_LABEL $1

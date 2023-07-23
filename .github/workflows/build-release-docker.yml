@@ -16,7 +16,7 @@ jobs:
         run: docker run
           --platform linux/x86_64
           --env ENV_NAME=dev
-          --env RELEASE_HASH=$(git rev-parse --short HEAD)
+          --env RELEASE_HASH=$(git rev-parse HEAD)
           --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
           --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
           --env AWS_DEFAULT_REGION=eu-west-1

@@ -51,6 +51,7 @@ WORKDIR ${CONTAINER_WORKING_DIR}
 
 COPY ./.jest ./.jest
 COPY ./__mocks__ ./__mocks__
+COPY --chmod=755 ./pipeline/utils ./pipeline/utils
 COPY --chmod=755 ./pipeline/build-release ./pipeline/build-release
 COPY ./src ./src
 COPY ./.eslintignore ./

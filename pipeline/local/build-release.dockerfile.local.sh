@@ -20,7 +20,7 @@ fi
 
 
 # Prepare local env for aws
-source utility.set-aws-env.local.sh
+source ./pipeline/local/utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -30,7 +30,7 @@ fi
 
 
 # Set other env. variables for the container
-export RELEASE_HASH=$(git rev-parse --short HEAD)
+export RELEASE_HASH=$(git rev-parse HEAD)
 
 
 # Run container for publishing release

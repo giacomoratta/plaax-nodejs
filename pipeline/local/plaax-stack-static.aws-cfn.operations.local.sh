@@ -4,8 +4,9 @@
 # with some additional configurations (aws, node, npm, etc.).
 
 
-# Set variables for the container
-ENV_NAME="dev"
+# Set environment variables
+#export RELEASE_HASH=<not-needed-for-static-resources>
+export ENV_NAME="dev"
 
 
 # Check arguments
@@ -17,7 +18,7 @@ fi
 
 
 # Prepare local env for aws
-source ./utility.set-aws-env.local.sh
+source ./pipeline/local/utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -25,10 +26,9 @@ then
   exit
 fi
 
-CURRENT_DIRECTORY=$(pwd)
-cd ../
+
+# Check $ENV_NAME allowed values
+source ./pipeline/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
 
 # Run the main script
-source ./plaax-stack-static.aws-cfn.operations.sh $ENV_NAME $1
-
-cd $CURRENT_DIRECTORY
+source ./pipeline/deploy-static/plaax-stack-static.aws-cfn.operations.sh $ENV_NAME $1

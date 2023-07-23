@@ -16,9 +16,8 @@
 
 
 #### PLX-1007: MVP1 part4
-- GitHub actions: introduction
+- GitHub actions: finalization
   - GOAL: final ci/cd setup
-
 
 - FINAL ACTIONS
   - ARE DOCKER IMAGES REALLY NEEDED?

@@ -5,6 +5,13 @@ _(sorted by descending date)_
 #### PLX-1007: MVP1 part4
 - GitHub actions: introduction
   - GOAL: final ci/cd setup
+  - diff deploy-wf by ENV
+    - https://docs.github.com/en/actions/learn-github-actions/contexts#example-usage-of-the-vars-context
+    - keep it simple: work on a single file based on DEV environment
+  - prepare bash scripts for deploy
+    - make them working locally
+    - make them working locally with docker
+    - differentiate deploy and deploy-static
   - ... w.i.p. ...
 
 

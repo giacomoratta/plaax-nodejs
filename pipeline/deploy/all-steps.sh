@@ -5,8 +5,9 @@ set -e
 
 # Expected env. variables
 # $RELEASE_HASH (e.g. '31805e9')
-# $ENV_NAME (e.g. '31805e9')
+# $ENV_NAME (e.g. 'dev')
 
+# Re-exported because it is needed by included scripts
 export RELEASE_HASH=$RELEASE_HASH
 
 # Check $RELEASE_HASH

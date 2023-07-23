@@ -8,7 +8,7 @@ DOCKER_IMAGE_NAME="gr/plaax-nodejs/deploy"
 # Build docker image for deploy
 if [[ "$1" = "--build" ]]
 then
-  docker build -t $DOCKER_IMAGE_NAME -f ../deploy.dockerfile ../../
+  docker build -t $DOCKER_IMAGE_NAME -f ../deploy/all-steps.dockerfile ../../
 else
   if [[ "$1" != "--run" ]]
   then
@@ -19,7 +19,7 @@ fi
 
 
 # Prepare local env for aws
-source utility.set-aws-env.local.sh
+source ./pipeline/local/utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -28,19 +28,9 @@ then
 fi
 
 
-# Prepare release hashes
-source utility.release-hash.local.sh --load
-RETURNED_VALUE=$?
-if [ $RETURNED_VALUE -ne 0 ]
-then
-  # no release hash found!
-  exit
-fi
-
-
 # Set other env. variables for the container
 export ENV_NAME="dev"
-export RELEASE_HASH=$RELEASE_HASH_LOADED
+export RELEASE_HASH=$(git rev-parse HEAD)
 
 
 # Run container for publishing release

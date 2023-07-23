@@ -55,7 +55,7 @@ then
   # Deploy Stack
   printf "Deploying the stack '$STACK_NAME'...\n\n"
   aws cloudformation deploy \
-  --template-file ./plaax-stack-static.aws-cfn.yml \
+  --template-file ./pipeline/deploy-static/plaax-stack-static.aws-cfn.yml \
   --stack-name $STACK_NAME \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
@@ -105,7 +105,7 @@ fi
 if [[ "$OPERATION" = "--init-data" ]]
 then
   printf "Creating initial data for some resources...\n\n"
-  plaaxUniqueIdsFiles=( ./initial-static-data/plaax-unique-ids/*.json )
+  plaaxUniqueIdsFiles=( ../pipeline/deploy-static/initial-static-data/plaax-unique-ids/*.json )
   for entry in $plaaxUniqueIdsFiles
     do
       echo $entry
