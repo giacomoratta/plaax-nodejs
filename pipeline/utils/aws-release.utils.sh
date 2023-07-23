@@ -186,6 +186,7 @@ then
   printf "The following published releases with prefix '$RELEASE_LBAPI1_S3_PREFIX' have been deleted:$RELEASES_TO_BE_DELETED\n"
 fi
 
+
 if [[ "$1" = "--check-latest-published-releases" ]]
 then
   RELEASE_LBAPI1_S3_PREFIX=$RELEASE_LBAPI1_LABEL"-"$SHORT_RELEASE_HASH
@@ -199,6 +200,7 @@ then
   printf "\nLatest release label found: $LATEST_RELEASE_LABEL\n"
 fi
 
+
 if [[ "$1" = "--cleanup-published-releases" ]]
 then
   QUERY_DATE=$(get_published_releases_expiration_date)
@@ -210,5 +212,20 @@ then
       printf "No published releases older than $QUERY_DATE have been found to be deleted.\n"
   fi
 fi
+
+
+if [[ "$1" = "--exit-on-invalid-env-name" ]]
+then
+  env_name=$2
+  EXIT_on_short_string "Missing environment name!" 1 $env_name
+  if [ "$env_name" = "dev" ] || [ "$env_name" = "acc" ] || [ "$env_name" = "prd" ]
+    then
+      printf "Environment name: '$env_name' .\n"
+    else
+      printf "Invalid environment name '$env_name' (expected values: dev, acc, prd).\n\n"
+      exit 1
+  fi
+fi
+
 
 printf "\n\n"

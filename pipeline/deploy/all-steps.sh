@@ -5,9 +5,9 @@ set -e
 
 # Expected env. variables
 # $RELEASE_HASH (e.g. '31805e9')
+# $ENV_NAME (e.g. '31805e9')
 
 export RELEASE_HASH=$RELEASE_HASH
-ENV_NAME=dev # todo: set outside, check here
 
 # Check $RELEASE_HASH
 if [ ${#RELEASE_HASH} -lt 2 ]
@@ -20,9 +20,15 @@ chmod +x ./pipeline/utils/*.sh
 chmod +x ./pipeline/deploy/*.sh
 
 
+# Check $ENV_NAME allowed values
+source ./pipeline/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
+
+
 # Get the latest published release label ($LATEST_RELEASE_LABEL)
 source ./pipeline/utils/aws-release.utils.sh --check-latest-published-releases
 
+
+# Deploy the stack
 ./pipeline/deploy/plaax-stack.aws-cfn.operations.sh \
   $ENV_NAME \
   $LATEST_RELEASE_LABEL \
