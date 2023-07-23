@@ -15,25 +15,10 @@
 - test error logs to see source-map (for TS line numbers)
 
 
-#### Work-in-progress
-T.B.D.
+#### PLX-1007: MVP1 part4
+- GitHub actions: introduction
+  - GOAL: final ci/cd setup
 
-
-#### MVP-Part3
-- GitHub actions
-  - GOAL: proper ci/cd setup
-  - STEPS:
-    - start with very basic action
-      - (done) example-wf1.yml
-      - (done) run a bash script
-        https://stackoverflow.com/questions/65609835/run-a-bash-script-located-in-public-folder-github-actions
-      - (done) run into docker containers
-        https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
-    - (done) setup action for build-release w/ aws secrets
-    - (done) setup action for deploy w/ aws secrets
-    - (wip - see section below) final build-deploy script (diff. by environment)
-    - move test workflows into another dir; leave 1 to be used as test/dummy + comments
-    - build with GitHub 3rd-party actions?
 
 - FINAL ACTIONS
   - ARE DOCKER IMAGES REALLY NEEDED?
@@ -55,6 +40,7 @@ T.B.D.
       - run container (by ENV)
 
 - (wip-waiting) Manage lifecycle for releases on S3
+  - Enabling S3 versioning is not free
   - GOAL: prevent uncontrolled growth of release packages
   - STEPS:
     - remove simple releases after 1 month

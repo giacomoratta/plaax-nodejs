@@ -1,11 +1,14 @@
-why splitting? to make reusable small steps for build, test, release!
-
-- script: get releases by prefix and select the most recent one
+GOAL: final ci/cd setup
 
 - diff deploy-wf by ENV
+  - https://docs.github.com/en/actions/learn-github-actions/contexts#example-usage-of-the-vars-context
   - keep it simple: work on a single file based on DEV environment
   - more complex things in the future
 
+- fix local scripts for deployment
+- run scripts without full path (just ./pipeline/...)
+
+- rename "pipeline" to "scripts" or "ci_cd_scripts"?
 
 - clean actions
 - update docs and planning
@@ -27,3 +30,4 @@ use plaax-stack.aws-cfn.operations.sh into gh-wf! with --deploy and other option
 add in "TODO-list"
 - create github action to copy a release when PR is merged into main to "plaax-release-main"
 - replace current s3 plaax-dev-release with plaax-temp-release
+- deal with weekly operations (fix vulnerabilities, package updates, etc.)
