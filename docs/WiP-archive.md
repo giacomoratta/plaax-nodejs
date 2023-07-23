@@ -13,6 +13,19 @@ _(sorted by descending date)_
     - make them working locally with docker
     - differentiate deploy and deploy-static
   - renamed directory "pipeline" to "operations"
+  - Workflow: Shared docker image for build and deploy
+    - run job on demand
+    - build and publish on personal docker
+    - get/set secrets for personal docker
+  - Workflow: Build, release, deploy
+    - Test, build, release
+      - run job on demand (prevent useless builds)
+      - build specific image FROM (1)
+      - run container (no ENV)
+    - Deploy
+      - run job on demand
+      - build specific image FROM (1)
+      - run container (by ENV)
 
 
 #### PLX-1006: MVP1 part3
@@ -26,12 +39,31 @@ _(sorted by descending date)_
       https://stackoverflow.com/questions/61154750/use-local-dockerfile-in-a-github-action
   - setup action for build-release w/ aws secrets
   - setup action for deploy w/ aws secrets
-  - decided to go with bash scripts instead of docker
+  - ARE DOCKER IMAGES REALLY NEEDED?
+    - run scripts in GitHub container
+    - use aws actions or cli?
+    - decided to go with bash scripts instead of docker
   - split build-release.sh into small reusable steps for build, test, release
   - prepare bash scripts for build-release
     - make them working locally
     - make them working locally with docker
   - introduced aws-release.utils.sh for simple operations, centralize ops, and better clarity
+  - (done) Research possibilities for automatic logs from API-Gateway
+    - GOAL: more knowledge on aws-gw
+    - See ApiGw1StageV1 AccessLogSettings
+  - Manage lifecycle for releases on S3
+    - Decision: won't do - Enabling S3 versioning is not free
+    - GOAL: prevent uncontrolled growth of release packages
+    - STEPS:
+      - remove simple releases after 1 month
+      - apply retention days on s3 buckets?
+      - keep releases of main branch?
+      - define directories to differentiate what to delete and what to keep
+    - WIP:
+      - created a copy of object + created a rule
+      - wait until 11 Jun at 16:00 and something should be deleted
+      - try with 1 non-current-version objects retained
+      - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Foperations%2Fplaax-stack-static.aws-cfn.yml)
 
 
 #### PLX-1005: MVP1 part2

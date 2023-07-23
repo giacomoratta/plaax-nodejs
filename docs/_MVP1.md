@@ -15,46 +15,7 @@
 - test error logs to see source-map (for TS line numbers)
 
 
-#### PLX-1007: MVP1 part4
-- GitHub actions: finalization
-  - GOAL: final ci/cd setup
-
-- FINAL ACTIONS
-  - ARE DOCKER IMAGES REALLY NEEDED?
-    - run scripts in GitHub container
-    - use aws actions or cli?
-
-  - Workflow: Shared docker image for build and deploy
-     - run job on demand
-     - build and publish on personal docker
-     - get/set secrets for personal docker
-  - Workflow: Build, release, deploy
-    - Test, build, release
-      - run job on demand (prevent useless builds)
-      - build specific image FROM (1)
-      - run container (no ENV)
-    - Deploy
-      - run job on demand
-      - build specific image FROM (1)
-      - run container (by ENV)
-
-- (wip-waiting) Manage lifecycle for releases on S3
-  - Enabling S3 versioning is not free
-  - GOAL: prevent uncontrolled growth of release packages
-  - STEPS:
-    - remove simple releases after 1 month
-    - apply retention days on s3 buckets?
-    - keep releases of main branch?
-    - define directories to differentiate what to delete and what to keep
-  - WIP:
-    - created a copy of object + created a rule
-    - wait until 11 Jun at 16:00 and something should be deleted
-    - try with 1 non-current-version objects retained
-    - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Foperations%2Fplaax-stack-static.aws-cfn.yml)
-
-- (done) Research possibilities for automatic logs from API-Gateway
-  - GOAL: more knowledge on aws-gw
-
+#### Next work
 - Local dev with koa + local dynamodb
   - GOAL: play with local aws services and containers
   - STEPS:
@@ -88,10 +49,10 @@
   - Think about some automations
 
 
-#### Next work
-...
-
 #### Nice-to-have
 - upload base image with node, aws, apk, etc.
   - use it custom build-release docker images
   - use it in GitHub workflows
+- create GitHub action to copy a release when PR is merged into main to "plaax-release-main"
+- replace current s3 plaax-dev-release with plaax-temp-release
+- deal with weekly operations (fix vulnerabilities, package updates, etc.)

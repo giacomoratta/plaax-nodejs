@@ -143,8 +143,10 @@ Credits: https://stackoverflow.com/a/65389878
 ### Run workflow with a docker custom image
 
 - There are not many differences on how docker commands are executed;
-- Docker BUILDKIT is needed to enable some new or advanced features: https://docs.docker.com/build/buildkit/;
-  - for example, it is needed in case the docker image has to set permissions on files with `chmod`.
+- DOCKER_BUILDKIT is needed to enable some new or advanced features: https://docs.docker.com/build/buildkit/;
+  - for example, it is needed in case the docker image has to set permissions on files with `chmod`;
+  - is an improved backend to replace the legacy builder;
+  - it is the default builder for users on Docker Desktop, and Docker Engine as of version 23.0.
 
 ### Environments, secrets and variables
 
@@ -162,3 +164,13 @@ Credits: https://stackoverflow.com/a/65389878
 - `${{ secrets.AWS_ACCESS_KEY_ID }}`
 - `${{ vars.TEST_VAR }}`
 - (no need to state the env)
+
+### Notes about [workflows](..%2F.github%2Fworkflows)
+
+- Workflow based on Docker:
+  - nice experiment but, it is not needed at the moment;
+  - running bash scripts is enough.
+- Differentiate environments for deployments:
+  - define a global env. variable `ENV_NAME`;
+  - use it in the script wherever it is needed as `$ENV_NAME`.
+ 
