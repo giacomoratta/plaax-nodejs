@@ -1,4 +1,0 @@
-All the scripts in the directory "local" do have effects on remote environments! (not on local env.)
-They are just supposed to be called from local env.
-
-Therefore, all of them start by setting the local env. to be able to manipulate resources on AWS cloud, Docker, etc.

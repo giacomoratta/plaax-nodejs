@@ -1,5 +1,69 @@
 # Dev Utils
 
+## Bash
+
+#### Strings
+```
+# Check string length
+if [[ ${#StringVar} -lt $MinLength ]]
+then
+  ...
+fi
+
+# Get substring 
+echo $RELEASE_HASH | cut -c1-8  # between char(1) and char(8)
+```
+
+#### Search files by prefix in the current directory
+```
+find . -maxdepth 1 -type f -name "$1*"
+```
+
+#### Dates
+```
+# Current timestamp
+date +"%s"
+
+# Print the date of 30 days ago with a specific format
+date -d "30 days ago" "+%Y-%m-%d"  # linux
+date -v-30d "+%Y-%m-%d"            # unix
+```
+
+#### Awk
+```
+# Complex output / custom '-' separator
+echo "..." | awk -F- '{printf "%s-%s\n", $v1, $v2}'
+```
+
+#### Loop over text lines
+```
+while read -r SingleLine
+  do
+    ...
+  done <<< "$MultipleLines"
+```
+
+
+## AWS Cli
+
+#### S3: Get the most recent file by prefix
+```
+aws s3api list-objects-v2 \
+   --bucket "$S3_RELEASES_BUCKET" \
+   --prefix "$1" \
+   --query 'sort_by(Contents, &LastModified)[-1].Key'\
+   --output text
+```
+
+#### S3: Get all the files older than a date
+```
+aws s3api list-objects-v2 \
+ --bucket "$S3_RELEASES_BUCKET" \
+ --query "Contents[?LastModified<'$1']" \
+ --output text
+```
+
+
 ## Docker
 
 Docker images for Node: https://hub.docker.com/_/node

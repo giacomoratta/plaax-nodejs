@@ -103,7 +103,7 @@
 - nodejs security: https://link.medium.com/cWMfbbv1SAb
 
 #### CI/CD
-- github pipelines
+- GitHub actions
 - automatic tests on GitHub
 - deploy from GitHub
 - setup 2 environments

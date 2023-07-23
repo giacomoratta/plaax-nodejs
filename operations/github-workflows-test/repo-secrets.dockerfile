@@ -55,7 +55,7 @@ COPY ./jest.config.js ./
 COPY ./tsconfig.eslint.json ./
 COPY ./tsconfig.json ./
 
-COPY --chmod=755 ./pipeline/build-release.sh ./
+COPY --chmod=755 ./operations/build-release.sh ./
 
 #COPY ./.jest ./.jest
 #COPY ./__mocks__ ./__mocks__

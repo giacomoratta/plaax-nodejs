@@ -4,7 +4,7 @@
 set -e
 
 # Generate new release filenames
-source ./pipeline/utils/aws-release.utils.sh --generate-new-release-names
+source ./operations/utils/aws-release.utils.sh --generate-new-release-names
 
 # Check $RELEASE_LBAPI1_ZIP_FILENAME
 if [ ${#RELEASE_LBAPI1_ZIP_FILENAME} -lt 2 ]
@@ -24,7 +24,7 @@ zip $RELEASE_BASE_ZIP_FILENAME ./package-lock.json
 
 
 # Delete all local zip files
-source ./pipeline/utils/aws-release.utils.sh --delete-current-local-release
+source ./operations/utils/aws-release.utils.sh --delete-current-local-release
 
 
 printf "\n\nCreating lbapi1 release zip file '"$RELEASE_LBAPI1_ZIP_FILENAME"'...\n"

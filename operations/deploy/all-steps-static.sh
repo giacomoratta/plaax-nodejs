@@ -8,6 +8,6 @@ set -e
 
 ENV_NAME=dev # todo: set outside, check here
 
-chmod +x ./pipeline/deploy/*.sh
+chmod +x ./operations/deploy/*.sh
 
-./pipeline/deploy/plaax-stack-static.aws-cfn.operations.sh $ENV_NAME --deploy
+./operations/deploy/plaax-stack-static.aws-cfn.operations.sh $ENV_NAME --deploy
