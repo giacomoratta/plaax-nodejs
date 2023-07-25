@@ -52,6 +52,19 @@ registry=https://registry.npmjs.org/
 ```
 
 
+## Typescript
+
+#### Option --noEmit
+The noEmit option tells TypeScript that we only want to run type checking and do not want the compiler to output any transpiled code.
+
+#### Different TsConfigs
+- [tsconfig.json](..%2Ftsconfig.json): the main tsconfig with common and general configs;
+  it must keep this name (not tsconfig.common.json) so the IDE or other automatic checks can easily find it.
+- [tsconfig.build.json](..%2Ftsconfig.build.json): specific config for distribution build;
+- [tsconfig.eslint.json](..%2Ftsconfig.eslint.json): config for eslint checks.
+
+
+
 ## Bash Scripting
 > N.b. Pay attention to the Unix shell with which you are running the script
 > because something might fail for no clear reasons (e.g. 'file' not found).

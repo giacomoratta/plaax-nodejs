@@ -23,7 +23,9 @@ COPY ./.eslintignore ./
 COPY ./.eslintrc.js ./
 COPY ./jest.config.js ./
 COPY ./tsconfig.eslint.json ./
-COPY ./tsconfig.json ./
+COPY tsconfig.build.json ./
+COPY tsconfig.eslint.json ./
+COPY tsconfig.json ./
 
 RUN npm run test
 RUN npm run build

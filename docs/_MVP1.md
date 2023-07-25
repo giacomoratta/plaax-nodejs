@@ -19,7 +19,7 @@
 
 ### Next steps for MVP: general - MVP1-Part5
 
-- Update dependencies and vulnerabilities
+- (done) Update dependencies and vulnerabilities
   - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
   - Get rid of vulnerabilities ASAP
   - Update with breaking changes
@@ -86,6 +86,7 @@
 - Replace current s3 plaax-dev-release with plaax-temp-release
  
 - Make a plan for periodic operations
-  - Example: fix vulnerabilities, package updates, etc.
-  - GitHub actions?
-  - Local scripts?
+  - npm vulnerabilities
+  - package minor updates
+  - package major updates
+  - GitHub actions? Local scripts?

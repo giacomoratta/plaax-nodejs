@@ -30,12 +30,12 @@ describe('PlaaxItemsRepo: USER', () => {
 
     it('should return nothing when result is empty', async () => {
       ddbClientSendMockImpl(async () => { return undefined })
-      await expect(await getUserProjectIdsList(1005)).toBeUndefined()
+      expect(await getUserProjectIdsList(1005)).toBeUndefined()
     })
 
     it('should return nothing when result has no items', async () => {
       ddbClientSendMockImpl(async () => { return { Items: [] } })
-      await expect(await getUserProjectIdsList(1005)).toBeUndefined()
+      expect(await getUserProjectIdsList(1005)).toBeUndefined()
     })
 
     it('should return nothing when result has missing projectId', async () => {
@@ -44,7 +44,7 @@ describe('PlaaxItemsRepo: USER', () => {
         delete up1005.Items[0].projectId
         return up1005
       })
-      await expect(await getUserProjectIdsList(1005)).toMatchObject([1002])
+      expect(await getUserProjectIdsList(1005)).toMatchObject([1002])
     })
 
     it('should return nothing when result has incomplete data for projectId', async () => {
@@ -53,7 +53,7 @@ describe('PlaaxItemsRepo: USER', () => {
         delete up1005.Items[0].projectId.N
         return up1005
       })
-      await expect(await getUserProjectIdsList(1005)).toMatchObject([1002])
+      expect(await getUserProjectIdsList(1005)).toMatchObject([1002])
     })
 
     it('should skip the item when value is not expected', async () => {
@@ -62,7 +62,7 @@ describe('PlaaxItemsRepo: USER', () => {
         up1005.Items[0].projectId.N = 'wrong-number111'
         return up1005
       })
-      await expect(await getUserProjectIdsList(1005)).toMatchObject([1002])
+      expect(await getUserProjectIdsList(1005)).toMatchObject([1002])
     })
   })
 
@@ -70,7 +70,7 @@ describe('PlaaxItemsRepo: USER', () => {
     it('should return nothing when user has no projects', async () => {
       ddbClientSendMockImpl(async () => { return { Items: [] } }) /* ddb response for getUserProjectIdsList */
       const userId = 1005
-      await expect(await getUserProjectsList(userId)).toBeUndefined()
+      expect(await getUserProjectsList(userId)).toBeUndefined()
       expect(mockedRepoItems.getProjectsById).not.toHaveBeenCalled()
     })
 

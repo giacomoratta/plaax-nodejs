@@ -34,24 +34,24 @@ describe('PlaaxItemsRepo: ITEMS', () => {
 
     it('should return an empty list when ddb result is undefined', async () => {
       ddbClientSendMockImpl(async () => { return undefined })
-      await expect(await getProjectsById([1, 2])).toBeUndefined()
+      expect(await getProjectsById([1, 2])).toBeUndefined()
     })
 
     it('should return an empty list when ddb Response is undefined', async () => {
       ddbClientSendMockImpl(async () => { return { Responses: undefined } })
-      await expect(await getProjectsById([1, 2])).toBeUndefined()
+      expect(await getProjectsById([1, 2])).toBeUndefined()
     })
 
     it('should return an empty list when ddb Response has an unexpected table', async () => {
       ddbClientSendMockImpl(async () => { return { Responses: ['another-table'] } })
-      await expect(await getProjectsById([1, 2])).toBeUndefined()
+      expect(await getProjectsById([1, 2])).toBeUndefined()
     })
 
     it('should return an empty list when ddb Response table is empty', async () => {
       ddbClientSendMockImpl(async () => {
         return { Responses: { [Object.keys(projectItemsP1001P002.Responses)[0]]: [] } }
       })
-      await expect(await getProjectsById([1, 2])).toBeUndefined()
+      expect(await getProjectsById([1, 2])).toBeUndefined()
     })
 
     it('should throw when db request fails', async () => {
