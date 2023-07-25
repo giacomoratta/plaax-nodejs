@@ -7,7 +7,7 @@ interface Logger {
   error: loggerFunction
 }
 
-const createLoggerTests = (moduleName): Logger => {
+const createLoggerTests = (/* moduleName */): Logger => {
   return {
     debug: function (): void { return undefined },
     info: function (): void { return undefined },

@@ -23,7 +23,7 @@ const countProjectExpandedItems = (project: ProjectExpanded | undefined): number
     itemsCounter++
     list.activities.forEach(activity => {
       itemsCounter++
-      activity.tasks.forEach(task => {
+      activity.tasks.forEach((/* task */) => {
         itemsCounter++
       })
     })

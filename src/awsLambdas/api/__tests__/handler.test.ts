@@ -7,7 +7,7 @@ describe('AWS Lambda handler for API Gateway', () => {
     const handler = setupLambdaApiHandler({
       [routeTestKey]: {
         enabled: true,
-        fn: async (event) => {
+        fn: async (/* event */) => {
           return buildJsonResponse(200, {
             message: 'Sample message',
             payload: {}
@@ -54,7 +54,7 @@ describe('AWS Lambda handler for API Gateway', () => {
     const handler = setupLambdaApiHandler({
       [routeTestKey]: {
         enabled: true,
-        fn: async (event) => {
+        fn: async (/* event */) => {
           throw new Error('Error from route handler')
         }
       }

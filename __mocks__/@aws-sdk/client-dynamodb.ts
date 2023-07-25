@@ -21,7 +21,7 @@ export class BatchGetItemCommand extends _CommandGenericMock { }
 export class DynamoDBClient {
   public send: jest.Mock<any, any>
 
-  constructor (config = {}) {
+  constructor (/* config = {} */) {
     this.send = _DynamoDBClientClassMocks.send
   }
 }
