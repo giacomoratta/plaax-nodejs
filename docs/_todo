@@ -1,0 +1,12 @@
+- Update dependencies and vulnerabilities
+  - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
+  - Get rid of vulnerabilities ASAP
+  - Update with breaking changes
+  - !! Do before the code starts growing up
+
+----------------------------------------------------------------------------------------------------------
+
+- start with typescript!
+- fix tsconfig files
+- update @type* dependencies
+- fix incompatibilities with jest, eslint, etc.

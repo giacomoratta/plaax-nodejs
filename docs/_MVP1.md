@@ -19,18 +19,19 @@
 
 ### Next steps for MVP: general - MVP1-Part5
 
-- Remove useless dependencies for lambda bundle
-  - remove from main package.json to make `npm ci` faster
-  - Possible implementation:
-    - Extract "server" dir
-    - All the logic for an EC service here
-    - package.json with the specific packages
-
 - Update dependencies and vulnerabilities
   - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
   - Get rid of vulnerabilities ASAP
   - Update with breaking changes
   - !! Do before the code starts growing up
+
+- Remove useless dependencies for lambda bundle
+  - Do after updating Typescript!
+  - remove from main package.json to make `npm ci` faster
+  - Possible implementation:
+    - Extract "server" dir
+    - All the logic for an EC service here
+    - package.json with the specific packages
 
 - Add the final logger
   - GOAL: do not log with console

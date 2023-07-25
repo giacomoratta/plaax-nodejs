@@ -18,6 +18,7 @@ module.exports = {
   rules: {
     'no-console': 1, /* warning */
     '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/ban-ts-ignore': 0,
     'max-len': [
       // https://eslint.org/docs/latest/rules/max-len (todo: use prettier for auto-format)
       'error',
