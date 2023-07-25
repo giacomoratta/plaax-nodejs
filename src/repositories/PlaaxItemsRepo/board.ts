@@ -1,4 +1,4 @@
-import { ProjectExpanded } from '../../models/ItemExpanded'
+import { type ProjectExpanded } from '../../models/ItemExpanded'
 
 import { getUserProjectIdsList } from './userProjects'
 import { getExpandedProject } from './items'

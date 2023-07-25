@@ -4,7 +4,7 @@ import {
 } from '../fromDbModels'
 import { DynamoDbTables } from '../../DynamoDb.config'
 
-import { ProjectExpanded } from '../../../../models/ItemExpanded'
+import { type ProjectExpanded } from '../../../../models/ItemExpanded'
 
 import { cloneJsonObject } from '../../../../__tests__/testUtils'
 import ddbProjectItemsFromDdb from '../../__test-data-ddb__/projectItems-getBatch-p1001-p1002.json'

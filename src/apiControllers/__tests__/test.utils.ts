@@ -1,7 +1,7 @@
 /* move inside __tests__, set jest to skip any non "test.ts" file */
 
-import { ProjectExpanded, ListExpanded, ActivityExpanded } from '../../models/ItemExpanded'
-import { TaskItem } from '../../models/Item'
+import { type ProjectExpanded, type ListExpanded, type ActivityExpanded } from '../../models/ItemExpanded'
+import { type TaskItem } from '../../models/Item'
 
 // todo: temp function, the translation should be returned by repo
 export const jsonToProjectExpanded = (jsonData): ProjectExpanded => {

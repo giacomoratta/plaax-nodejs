@@ -1,7 +1,7 @@
 import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb'
 import { DynamoDBClientConfiguration, DynamoDbTables } from './DynamoDb.config'
 
-import { UserProjectIdsList, UserProjectsList } from '../../models/User'
+import { type UserProjectIdsList, type UserProjectsList } from '../../models/User'
 import { getProjectsById } from './items'
 import { createLogger } from '../../logger'
 

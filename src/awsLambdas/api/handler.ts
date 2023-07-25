@@ -1,4 +1,4 @@
-import { LambdaHandler, LambdaApiRoutesHandlerMap } from './types'
+import { type LambdaHandler, type LambdaApiRoutesHandlerMap } from './types'
 import { routesHandlerMap } from './apiRoutesHandler'
 import { genericJsonServerError } from './responseBuilders'
 

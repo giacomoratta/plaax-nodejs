@@ -3,9 +3,9 @@
  */
 
 import {
-  APIGatewayProxyEventV2,
-  Context as LambdaContext,
-  APIGatewayProxyStructuredResultV2
+  type APIGatewayProxyEventV2,
+  type Context as LambdaContext,
+  type APIGatewayProxyStructuredResultV2
 } from 'aws-lambda'
 
 export type LambdaHandler =

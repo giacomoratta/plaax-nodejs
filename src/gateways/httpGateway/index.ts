@@ -1,11 +1,9 @@
-import axios, { AxiosError } from 'axios'
+import axios, { type AxiosError } from 'axios'
 import { createLogger } from '../../logger'
 
 const log = createLogger('httpGateway')
 
-interface KeyValueObject {
-  [key: string]: string | number | boolean | null | undefined
-}
+type KeyValueObject = Record<string, string | number | boolean | null | undefined>
 
 interface HttpGatewayResponse {
   status: number

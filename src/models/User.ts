@@ -1,4 +1,4 @@
-import { ProjectItem } from './Item'
+import { type ProjectItem } from './Item'
 
 export type UserProjectIdsList = number[]
 

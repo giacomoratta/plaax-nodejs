@@ -1,4 +1,4 @@
-import { LambdaResponse } from './types'
+import { type LambdaResponse } from './types'
 import { assertHttpStatusCodeIsValid, HttpStatusCode } from '../../shared/httpStatusCode'
 import { FileMimeTypes } from '../../shared/fileMimeType'
 

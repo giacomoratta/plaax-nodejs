@@ -1,8 +1,8 @@
 import { DynamoDBClient, BatchGetItemCommand, QueryCommand } from '@aws-sdk/client-dynamodb'
 import { DynamoDBClientConfiguration, DynamoDbTables } from './DynamoDb.config'
 
-import { ProjectIdsList, ProjectItemsList } from '../../models/Item'
-import { ProjectExpanded } from '../../models/ItemExpanded'
+import { type ProjectIdsList, type ProjectItemsList } from '../../models/Item'
+import { type ProjectExpanded } from '../../models/ItemExpanded'
 
 import * as translateToDb from './ddbTranslators/toDbModels'
 import * as translateFromDb from './ddbTranslators/fromDbModels'

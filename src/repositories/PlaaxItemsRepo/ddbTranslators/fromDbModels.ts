@@ -1,6 +1,6 @@
-import { ddbActivityItem, ddbGenericItem, ddbListItem, ddbProjectItem, ddbTaskItem } from '../ddbModels/Item'
-import { GenericItem, ProjectItem, TaskItem } from '../../../models/Item'
-import { ActivityExpanded, ListExpanded, ProjectExpanded } from '../../../models/ItemExpanded'
+import { type ddbActivityItem, type ddbGenericItem, type ddbListItem, type ddbProjectItem, type ddbTaskItem } from '../ddbModels/Item'
+import { type GenericItem, type ProjectItem, type TaskItem } from '../../../models/Item'
+import { type ActivityExpanded, type ListExpanded, type ProjectExpanded } from '../../../models/ItemExpanded'
 // import { createLogger } from '../../logger'
 
 // const log = createLogger('repo/plaaxItems/translateFromDb')

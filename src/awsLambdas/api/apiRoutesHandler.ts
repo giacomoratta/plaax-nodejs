@@ -1,4 +1,4 @@
-import { LambdaApiRoutesHandlerMap } from './types'
+import { type LambdaApiRoutesHandlerMap } from './types'
 
 import {
   buildJsonResponse,

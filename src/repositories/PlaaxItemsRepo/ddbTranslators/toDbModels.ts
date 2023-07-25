@@ -1,4 +1,4 @@
-import { ddbItemPrimaryKey } from '../ddbModels/Item'
+import { type ddbItemPrimaryKey } from '../ddbModels/Item'
 
 export const fromProjectIdToSingleProjectSearchCriteria = (projectId: number): ddbItemPrimaryKey => {
   return {
