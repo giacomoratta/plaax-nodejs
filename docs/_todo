@@ -1,0 +1,7 @@
+- Remove useless dependencies for lambda bundle
+  - Do after updating Typescript!
+  - remove from main package.json to make `npm ci` faster
+  - Possible implementation:
+    - Extract "server" dir
+    - All the logic for an EC service here
+    - package.json with the specific packages

@@ -1,0 +1,16 @@
+{
+  "name": "plaax-nodejs-aws-lambdas",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18.12.1 <19.0.0",
+    "npm": ">=9.5.0 < 10.0.0"
+  },
+  "scripts": {
+    "ts-check": "npx tsc --noEmit",
+    "build": "npx tsc --project ./tsconfig.awslambda.build.json",
+    "clean": "rm -rf dist coverage"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119"
+  }
+}

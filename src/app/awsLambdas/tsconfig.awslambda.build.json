@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
+  "include": [
+    "../../../src/app/core/**/*.ts",
+    "../../../src/app/awsLambdas/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "../../../**/*.test.ts",
+    "../../../**/__test*"
+  ]
+}
