@@ -5,3 +5,28 @@
     - Extract "server" dir
     - All the logic for an EC service here
     - package.json with the specific packages
+
+---------------------------------------------------------------------------------------------------------------------
+
+- Full manual tests with lambda
+
+
+- Server
+  - run local
+  - run local with docker
+  - run local with docker + remote aws services
+    - auto-load local aws credentials
+
+
+- Add package-scripts.sh
+  - clean
+    - rm -rf **/release*.zip 2>/dev/null
+    - rm -rf **/dist 2>/dev/null
+    - rm -rf **/coverage 2>/dev/null
+  - install
+    - npm i
+    - cd src/app/awsLambdas; npm i
+    - cd src/app/server; npm i
+  - reset
+    - ask for confirmation
+    - rm -rf **/node_modules 2>/dev/null

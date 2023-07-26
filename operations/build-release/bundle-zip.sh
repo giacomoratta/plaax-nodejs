@@ -26,18 +26,21 @@ zip $RELEASE_BASE_ZIP_FILENAME ./package-lock.json
 # Delete all local zip files
 source ./operations/utils/aws-release.utils.sh --delete-current-local-release
 
+CURRENT_DIRECTORY=$(pwd)
+AWS_LAMBDA_SRC_APP_DIRECTORY="$CURRENT_DIRECTORY/src/app/awsLambdas"
+AWS_LAMBDA_DIST_DIRECTORY="$AWS_LAMBDA_SRC_APP_DIRECTORY/dist"
+AWS_LAMBDA_DIST_APP_DIRECTORY="$AWS_LAMBDA_SRC_APP_DIRECTORY/dist/app/awsLambdas"
+
+# Add files to 'dist' directory
+cp "$AWS_LAMBDA_SRC_APP_DIRECTORY/package.json" $AWS_LAMBDA_DIST_APP_DIRECTORY
+cp "$AWS_LAMBDA_SRC_APP_DIRECTORY/package-lock.json" $AWS_LAMBDA_DIST_APP_DIRECTORY
 
 printf "\n\nCreating lbapi1 release zip file '"$RELEASE_LBAPI1_ZIP_FILENAME"'...\n"
 rm -f $RELEASE_LBAPI1_ZIP_FILENAME 2>/dev/null
-cp $RELEASE_BASE_ZIP_FILENAME $RELEASE_LBAPI1_ZIP_FILENAME
-cd ./dist/
-zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./awsLambdas/api # main lambda code
-zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./apiControllers
-    zip --delete ../$RELEASE_LBAPI1_ZIP_FILENAME "./apiControllers/helloWorld/*"
-zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./logger
-zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./models
-zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./repositories
-    zip --delete ../$RELEASE_LBAPI1_ZIP_FILENAME "./repositories/sampleErrorThrown.*"
-zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./shared
-#zip -r ../$RELEASE_LBAPI1_ZIP_FILENAME ./gateways # not needed at the moment
-cd ..
+cp "$CURRENT_DIRECTORY/$RELEASE_BASE_ZIP_FILENAME" $RELEASE_LBAPI1_ZIP_FILENAME
+
+cd $AWS_LAMBDA_DIST_DIRECTORY
+zip -r "$CURRENT_DIRECTORY/$RELEASE_LBAPI1_ZIP_FILENAME" ./app
+zip -r "$CURRENT_DIRECTORY/$RELEASE_LBAPI1_ZIP_FILENAME" ./core
+
+cd $CURRENT_DIRECTORY

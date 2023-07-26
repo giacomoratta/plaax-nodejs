@@ -175,6 +175,8 @@ then
     then
       printf "Publishing the release for LBAPI1 from local file: $RELEASE_LBAPI1_ZIP_FILENAME\n"
       aws s3 cp $RELEASE_LBAPI1_ZIP_FILENAME $S3_RELEASES_DIRECTORY
+    else
+      printf "Local file $RELEASE_LBAPI1_ZIP_FILENAME not found!\n"
   fi
 fi
 
