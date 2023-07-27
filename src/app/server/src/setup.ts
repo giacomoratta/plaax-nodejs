@@ -2,7 +2,7 @@ import Koa from 'koa'
 import KoaRouter from '@koa/router'
 import serverStateMiddleware from './state.middleware'
 
-import * as apiHelloWorld from '../../core/apiControllers/helloWorld'
+import * as apiHelloWorld from '../../../core/apiControllers/helloWorld'
 
 export const server = new Koa()
 

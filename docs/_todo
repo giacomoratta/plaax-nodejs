@@ -8,25 +8,37 @@
 
 ---------------------------------------------------------------------------------------------------------------------
 
-- Full manual tests with lambda
+- Full manual tests with lambda (done - working)
 
 
 - Server
   - run local
   - run local with docker
   - run local with docker + remote aws services
-    - auto-load local aws credentials
+    - auto-load local aws credentials\
+
+  docker build --target distbuilder -t gr/plaax-nodejs -f ./Dockerfile ../../../
+
+  "docker-build": "docker build -t gr/plaax-nodejs .",
+  "docker-run": "docker run -p 3000:3000 gr/plaax-nodejs",
+  "docker-start": "docker container start $(docker container ls -a | awk '/plaax-nodejs/ {print $1}' | head -n1)",
+  "docker-stop": "docker container stop $(docker container ls | awk '/plaax-nodejs/ {print $1}')",
+  "docker-list-containers": "docker container ls -a | awk '/plaax-nodejs/'",
+  "docker-list-images": "docker images | awk '/plaax-nodejs/'",
+  "docker-rm-containers": "docker rm $(docker container ls -a | awk '/plaax-nodejs/ {print $1}')",
+  "docker-rm-images": "docker rmi $(docker images | awk '/plaax-nodejs/ {print $3}')"
 
 
 - Add package-scripts.sh
   - clean
-    - rm -rf **/release*.zip 2>/dev/null
+    - rm -rf **/release*.zip 2>/dev/null (only 1 *?)
     - rm -rf **/dist 2>/dev/null
     - rm -rf **/coverage 2>/dev/null
+    - remove local "clean" from package.json(s)
   - install
-    - npm i
-    - cd src/app/awsLambdas; npm i
-    - cd src/app/server; npm i
+    - npm ci
+    - cd src/app/awsLambdas; npm ci
+    - cd src/app/server; npm ci - problem "Cannot find module... Please verify that the package.json has a valid "main" entry"
   - reset
     - ask for confirmation
     - rm -rf **/node_modules 2>/dev/null

@@ -52,7 +52,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpGateway = void 0;
 var axios_1 = __importDefault(require("axios"));
-var logger_1 = require("../../../../core/logger");
+var logger_1 = require("../../../../../core/logger");
 var log = (0, logger_1.createLogger)('httpGateway');
 var HttpGateway = /** @class */ (function () {
     function HttpGateway(requestConfig) {

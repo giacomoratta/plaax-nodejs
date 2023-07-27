@@ -73,6 +73,9 @@ Docker images for Node: https://hub.docker.com/_/node
 # Build the image
 docker build -t gr/plaax-nodejs .
 
+# Build the image of a specific stage
+docker build --target basebuilder -t gr/plaax-nodejs .
+
 # Check image content
 docker run -it gr/plaax-nodejs sh
 ```

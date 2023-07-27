@@ -1,8 +1,8 @@
 import { server, router } from '../setup'
 import request from 'supertest'
 
-import * as apiHelloWorld from '../../../core/apiControllers/helloWorld'
-jest.mock('../../../core/apiControllers/helloWorld')
+import * as apiHelloWorld from '../../../../core/apiControllers/helloWorld'
+jest.mock('../../../../core/apiControllers/helloWorld')
 
 const mockedApiHelloWorldById = apiHelloWorld.getById as jest.MockedFunction<typeof apiHelloWorld.getById>
 

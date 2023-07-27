@@ -1,5 +1,5 @@
 import axios, { type AxiosError } from 'axios'
-import { createLogger } from '../../../../core/logger'
+import { createLogger } from '../../../../../core/logger'
 
 const log = createLogger('httpGateway')
 
