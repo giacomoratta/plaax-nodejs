@@ -2,6 +2,19 @@
 _(sorted by descending date)_
 
 
+#### PLX-1008: MVP1 part5
+- Update dependencies and vulnerabilities
+  - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
+  - Get rid of vulnerabilities ASAP
+  - Update with breaking changes
+- Remove useless dependencies for lambda bundle
+  - remove from main package.json to make `npm ci` faster
+  - common package.json and tsconfig.json for dev/build steps
+  - changed structure to src/core and src/app/<awsLambda|server>
+  - every app has its specific package.json with production dependencies
+  - changed operations script after the new structure
+
+
 #### PLX-1007: MVP1 part4
 - GitHub actions: introduction
   - GOAL: final ci/cd setup

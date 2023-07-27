@@ -19,25 +19,49 @@
 
 ### Next steps for MVP: general - MVP1-Part5
 
-- (done) Update dependencies and vulnerabilities
-  - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
-  - Get rid of vulnerabilities ASAP
-  - Update with breaking changes
-  - !! Do before the code starts growing up
-
 - Remove useless dependencies for lambda bundle
-  - Do after updating Typescript!
-  - remove from main package.json to make `npm ci` faster
-  - Possible implementation:
-    - Extract "server" dir
-    - All the logic for an EC service here
-    - package.json with the specific packages
+  - add package-scripts.sh
+    - clean
+      - rm -rf **/release*.zip 2>/dev/null (only 1 *?)
+      - rm -rf **/dist 2>/dev/null
+      - rm -rf **/coverage 2>/dev/null
+      - remove local "clean" from package.json(s)
+    - install
+      - npm ci
+      - cd src/app/awsLambdas; npm ci
+      - cd src/app/server; npm ci - problem "Cannot find module... Please verify that the package.json has a valid "main" entry"
+    - reset
+      - ask for confirmation
+      - full clean
+      - rm -rf **/node_modules 2>/dev/null
 
 - Add the final logger
   - GOAL: do not log with console
   - Introduce pino-logger (+ research for alternatives)
   - Error stacks should point to the exact line of source TS code
   - !! Do before the code starts growing up
+
+- Server app
+  - (done) run local and run local docker
+  - add docker scripts
+    - create bash script with single option (with variables, etc.)
+    - add build step // docker build --target distbuilder -t gr/plaax-nodejs -f ./Dockerfile ../../../
+    - "docker-build": "docker build -t gr/plaax-nodejs .",
+    - "docker-run": "docker run -p 3000:3000 gr/plaax-nodejs",
+    - "docker-start": "docker container start $(docker container ls -a | awk '/plaax-nodejs/ {print $1}' | head -n1)",
+    - "docker-stop": "docker container stop $(docker container ls | awk '/plaax-nodejs/ {print $1}')",
+    - "docker-list-containers": "docker container ls -a | awk '/plaax-nodejs/'",
+    - "docker-list-images": "docker images | awk '/plaax-nodejs/'",
+    - "docker-rm-containers": "docker rm $(docker container ls -a | awk '/plaax-nodejs/ {print $1}')",
+    - "docker-rm-images": "docker rmi $(docker images | awk '/plaax-nodejs/ {print $3}')"
+  - implement 1 api endpoint
+    - with unit-tests
+  - run local with docker working with remote aws services
+    - extend bash script to autoload local aws credentials
+    - use .env file?
+  - implement all api endpoints
+    - with unit-tests
+    - some integration tests
 
 
 
@@ -90,3 +114,5 @@
   - package minor updates
   - package major updates
   - GitHub actions? Local scripts?
+
+- Deploy server app on ECS
