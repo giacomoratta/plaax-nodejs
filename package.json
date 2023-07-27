@@ -12,8 +12,8 @@
     "lint-fix": "eslint . --fix",
     "lint-debug": "DEBUG=eslint:cli-engine npm run lint",
     "test": "jest",
-    "test-aws-lambdas": "jest ./src/app/awsLambdas ./src/core",
-    "test-server": "jest ./src/app/server ./src/core",
+    "test-aws-lambdas": "jest ./src/app/awsLambdas/src ./src/core",
+    "test-server": "jest ./src/app/server/src ./src/core",
     "test-coverage": "jest --coverage",
     "ts-check": "npx tsc --noEmit"
   },

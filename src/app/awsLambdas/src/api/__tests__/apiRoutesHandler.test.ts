@@ -1,16 +1,16 @@
 import { routesHandlerMap } from '../apiRoutesHandler'
 
-import * as userProjectsApiController from '../../../../core/apiControllers/userProjects.controller'
-import * as boardApiController from '../../../../core/apiControllers/board.controller'
+import * as userProjectsApiController from '../../../../../core/apiControllers/userProjects.controller'
+import * as boardApiController from '../../../../../core/apiControllers/board.controller'
 
 import {
   projectItemsArrayP1001P1002
-} from '../../../../__tests__/__data-models__/projectItemsArray-p1001-p1002'
-import { projectExpandedP1001 } from '../../../../__tests__/__data-models__/projectExpanded-p1001'
-import { projectExpandedP1002 } from '../../../../__tests__/__data-models__/projectExpanded-p1002'
+} from '../../../../../__tests__/__data-models__/projectItemsArray-p1001-p1002'
+import { projectExpandedP1001 } from '../../../../../__tests__/__data-models__/projectExpanded-p1001'
+import { projectExpandedP1002 } from '../../../../../__tests__/__data-models__/projectExpanded-p1002'
 
-jest.mock('../../../../core/apiControllers/userProjects.controller')
-jest.mock('../../../../core/apiControllers/board.controller')
+jest.mock('../../../../../core/apiControllers/userProjects.controller')
+jest.mock('../../../../../core/apiControllers/board.controller')
 const mockedUserProjectsApiController = userProjectsApiController as jest.Mocked<typeof userProjectsApiController>
 const mockedBoardApiController = boardApiController as jest.Mocked<typeof boardApiController>
 

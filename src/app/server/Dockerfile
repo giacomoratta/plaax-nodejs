@@ -35,7 +35,7 @@ COPY ./tsconfig.json ./
 
 RUN cd ./src/app/server && npm ci
 
-RUN npm run test
+RUN npm run test-server
 
 RUN cd ./src/app/server && npm run build
 

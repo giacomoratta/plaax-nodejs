@@ -19,7 +19,7 @@ Resources:
     Properties:
       Description: "Just a test lambda LambdaApi1"
       FunctionName: !Sub "${ResourcePrefix}-lbapi1"
-      Handler: "app/awsLambdas/api/handler.default" # = <path?><fileNameNoExt>.handler
+      Handler: "app/awsLambdas/src/api/handler.default" # = <path?><fileNameNoExt>.handler
       Code:
         S3Bucket: !Sub "${ResourcePrefix}-releases"
         S3Key: !Sub "release-lbapi1-${ReleaseHash}.zip"

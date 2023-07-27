@@ -1,5 +1,5 @@
-import { throwSampleError } from '../../../core/repositories/sampleErrorThrown'
-import { createLogger } from '../../../core/logger'
+import { throwSampleError } from '../../../../core/repositories/sampleErrorThrown'
+import { createLogger } from '../../../../core/logger'
 
 const log = createLogger('awsLambda/api/index')
 

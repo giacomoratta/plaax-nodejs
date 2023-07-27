@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.genericJsonServerError = exports.notFoundJsonServerError = exports.buildJsonResponse = void 0;
-var httpStatusCode_1 = require("../../../core/shared/httpStatusCode");
-var fileMimeType_1 = require("../../../core/shared/fileMimeType");
+var httpStatusCode_1 = require("../../../../core/shared/httpStatusCode");
+var fileMimeType_1 = require("../../../../core/shared/fileMimeType");
 var buildJsonResponse = function (statusCode, responseData) {
     (0, httpStatusCode_1.assertHttpStatusCodeIsValid)(statusCode);
     return {

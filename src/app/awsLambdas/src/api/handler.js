@@ -36,16 +36,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handler = void 0;
-var sampleErrorThrown_1 = require("../../../core/repositories/sampleErrorThrown");
-var logger_1 = require("../../../core/logger");
+exports.setupLambdaApiHandler = void 0;
+var apiRoutesHandler_1 = require("./apiRoutesHandler");
+var responseBuilders_1 = require("./responseBuilders");
+var logger_1 = require("../../../../core/logger");
 var log = (0, logger_1.createLogger)('awsLambda/api/index');
-var handler = function (event, context) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        log.debug({ event: event }, 'Event received by sample lambda');
-        (0, sampleErrorThrown_1.throwSampleError)();
-        return [2 /*return*/, context.logStreamName];
-    });
-}); };
-exports.handler = handler;
-//# sourceMappingURL=index.js.map
+var setupLambdaApiHandler = function (handlersMap) {
+    return function (event, context) { return __awaiter(void 0, void 0, void 0, function () {
+        var error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    log.debug({ event: event, context: context }, 'Event received by api lambda');
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    if (handlersMap[event.routeKey] === undefined) {
+                        return [2 /*return*/, (0, responseBuilders_1.genericJsonServerError)({
+                                reason: 'No handler found for this route: ' + event.routeKey
+                            })];
+                    }
+                    if (!handlersMap[event.routeKey].enabled) {
+                        return [2 /*return*/, (0, responseBuilders_1.genericJsonServerError)({
+                                reason: 'Handler disabled for this route: ' + event.routeKey
+                            })];
+                    }
+                    return [4 /*yield*/, handlersMap[event.routeKey].fn(event, context)];
+                case 2: return [2 /*return*/, _a.sent()];
+                case 3:
+                    error_1 = _a.sent();
+                    log.error({ error: error_1 }, 'API Lambda error.');
+                    return [2 /*return*/, (0, responseBuilders_1.genericJsonServerError)({
+                            reason: 'Unexpected error!'
+                        })];
+                case 4: return [2 /*return*/];
+            }
+        });
+    }); };
+};
+exports.setupLambdaApiHandler = setupLambdaApiHandler;
+exports.default = (0, exports.setupLambdaApiHandler)(apiRoutesHandler_1.routesHandlerMap);
+//# sourceMappingURL=handler.js.map

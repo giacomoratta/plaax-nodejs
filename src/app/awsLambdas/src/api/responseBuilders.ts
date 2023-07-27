@@ -1,6 +1,6 @@
 import { type LambdaResponse } from './types'
-import { assertHttpStatusCodeIsValid, HttpStatusCode } from '../../../core/shared/httpStatusCode'
-import { FileMimeTypes } from '../../../core/shared/fileMimeType'
+import { assertHttpStatusCodeIsValid, HttpStatusCode } from '../../../../core/shared/httpStatusCode'
+import { FileMimeTypes } from '../../../../core/shared/fileMimeType'
 
 type ResponsePayload = Record<string, any>
 

@@ -5,8 +5,8 @@ import {
   notFoundJsonServerError
 } from './responseBuilders'
 
-import * as boardApiController from '../../../core/apiControllers/board.controller'
-import * as userProjectsApiController from '../../../core/apiControllers/userProjects.controller'
+import * as boardApiController from '../../../../core/apiControllers/board.controller'
+import * as userProjectsApiController from '../../../../core/apiControllers/userProjects.controller'
 
 // import { createLogger } from '../../logger'
 // const log = createLogger('awsLambda/api/routesHandler')

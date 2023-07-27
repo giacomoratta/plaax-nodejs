@@ -1,16 +1,16 @@
 import handler from '../handler'
 
 import userProjectsU1005json
-  from '../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/userProjects-u1005.json'
+  from '../../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/userProjects-u1005.json'
 import projectItemsP1001P002
-  from '../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/projectItems-getBatch-p1001-p1002.json'
+  from '../../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/projectItems-getBatch-p1001-p1002.json'
 import allProjectItemsP1001FromDdb
-  from '../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/allProjectItems-p1001.json'
+  from '../../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/allProjectItems-p1001.json'
 import allProjectItemsP1002FromDdb
-  from '../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/allProjectItems-p1002.json'
+  from '../../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/allProjectItems-p1002.json'
 
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
-import { cloneJsonObject, getMockedImplForDdbClient } from '../../../../__tests__/testUtils'
+import { cloneJsonObject, getMockedImplForDdbClient } from '../../../../../__tests__/testUtils'
 const ddbClient = new DynamoDBClient({})
 const ddbClientSendMockImpl = getMockedImplForDdbClient(ddbClient)
 

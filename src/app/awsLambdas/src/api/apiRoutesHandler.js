@@ -61,8 +61,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.routesHandlerMap = void 0;
 var responseBuilders_1 = require("./responseBuilders");
-var boardApiController = __importStar(require("../../../core/apiControllers/board.controller"));
-var userProjectsApiController = __importStar(require("../../../core/apiControllers/userProjects.controller"));
+var boardApiController = __importStar(require("../../../../core/apiControllers/board.controller"));
+var userProjectsApiController = __importStar(require("../../../../core/apiControllers/userProjects.controller"));
 // import { createLogger } from '../../logger'
 // const log = createLogger('awsLambda/api/routesHandler')
 exports.routesHandlerMap = {

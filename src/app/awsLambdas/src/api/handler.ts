@@ -2,7 +2,7 @@ import { type LambdaHandler, type LambdaApiRoutesHandlerMap } from './types'
 import { routesHandlerMap } from './apiRoutesHandler'
 import { genericJsonServerError } from './responseBuilders'
 
-import { createLogger } from '../../../core/logger'
+import { createLogger } from '../../../../core/logger'
 const log = createLogger('awsLambda/api/index')
 
 export const setupLambdaApiHandler = (handlersMap: LambdaApiRoutesHandlerMap): LambdaHandler => {
