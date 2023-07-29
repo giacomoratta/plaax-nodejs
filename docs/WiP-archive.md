@@ -13,6 +13,20 @@ _(sorted by descending date)_
   - changed structure to src/core and src/app/<awsLambda|server>
   - every app has its specific package.json with production dependencies
   - changed operations script after the new structure
+  - add package-scripts.sh to wrap multiple commands that needs to be run together
+    - clean
+      - rm -rf **/release*.zip 2>/dev/null (only 1 *?)
+      - rm -rf **/dist 2>/dev/null
+      - rm -rf **/coverage 2>/dev/null
+      - remove local "clean" from package.json(s)
+    - install
+      - npm ci
+      - cd src/app/awsLambdas; npm ci
+      - cd src/app/server; npm ci - problem "Cannot find module... Please verify that the package.json has a valid "main" entry"
+    - reset
+      - ask for confirmation
+      - full clean
+      - rm -rf **/node_modules 2>/dev/null
 
 
 #### PLX-1007: MVP1 part4

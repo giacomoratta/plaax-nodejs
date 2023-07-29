@@ -6,11 +6,9 @@
     "npm": ">=9.5.0 < 10.0.0"
   },
   "scripts": {
-    "ts-check": "npx tsc --noEmit",
     "build": "npx tsc --project ./tsconfig.server.build.json",
-    "clean": "rm -rf dist coverage",
-    "dev": "npm run build && NODE_ENV=development node ./dist/app/server/start",
-    "start": "NODE_ENV=production node ./src/start",
+    "start-dev": "npm run build && NODE_ENV=development node ./dist/app/server/start",
+    "start-prd": "NODE_ENV=production node ./src/start",
     "docker-build": "echo 'not-implemented'",
     "docker-run": "echo 'not-implemented'",
     "docker-start": "echo 'not-implemented'",

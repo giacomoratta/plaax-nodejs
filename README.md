@@ -2,9 +2,12 @@
 
 A backend layer for PLAAX service, build with NodeJS and Typescript.
 
-**What is PLAAX?** It is a small personal project which is not supposed to be released on production for many users.
-It has the only purpose to gain more hands-on experience with AWS infra, CI/CD, NodeJS, Typescript, etc.
-Everything is built from scratch without the help of frameworks or multi-tools packages. 
+**What is PLAAX?**
+It is a small personal project inspired by some web-apps for activity planning.
+It is not supposed to be released on production for many users.
+The **main goal** is to gain more hands-on experience with AWS infra, CI/CD, 
+NodeJS, Typescript, bash scripting, etc. by building everything from scratch 
+without the help of frameworks or multi-tools packages. 
 
 ### Pre-req: set local dev config
 See [DEV_NOTES.md](docs%2FDEV_NOTES.md) for "how-to" documentation.
@@ -38,8 +41,8 @@ npm install
 
 ### Build & Run
 * `npm run build`: build the project distribution (`dist` directory)
-* `npm run dev`: build and run the project in _development_ mode
-* `npm start`: run the project in _production_ mode
+* `npm run start-dev`: build and run the project in _development_ mode
+* `npm run start-prd`: run the project in _production_ mode
 
 ### Docker commands
 * `npm run docker-build`: build the docker image

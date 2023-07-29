@@ -1,13 +1,15 @@
 {
   "name": "plaax-nodejs",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
+  "description": "A backend layer for PLAAX service, build with NodeJS and Typescript.",
   "engines": {
     "node": ">=18.12.1 <19.0.0",
     "npm": ">=9.5.0 < 10.0.0"
   },
   "scripts": {
+    "init": "chmod +x ./package.scripts.sh && $SHELL ./package.scripts.sh --install",
+    "clean": "$SHELL ./package.scripts.sh --clean",
+    "reset": "$SHELL ./package.scripts.sh --reset",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "lint-debug": "DEBUG=eslint:cli-engine npm run lint",
