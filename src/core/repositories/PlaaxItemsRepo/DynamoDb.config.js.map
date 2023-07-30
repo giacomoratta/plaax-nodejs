@@ -1,1 +1,0 @@
-{"version":3,"file":"DynamoDb.config.js","sourceRoot":"","sources":["DynamoDb.config.ts"],"names":[],"mappings":";;;;AAAA,IAAM,eAAe,GAAG,MAAA,OAAO,CAAC,GAAG,CAAC,eAAe,mCAAI,SAAS,CAAA;AAEnD,QAAA,2BAA2B,GAAG,EAAE,MAAM,EAAE,WAAW,EAAE,CAAA;AAErD,QAAA,cAAc,GAAG;IAC5B,KAAK,EAAE,eAAe,GAAG,QAAQ;IACjC,aAAa,EAAE,eAAe,GAAG,eAAe;CACjD,CAAA"}
