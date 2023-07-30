@@ -1,5 +1,6 @@
 import Koa from 'koa'
 import KoaRouter from '@koa/router'
+import { httpLogger } from './http-logger'
 import serverStateMiddleware from './state.middleware'
 
 import * as apiHelloWorld from '../../../core/apiControllers/helloWorld'
@@ -21,6 +22,7 @@ router
   // .post('/calendar/item', apiCalendar.addItemToCalendar)
 
 server
+  .use(httpLogger)
   .use(serverStateMiddleware)
   .use(router.routes())
   .use(router.allowedMethods())

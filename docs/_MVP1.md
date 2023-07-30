@@ -22,9 +22,9 @@
 - Add the final logger
   - GOAL: do not log with console
   - Introduce pino-logger (+ research for alternatives)
-  - Error stacks should point to the exact line of source TS code
-  - !! Do before the code starts growing up
-  - add pino-http for express/koa https://www.makeuseof.com/node-js-logging-top-packages/
+    - !! Do before the code starts growing up
+    - add pino-http for express/koa https://www.makeuseof.com/node-js-logging-top-packages/
+  - Deploy and check: error stacks should point to the exact line of source TS code
 
 - Finalize server app for local development
   - (done) run local and run local docker
