@@ -19,30 +19,20 @@
 
 ### Next steps for MVP: general - MVP1-Part5
 
-- Remove useless dependencies for lambda bundle
-  - add package-scripts.sh
-    - clean
-      - rm -rf **/release*.zip 2>/dev/null (only 1 *?)
-      - rm -rf **/dist 2>/dev/null
-      - rm -rf **/coverage 2>/dev/null
-      - remove local "clean" from package.json(s)
-    - install
-      - npm ci
-      - cd src/app/awsLambdas; npm ci
-      - cd src/app/server; npm ci - problem "Cannot find module... Please verify that the package.json has a valid "main" entry"
-    - reset
-      - ask for confirmation
-      - full clean
-      - rm -rf **/node_modules 2>/dev/null
-
 - Add the final logger
   - GOAL: do not log with console
   - Introduce pino-logger (+ research for alternatives)
   - Error stacks should point to the exact line of source TS code
   - !! Do before the code starts growing up
 
-- Server app
+- Finalize server app for local development
   - (done) run local and run local docker
+  - Dockerfile / Dockerfile.prod
+    - is really needed now to be perfect?
+    - no, do the best and leave comments with technical debt
+    - do not change current one
+    - make it working good enough
+    - rename to work with Dockerfile.dev
   - add docker scripts
     - create bash script with single option (with variables, etc.)
     - add build step // docker build --target distbuilder -t gr/plaax-nodejs -f ./Dockerfile ../../../
@@ -63,6 +53,15 @@
     - with unit-tests
     - some integration tests
 
+- Improve README to be a good presentation of the project
+  - doc git guidelines
+    - commit message stile
+    - not allowed to push on master
+  - document scripts in operations + locals
+    - briefly
+    - everything can change a lot
+    - just do it for making the README complete for an external presentation
+    - also document git workflows and the usage of operations
 
 
 ### Next steps for MVP: test development experience - MVP1-Part6

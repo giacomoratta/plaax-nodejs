@@ -2,6 +2,10 @@
   "name": "plaax-nodejs",
   "version": "1.0.0",
   "description": "A backend layer for PLAAX service, build with NodeJS and Typescript.",
+  "//": [
+    "package.scripts.sh wraps some multi-steps operations to make package.json cleaner.",
+    "$SHELL is needed to run the bash scripts with the current shell instead of /bin/bash."
+  ],
   "engines": {
     "node": ">=18.12.1 <19.0.0",
     "npm": ">=9.5.0 < 10.0.0"
@@ -10,14 +14,14 @@
     "init": "chmod +x ./package.scripts.sh && $SHELL ./package.scripts.sh --install",
     "clean": "$SHELL ./package.scripts.sh --clean",
     "reset": "$SHELL ./package.scripts.sh --reset",
+    "ts-check": "npx tsc --noEmit",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "lint-debug": "DEBUG=eslint:cli-engine npm run lint",
     "test": "jest",
-    "test-aws-lambdas": "jest ./src/app/awsLambdas/src ./src/core",
-    "test-server": "jest ./src/app/server/src ./src/core",
     "test-coverage": "jest --coverage",
-    "ts-check": "npx tsc --noEmit"
+    "test-aws-lambdas": "jest ./src/app/awsLambdas/src ./src/core",
+    "test-server": "jest ./src/app/server/src ./src/core"
   },
   "repository": {
     "type": "git",

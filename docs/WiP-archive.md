@@ -27,6 +27,10 @@ _(sorted by descending date)_
       - ask for confirmation
       - full clean
       - rm -rf **/node_modules 2>/dev/null
+  - added "notes" to package.json https://bobbyhadz.com/blog/add-comments-to-package-json
+  - update docs with snippets and bash notes
+  - update README
+  - create apps README
 
 
 #### PLX-1007: MVP1 part4

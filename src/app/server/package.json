@@ -13,7 +13,11 @@
     "docker-run": "echo 'not-implemented'",
     "docker-start": "echo 'not-implemented'",
     "docker-stop": "echo 'not-implemented'",
-    "docker-clean": "echo 'not-implemented'"
+    "docker-list-containers": "echo 'not-implemented'",
+    "docker-list-images": "echo 'not-implemented'",
+    "docker-clean": "echo 'not-implemented'",
+    "docker-rm-containers": "echo 'not-implemented'",
+    "docker-rm-images": "echo 'not-implemented'"
   },
   "devDependencies": {
     "@types/koa__router": "^12.0.0"

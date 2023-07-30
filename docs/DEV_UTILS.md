@@ -43,6 +43,41 @@ while read -r SingleLine
   done <<< "$MultipleLines"
 ```
 
+#### Check current SHELL
+```
+is_zsh_shell () {
+  SUB='zsh'
+  if [[ "$SHELL" == *"$SUB"* ]]
+  then
+    return 1
+  fi
+  return 0
+}
+```
+
+#### Console: ask for confirmation
+```
+ask_for_confirmation () {
+  QUESTION="Are you sure? [y/N] "
+  is_zsh_shell
+  if [ $? -eq 1 ]
+  then
+    # read command for /bin/zsh
+    read "REPLY?$QUESTION"
+  else
+    # read command for /bin/bash
+    read -r -p "$QUESTION" REPLY
+  fi
+
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    return 1
+  fi
+  return 0
+}
+```
+
+
 
 ## AWS Cli
 
@@ -62,6 +97,7 @@ aws s3api list-objects-v2 \
  --query "Contents[?LastModified<'$1']" \
  --output text
 ```
+
 
 
 ## Docker
