@@ -65,7 +65,7 @@ npm test
 ### Install & cleaning
 - `npm run init`: install common packages and application(s) packages
 - `npm run clean`: removes all generated files and directories (after build, test-coverage, etc.)
-- `npm run reset`: executes `npm run clean` and removes all node_modules directories
+- `npm run reset-init`: removes all node_modules directories
 
 ### Building
 - The main package.json should not have any build scripts since it is not a single application;

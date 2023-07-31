@@ -20,7 +20,7 @@ RELEASE_BASE_ZIP_FILENAME="release-base.zip"
 printf "\n\nCreating base release zip file '"$RELEASE_BASE_ZIP_FILENAME"'...\n"
 zip $RELEASE_BASE_ZIP_FILENAME ./package.json
 zip $RELEASE_BASE_ZIP_FILENAME ./package-lock.json
-# zip -r $RELEASE_BASE_ZIP_FILENAME ./node_modules >/dev/null # not needed for now
+zip -r $RELEASE_BASE_ZIP_FILENAME ./node_modules
 
 
 # Delete all local zip files

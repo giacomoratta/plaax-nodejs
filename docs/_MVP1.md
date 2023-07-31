@@ -21,10 +21,18 @@
 
 - Add the final logger
   - GOAL: do not log with console
-  - Introduce pino-logger (+ research for alternatives)
+  - (done) Introduce pino-logger (+ research for alternatives)
     - !! Do before the code starts growing up
     - add pino-http for express/koa https://www.makeuseof.com/node-js-logging-top-packages/
-  - Deploy and check: error stacks should point to the exact line of source TS code
+  - (wip) Deploy and check: error stacks should point to the exact line of source TS code
+  - Add script "npm run test-verbose" with not-silent logs
+  - diff init/build scripts by app
+    - check param starts with string
+
+- Test production packages inside app directory
+  - pino is in the main node_modules
+  - for lambda app there are no production packages
+  - try lodash? or a simple one
 
 - Finalize server app for local development
   - (done) run local and run local docker

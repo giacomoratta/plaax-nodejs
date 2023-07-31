@@ -50,28 +50,36 @@ cleanup_temp_generated () {
 
 # Commands ----------------------------------------------------------------------------------------------------
 
-if [[ "$1" = "--clean" ]]
+if [ "$1" = "--clean" ]
 then
   printf "Cleaning locally generated data...\n"
   cleanup_temp_generated
 fi
 
 
-if [[ "$1" = "--install" ]]
+if [ "$1" = "--install" ] || [ "$1" = "--install-prd" ]
 then
   CURRENT_DIRECTORY=$(pwd)
+
+  NPM_CI_OPTIONS=""
+  if [ "$1" = "--install-prd" ]
+  then
+    printf "Installing in production mode...\n"
+    NPM_CI_OPTIONS=" --omit=dev"
+  fi
+
   printf "Installing the main packages of the repository...\n"
-  npm ci
+  npm ci $NPM_CI_OPTIONS
   printf "\n\n"
 
   printf "Installing the packages of 'awsLambdas' application...\n"
   cd "$CURRENT_DIRECTORY/src/app/awsLambdas"
-  npm ci
+  npm ci $NPM_CI_OPTIONS
   printf "\n\n"
 
   printf "Installing the packages of 'server' application...\n"
   cd "$CURRENT_DIRECTORY/src/app/server"
-  npm ci
+  npm ci $NPM_CI_OPTIONS
   printf "\n\n"
 
   # Note: npm ci solves the error when trying to run the dist:
@@ -79,11 +87,20 @@ then
 fi
 
 
-if [[ "$1" = "--reset" ]]
+if [ "$1" = "--reset-init" ]
 then
   printf "All 'node_modules' directories will be deleted.\n"
-  ask_for_confirmation
-  if [ $? -eq 1 ]
+
+  REPLY=0
+  if [ "$2" != "--yes" ]
+  then
+    ask_for_confirmation
+    REPLY=$?
+  else
+    REPLY=1
+  fi
+
+  if [[ $REPLY -eq 1 ]]
   then
     rm -rf **/node_modules 2>/dev/null
   fi

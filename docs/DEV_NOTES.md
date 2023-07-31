@@ -199,3 +199,4 @@ Credits: https://stackoverflow.com/a/65389878
 
 ## Package.json
 - How to add comments:  https://bobbyhadz.com/blog/add-comments-to-package-json
+- Pass external parameters to npm scripts: with '--'; example: `npm run reset-init -- --yes`

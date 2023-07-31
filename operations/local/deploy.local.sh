@@ -21,7 +21,10 @@ fi
 # Prepare local env for node/npm
 nvm use
 
-source ./operations/deploy/all-steps.sh
+# Disabled for safety reasons
+# it will delete node_modules and create local files
+# todo: ask for a confirmation
+# source ./operations/deploy/all-steps.sh
 RETURNED_VALUE=$?
 
 printf "\n\n"

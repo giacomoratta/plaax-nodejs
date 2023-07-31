@@ -12,8 +12,9 @@
   },
   "scripts": {
     "init": "chmod +x ./package.scripts.sh && $SHELL ./package.scripts.sh --install",
+    "init-prd": "chmod +x ./package.scripts.sh && $SHELL ./package.scripts.sh --install-prd",
     "clean": "$SHELL ./package.scripts.sh --clean",
-    "reset": "$SHELL ./package.scripts.sh --reset",
+    "reset-init": "$SHELL ./package.scripts.sh --reset-init",
     "ts-check": "npx tsc --noEmit",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
