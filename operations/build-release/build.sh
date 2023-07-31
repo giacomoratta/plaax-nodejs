@@ -19,15 +19,14 @@ AWS_LAMBDA_APP_DIRECTORY="./src/app/awsLambdas"
 
 printf "\nInstalling all packages with a clean-install..."
 npm run init
+npm run install-aws-lambdas
 
 printf "\nRunning test suite..."
 npm run test-aws-lambdas
 
 printf "\nBuilding the final distribution..."
-cd $AWS_LAMBDA_APP_DIRECTORY
-npm run build
-cd $CURRENT_DIRECTORY
+npm run build-aws-lambdas
 
 printf "\nInstalling the production packages..."
-npm run reset-init -- --yes
-npm run init-prd
+npm run reset-install -- --yes
+npm run install-aws-lambdas-prd

@@ -5,6 +5,8 @@ printf "Node version: $(node --version)\n"
 printf "Npm version: $(npm --version)\n"
 printf "\n"
 
+CURRENT_DIRECTORY=$(pwd)
+
 
 
 # Functions ----------------------------------------------------------------------------------------------------
@@ -57,12 +59,14 @@ then
 fi
 
 
-if [ "$1" = "--install" ] || [ "$1" = "--install-prd" ]
+if [[ $1 =~ ^"--install" ]]
 then
-  CURRENT_DIRECTORY=$(pwd)
+  # Note: npm ci solves the error when trying to run the dist:
+  # Cannot find module... Please verify that the package.json has a valid "main" entry"
 
   NPM_CI_OPTIONS=""
-  if [ "$1" = "--install-prd" ]
+
+  if [[ "$1" =~ "-prd"$ ]]
   then
     printf "Installing in production mode...\n"
     NPM_CI_OPTIONS=" --omit=dev"
@@ -72,22 +76,25 @@ then
   npm ci $NPM_CI_OPTIONS
   printf "\n\n"
 
-  printf "Installing the packages of 'awsLambdas' application...\n"
-  cd "$CURRENT_DIRECTORY/src/app/awsLambdas"
-  npm ci $NPM_CI_OPTIONS
-  printf "\n\n"
+  if [[ $1 =~ ^"--install-all" ]] || [[ $1 =~ ^"--install-aws-lambdas" ]]
+  then
+    printf "Installing the packages of 'awsLambdas' application...\n"
+    cd "$CURRENT_DIRECTORY/src/app/awsLambdas"
+    npm ci $NPM_CI_OPTIONS
+    printf "\n\n"
+  fi
 
-  printf "Installing the packages of 'server' application...\n"
-  cd "$CURRENT_DIRECTORY/src/app/server"
-  npm ci $NPM_CI_OPTIONS
-  printf "\n\n"
-
-  # Note: npm ci solves the error when trying to run the dist:
-  # Cannot find module... Please verify that the package.json has a valid "main" entry"
+  if [[ $1 =~ ^"--install-all" ]] || [[ $1 =~ ^"--install-server" ]]
+  then
+    printf "Installing the packages of 'server' application...\n"
+    cd "$CURRENT_DIRECTORY/src/app/server"
+    npm ci $NPM_CI_OPTIONS
+    printf "\n\n"
+  fi
 fi
 
 
-if [ "$1" = "--reset-init" ]
+if [ "$1" = "--reset-install" ]
 then
   printf "All 'node_modules' directories will be deleted.\n"
 
@@ -104,6 +111,22 @@ then
   then
     rm -rf **/node_modules 2>/dev/null
   fi
+fi
+
+
+if [ "$1" = "--build-aws-lambdas" ]
+then
+  cd "$CURRENT_DIRECTORY/src/app/awsLambdas"
+  npm run build
+  cd $CURRENT_DIRECTORY
+fi
+
+
+if [ "$1" = "--build-server" ]
+then
+  cd "$CURRENT_DIRECTORY/src/app/server"
+  npm run build
+  cd $CURRENT_DIRECTORY
 fi
 
 

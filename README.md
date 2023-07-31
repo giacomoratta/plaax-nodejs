@@ -41,8 +41,11 @@ node --version
 npm --version
 (or) nvm current
 
-# start the full installation of main packages and applications inside ./src/app
+# initialize the project before install
 npm run init
+
+# start the full installation of main packages and applications inside ./src/app
+npm run install-all
 
 # quick checks
 npm run ts-check
@@ -63,10 +66,19 @@ npm test
 - `npm run test-server`: run all common tests and the specific tests for server app
 
 ### Install & cleaning
-- `npm run init`: install common packages and application(s) packages
 - `npm run clean`: removes all generated files and directories (after build, test-coverage, etc.)
-- `npm run reset-init`: removes all node_modules directories
+- `npm run reset-install`: removes all node_modules directories
+- `npm run install-all`: install common packages and all application(s) packages with dev dependencies
+- `npm run install-all-prd`: install common packages and all application(s) packages
+- `npm run install-aws-lambdas`: install common packages and aws-lambdas application packages with dev dependencies
+- `npm run install-aws-lambdas-prd`: install common packages and aws-lambdas application packages
+- `npm run install-server`: install common packages and server application packages with dev dependencies
+- `npm run install-server-prd`: install common packages and server application packages
 
 ### Building
-- The main package.json should not have any build scripts since it is not a single application;
-- to build a specific application, go to its directory (e.g. `cd ./src/app/server`) and run `npm run build`.
+- `npm run build-aws-lambdas`: build the aws-lambda app
+- `npm run build-server`: build the server app
+
+The main package.json should not have any build scripts since it is not a single application;
+the commands above are just some wrappers which facilitates the build from the main directory.
+Alternatively, to build a specific application, go to its directory (e.g. `cd ./src/app/server`) and run `npm run build`.

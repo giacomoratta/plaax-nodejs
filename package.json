@@ -11,10 +11,8 @@
     "npm": ">=9.5.0 < 10.0.0"
   },
   "scripts": {
-    "init": "chmod +x ./package.scripts.sh && $SHELL ./package.scripts.sh --install",
-    "init-prd": "chmod +x ./package.scripts.sh && $SHELL ./package.scripts.sh --install-prd",
+    "init": "chmod +x ./package.scripts.sh",
     "clean": "$SHELL ./package.scripts.sh --clean",
-    "reset-init": "$SHELL ./package.scripts.sh --reset-init",
     "ts-check": "npx tsc --noEmit",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
@@ -22,7 +20,16 @@
     "test": "jest",
     "test-coverage": "jest --coverage",
     "test-aws-lambdas": "jest ./src/app/awsLambdas/src ./src/core",
-    "test-server": "jest ./src/app/server/src ./src/core"
+    "test-server": "jest ./src/app/server/src ./src/core",
+    "install-all": "$SHELL ./package.scripts.sh --install-all",
+    "install-all-prd": "$SHELL ./package.scripts.sh --install-all-prd",
+    "install-aws-lambdas": "$SHELL ./package.scripts.sh --install-aws-lambdas",
+    "install-aws-lambdas-prd": "$SHELL ./package.scripts.sh --install-aws-lambdas-prd",
+    "install-server": "$SHELL ./package.scripts.sh --install-server",
+    "install-server-prd": "$SHELL ./package.scripts.sh --install-server-prd",
+    "reset-install": "$SHELL ./package.scripts.sh --reset-install",
+    "build-aws-lambdas": "$SHELL ./package.scripts.sh --build-aws-lambdas",
+    "build-server": "$SHELL ./package.scripts.sh --build-server"
   },
   "repository": {
     "type": "git",
