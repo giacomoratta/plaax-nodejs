@@ -58,7 +58,6 @@ COPY ./.eslintignore ./
 COPY ./.eslintrc.js ./
 COPY ./.npmrc ./
 COPY ./jest.config.js ./
-COPY ./tsconfig.build.json ./
 COPY ./tsconfig.eslint.json ./
 COPY ./tsconfig.json ./
 

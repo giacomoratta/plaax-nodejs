@@ -42,3 +42,13 @@ ddbClient.send.mockImplementation(async () => {})
 │  ├─ @aws-sdk 
 │  │  ├─ client-dynamodb.ts
 ```
+
+
+### Pino logger
+
+#### How to log errors properly
+The typical error object is expected to have type, stack and message.
+The final from `log.error({ error: e }, 'message')` will have an **empty** error object.
+
+Pino needs to receive the error object directly like `log.error(e, 'optional message')`:
+the log will have 'err' property with the full object correctly **transformed** by pino.

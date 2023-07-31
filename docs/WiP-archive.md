@@ -31,7 +31,17 @@ _(sorted by descending date)_
   - update docs with snippets and bash notes
   - update README
   - create apps README
-
+- Add the final logger
+  - GOAL: do not log with console
+  - Introduce pino-logger (+ research for alternatives)
+    - !! Do before the code starts growing up
+    - add pino-http for express/koa https://www.makeuseof.com/node-js-logging-top-packages/
+  - Deploy and check: error stacks should point to the exact line of source TS code
+  - Add flag to activate verbose test logs
+- Test production packages inside app directory
+  - pino is in the main node_modules
+  - for lambda app there are no production packages
+  - tested with lodash chunk into lambda handler: it works
 
 #### PLX-1007: MVP1 part4
 - GitHub actions: introduction

@@ -18,7 +18,7 @@ export const getExpandedUserBoard = async (userId: number): Promise<ProjectExpan
         try {
           return await getExpandedProject(projectId)
         } catch (error) {
-          log.error({ error }, `getExpandedProject failure on project ${projectId}`)
+          log.error(error, `getExpandedProject failure on project ${projectId}`)
         }
       })
 

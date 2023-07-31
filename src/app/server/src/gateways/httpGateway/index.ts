@@ -85,7 +85,7 @@ export abstract class HttpGateway {
     if (!axios.isAxiosError(error) || error.response == null) {
       const gatewayError = new Error('Unexpected error' + (error?.message === null ? '' : `: ${error.message}`))
       gatewayError.name = 'Gateway Error'
-      log.error({ gatewayError, error })
+      log.error(error, gatewayError.name)
       throw gatewayError
     }
 
