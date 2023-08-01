@@ -84,6 +84,10 @@ The noEmit option tells TypeScript that we only want to run type checking and do
 - `date`: differences between bash and zsh
   - zsh: `date -v-30d "+%Y-%m-%d"`
   - bash: `date -d "30 days ago" "+%Y-%m-%d"`
+- run commands and save output into a file:
+  - `2>&1 | tee -a build.log`
+  - `2>&1` redirects stderr into the stdout stream
+  - `-a` option appends the output instead of overwriting (the log file will have more info)
 
 
 ## Docker
@@ -97,12 +101,19 @@ The noEmit option tells TypeScript that we only want to run type checking and do
 - `docker run --rm ...`
 
 ### ENV vs. ARG
-- `ENV` should be used for environment variables for the running software.
-- `ARG` should be used for arguments inside the docker file.
-
-### Environment variables
-- Image: `docker build --build-arg var_name ...`
-- Container: `docker run --env var_name ...`
+- `ARG` should be used for arguments inside the docker file and saving environment variables
+  - usage (image build): `docker build --build-arg var_name="value" ...`
+  - usage for setting environment variables:
+    ```
+    ARG var_name
+    ENV MY_ENV_VAR $var_name
+    ```
+- `ENV` should be used for on-the-fly environment variables for the running software
+  - better for sensitive data, since it will be not saved into the image
+  - usage (container run): `docker run --env var_name="value" ...` 
+  - usage (container run) with variable: `docker run --env AWS_ACCESS_KEY_ID ...`
+    - the docker command reads the value from local variable $AWS_ACCESS_KEY_ID
+    - the container will have the environment variable as $AWS_ACCESS_KEY_ID
 
 ### Secrets inside images and containers
 - Keeping secrets in the image is an unsafe solution: look for alternative approaches.

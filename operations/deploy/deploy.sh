@@ -10,16 +10,6 @@ set -e
 # Re-exported because it is needed by included scripts
 export RELEASE_HASH=$RELEASE_HASH
 
-# Check $RELEASE_HASH
-if [ ${#RELEASE_HASH} -lt 2 ]
-  then
-    printf "Missing RELEASE_HASH environment variable! \n"
-    exit 1
-fi
-
-chmod +x ./operations/utils/*.sh
-chmod +x ./operations/deploy/*.sh
-
 
 # Check $ENV_NAME allowed values
 source ./operations/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME

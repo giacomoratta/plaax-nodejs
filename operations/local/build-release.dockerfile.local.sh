@@ -5,42 +5,43 @@ set -e
 # by passing arguments with some local sensitive data.
 
 DOCKER_IMAGE_NAME="gr/plaax-nodejs/build-release"
+RELEASE_HASH=$(git rev-parse HEAD)
 
 # Build docker image for build-release
 if [[ "$1" = "--build" ]]
 then
-  docker build -t $DOCKER_IMAGE_NAME -f ./operations/build-release/all-steps.dockerfile .
-else
-  if [[ "$1" != "--run" ]]
+  docker build \
+    -t $DOCKER_IMAGE_NAME \
+    --build-arg release_hash=$RELEASE_HASH \
+    -f ./operations/build-release/all-steps.dockerfile .
+
+elif [[ "$1" = "--sh" ]]
+then
+  docker run --rm -it $DOCKER_IMAGE_NAME sh
+
+elif [[ "$1" = "--run" ]]
+then
+  # Prepare local env for aws
+  source ./operations/local/utility.set-aws-env.local.sh
+  RETURNED_VALUE=$?
+  if [ $RETURNED_VALUE -ne 0 ]
   then
-    printf "Parameter #1 not valid (current $1). Accepted options: --build or --run.\n\n"
+    # not the correct aws local setup!
     exit
   fi
+
+  # Run container for publishing release
+  #  > "--rm" removes after the execution
+  docker run --rm \
+    --platform linux/x86_64 \
+    --env AWS_ACCESS_KEY_ID \
+    --env AWS_SECRET_ACCESS_KEY \
+    $DOCKER_IMAGE_NAME
+
+else
+  printf "Parameter #1 not valid (current '$1'). Accepted options: --build, -sh, --run.\n\n"
 fi
 
-
-# Prepare local env for aws
-source ./operations/local/utility.set-aws-env.local.sh
-RETURNED_VALUE=$?
-if [ $RETURNED_VALUE -ne 0 ]
-then
-  # not the correct aws local setup!
-  exit
-fi
-
-
-# Set other env. variables for the container
-export RELEASE_HASH=$(git rev-parse HEAD)
-
-
-# Run container for publishing release
-#  > "--rm" removes after the execution
-docker run --rm \
-  --platform linux/x86_64 \
-  --env RELEASE_HASH \
-  --env AWS_ACCESS_KEY_ID \
-  --env AWS_SECRET_ACCESS_KEY \
-  $DOCKER_IMAGE_NAME
 
 # Notes:
 # 1) do not use "--env AWS_PROFILE" to prevent the error: "The config profile (...) could not be found"

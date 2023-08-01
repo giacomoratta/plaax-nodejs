@@ -42,6 +42,11 @@ _(sorted by descending date)_
   - pino is in the main node_modules
   - for lambda app there are no production packages
   - tested with lodash chunk into lambda handler: it works
+- Fix operations after splitting core/app
+  - fix operation dockerfile
+  - simplify dockerfile with just copy and run
+  - fix local scripts for running dockerfiles
+
 
 #### PLX-1007: MVP1 part4
 - GitHub actions: introduction

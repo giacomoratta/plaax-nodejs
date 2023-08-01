@@ -19,13 +19,14 @@
 
 ### Next steps for MVP: general - MVP1-Part5
 
-- Fix operations
-  - diff init/build scripts by app
-    - check param starts with string
-  - fix operation dockerfile
-    - no plaax-base-install
-    - use .dockerignore
-    - the image should just: install apt, copy all files needed, run all-steps.sh
+- Differentiate operations by app
+  - fix names of GitHub workflows
+  - fix operations
+    - move all content into /awsLambdas
+    - or rename to operations.awsLambdas
+    - or rename to operations.aws.lambdas
+  - try to move yml files of workflows into sub-dir /aws.lambdas
+  - rename app/awsLambdas to app/aws.lambdas
 
 - Finalize server app for local development
   - (done) run local and run local docker

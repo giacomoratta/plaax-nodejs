@@ -20,6 +20,10 @@ RUN ./aws/install && aws --version
 
 FROM plaax-nodejs18-aws2-linux AS plaax-deploy
 
+# Expected env. variables
+# $RELEASE_HASH (e.g. '31805e9')
+# $ENV_NAME (e.g. 'dev')
+
 ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
@@ -27,6 +31,5 @@ WORKDIR ${CONTAINER_WORKING_DIR}
 COPY --chmod=755 ./operations/utils ./operations/utils
 COPY --chmod=755 ./operations/deploy ./operations/deploy
 
-CMD ./operations/deploy/all-steps.sh
-
 # Note: CMD is overridden when container is run with -it...sh
+CMD ./operations/deploy/deploy.sh

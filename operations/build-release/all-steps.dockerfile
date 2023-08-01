@@ -20,48 +20,52 @@ RUN ./aws/install && aws --version
 
 
 
-FROM plaax-nodejs18-aws2-linux AS plaax-base-install
-
-LABEL version="1.0"
-LABEL description="The base image with full installation."
-
-ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
-
-WORKDIR ${CONTAINER_WORKING_DIR}
-
-COPY ./package.json ./
-
-# needed by 'npm ci'
-COPY ./package-lock.json ./
-
-# npm clean-install
-RUN npm ci
-
-
-
-FROM plaax-base-install AS plaax-release
+FROM plaax-nodejs18-aws2-linux AS plaax-release
 
 LABEL version="1.0"
 LABEL description="Files and scripts needed to build and release: it must be run as container.\
 All sensitive data (e.g. AWS credentials) must be passed to the container as env variables."
 
-ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
+# Expected build args
+ARG release_hash
 
+ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 WORKDIR ${CONTAINER_WORKING_DIR}
 
+# installation
+COPY ./.npmrc ./
+COPY ./package.json ./
+COPY ./package-lock.json ./
+COPY --chmod=755 ./package.scripts.sh ./
+
+# testing
 COPY ./.jest ./.jest
 COPY ./__mocks__ ./__mocks__
-COPY --chmod=755 ./operations/utils ./operations/utils
-COPY --chmod=755 ./operations/build-release ./operations/build-release
-COPY ./src ./src
 COPY ./.eslintignore ./
 COPY ./.eslintrc.js ./
-COPY ./.npmrc ./
 COPY ./jest.config.js ./
+
+# building
 COPY ./tsconfig.eslint.json ./
 COPY ./tsconfig.json ./
 
-# RUN npm test
+# source files
+COPY ./src/__tests__ ./src/__tests__
+COPY ./src/core ./src/core
+COPY ./src/app/awsLambdas ./src/app/awsLambdas
+
+# operations
+COPY --chmod=755 ./operations/utils ./operations/utils
+COPY --chmod=755 ./operations/build-release ./operations/build-release
+
+# environment variables for operations
+ENV RELEASE_HASH $release_hash
+RUN echo "(env) RELEASE_HASH=$RELEASE_HASH"
+
+# run build operations
+RUN ./operations/build-release/build.sh 2>&1 | tee -a build.log
+RUN ./operations/build-release/bundle-zip.sh 2>&1 | tee -a bundle-zip.log
+
 
 # Note: CMD is overridden when container is run with -it...sh
-CMD ./operations/build-release/all-steps.sh
+CMD ./operations/build-release/release.sh
