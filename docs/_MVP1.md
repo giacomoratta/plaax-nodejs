@@ -20,15 +20,15 @@
 ### Next steps for MVP: general - MVP1-Part5
 
 - Differentiate operations by app
-  - fix names of GitHub workflows
+  - rename awsLambdas into aws-lambdas
   - fix operations
-    - move all content into /awsLambdas
-    - or rename to operations.awsLambdas
-    - or rename to operations.aws.lambdas
-  - try to move yml files of workflows into sub-dir /aws.lambdas
-  - rename app/awsLambdas to app/aws.lambdas
+    - move all content into /aws-lambdas
+    - fix all references, paths, etc.
+    - add comment "run this script from repo root"
+    - fix names of GitHub workflows
+  - try to move yml files of workflows into sub-dir /aws-lambdas
 
-- Finalize server app for local development
+- Finalize server app for hybrid local development
   - (done) run local and run local docker
   - Dockerfile / Dockerfile.prod
     - is really needed now to be perfect?
@@ -67,6 +67,7 @@
     - also document git workflows and the usage of operations
 
 
+
 ### Next steps for MVP: test development experience - MVP1-Part6
 
 - Create POST controller for new items
@@ -82,39 +83,30 @@
 
 ### Nice-to-have (not for MVP)
 
-- Experiment with Lambda's code
-  - Extract "awsLambdas" dir
-  - All the logic for lambdas here
-  - package.json with the specific packages
-  - Challenge#1: build code from separate directories
-    - multiple rootDir with `"rootDirs": ["./scripts", "./src"]` 
-    - https://www.typescriptlang.org/docs/handbook/module-resolution.html#virtual-directories-with-rootdirs
-  - Challenge#2: operations and workflows should be differentiated
-    - current ops/wf should be put into sub-dir "aws-serverless"
-    - then rename all file paths into .sh and docker files
+- Deploy server app on ECS
+  - with shared dynamodb (deployed from static cfn)
 
 - Local dev with koa + local aws (e.g. dynamodb)
   - GOAL: play with local aws services and containers
-  - GOAL2: remove useless dependencies for lambda bundles
-  - STEPS:
-    - build and run a local-dev server with koa running on docker
-    - allow test api with requests to remote aws cloud
-    - setup a full local aws env on docker containers
-  - Possible implementation:
-    - Extract "server" dir
-    - All the logic for an EC service here
-    - package.json with the specific packages
+  - build and run a local-dev server with koa running on docker
+  - setup a full local aws env on docker containers
+
+- Replace current s3 plaax-dev-release with plaax-temp-release
+  - dev is an ENV name, but the s3 is not for dev env. only
+  - "temp" clarifies the purpose and the low-importance of the data inside the s3
+    - ...in case we want to delete the content, the word "temp" suggests that it can be done with no consequences
+  - check aws-release.utils.sh
+  - check plaax-stack-static.aws-cfn.yml
 
 - Automate copy main releases into special bucket
   - create GitHub action
   - copy a release when PR is merged into main to "plaax-release-main"
-
-- Replace current s3 plaax-dev-release with plaax-temp-release
+  - periodic cleaning of dev-releases
+  - automate with S3
  
 - Make a plan for periodic operations
+  - GitHub actions? Local scripts? >> Do some local scripts first!
   - npm vulnerabilities
   - package minor updates
   - package major updates
-  - GitHub actions? Local scripts?
-
-- Deploy server app on ECS
+  - periodic cleaning of S3 dev-releases (local, s3, or actions?)

@@ -23,8 +23,6 @@
   - (done) define typical queries CRUD for the APIs
   - (done) connect to AWS via SDK3
 - (done) define main AWS-SDK3 queries
-- (t.b.d.) add sql-db (mysql) locally
-- (t.b.d.) add no-sql-db (dynamodb?) locally
 
 #### THE PROJECT (basics): concept of backend
 - (done) define structure of api, gateway, repositories, etc. (clear architecture)
@@ -45,15 +43,22 @@
   - (done) complex operations with db executed together, return complex domain objects
 
 #### THE PROJECT (basics): MVP1
-- simulation of implementation, test, deployment, changes, re-deployment
-- simple cloudformation template with lambda, gateway, dynamodb, etc.
-- add source-map (for TS line numbers)
+- (wip) simulation of implementation, test, deployment, changes, re-deployment
+- (done) simple cloudformation template with lambda, gateway, dynamodb, etc.
+- (done) add source-map (for TS line numbers)
+- (done) GitHub actions
 
-#### THE PROJECT (basics): backend
-- add pino logger for the code (suppress on tests)
+#### THE PROJECT (basics): MVP1-backend
+- (wip) create api layer (focus on the basic features of task manager)
+- (done) add pino logger for the code (suppress on tests)
 - add logger for api requests (pino? as middleware?) (suppress on tests)
-- (done) create api layer (focus on the basic features of task manager)
-- use nodemon, better dev env
+- local-dev env. with server
+  - nodemon
+  - containerized
+  - script for cleaning docker stuff from this project
+  - simulate api with remote dynamodb connection
+  - add sql-db (mysql) locally?
+  - add no-sql-db (dynamodb?) locally?
 
 #### DEPLOYMENT ON AWS AS SERVERLESS
 - (done) deploy on AWS as DEV environment
@@ -63,12 +68,7 @@
 - (done) define architecture
 - (done) arch#1 = lambda, api gateway, script with cloudformation on local
 
-#### THE PROJECT (extended): backend
-- API authentication layer w/ Lambda Authorizer or other on AWS
-- secure connection to API (use credentials, get token, api controllers checks current user)
-- script for cleaning docker stuff from this project
-
-#### Final MVP1: requirements
+#### Final MVP1: last requirements check
 - clean architecture
 - unit tests
 - tech/repo documentation (init, install, run, clean, stop, etc.)
@@ -78,15 +78,19 @@
   - api gateway
   - dynamodb
   - lambda handler for api
-  - aws auth. for api
 - deployment with local AWS-CFN script with params: env, ...?
+
+#### THE PROJECT (extended): backend auth
+- API authentication layer w/ Lambda Authorizer or other on AWS
+- secure connection to API (use credentials, get token, api controllers checks current user)
+- wait for calls from frontend?
 
 
 
 ## More challenges
 
 #### THE PROJECT (more)
-- split code in more lambdas and api gateways (not needed for now, but good to know)
+- split code in more lambdas and api gateways (not needed for now, but good to experiment with)
 - docker compose with postgres
 - docker compose with dynamodb
 - integration tests
@@ -100,7 +104,8 @@
 #### PRODUCTION
 - distinction between dev and prod
 - arch#2 = ecs/ec2, pm2, stability
-- nodejs security: https://link.medium.com/cWMfbbv1SAb
+- nodejs security: https://levelup.gitconnected.com/top-10-best-practices-to-secure-node-js-apps-in-production-916c69fcb43f
+- nodejs memory leak: https://medium.com/@london.lingo.01/advanced-techniques-for-detecting-memory-leaks-in-node-js-applications-6169995ff729
 
 #### CI/CD
 - GitHub actions
