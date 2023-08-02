@@ -27,9 +27,9 @@ zip -r $RELEASE_BASE_ZIP_FILENAME ./node_modules
 source ./operations/utils/aws-release.utils.sh --delete-current-local-release
 
 CURRENT_DIRECTORY=$(pwd)
-AWS_LAMBDA_APP_DIRECTORY="$CURRENT_DIRECTORY/src/app/awsLambdas"
+AWS_LAMBDA_APP_DIRECTORY="$CURRENT_DIRECTORY/src/app/aws-lambdas"
 AWS_LAMBDA_DIST_DIRECTORY="$AWS_LAMBDA_APP_DIRECTORY/dist"
-AWS_LAMBDA_DIST_APP_DIRECTORY="$AWS_LAMBDA_APP_DIRECTORY/dist/app/awsLambdas"
+AWS_LAMBDA_DIST_APP_DIRECTORY="$AWS_LAMBDA_APP_DIRECTORY/dist/app/aws-lambdas"
 
 # Add files to 'dist' directory
 cp "$AWS_LAMBDA_APP_DIRECTORY/package.json" $AWS_LAMBDA_DIST_APP_DIRECTORY

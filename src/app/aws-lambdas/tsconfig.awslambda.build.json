@@ -5,7 +5,7 @@
   },
   "include": [
     "../../../src/core/**/*.ts",
-    "../../../src/app/awsLambdas/src/**/*.ts"
+    "../../../src/app/aws-lambdas/src/**/*.ts"
   ],
   "exclude": [
     "node_modules",

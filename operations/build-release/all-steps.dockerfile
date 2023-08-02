@@ -52,7 +52,7 @@ COPY ./tsconfig.json ./
 # source files
 COPY ./src/__tests__ ./src/__tests__
 COPY ./src/core ./src/core
-COPY ./src/app/awsLambdas ./src/app/awsLambdas
+COPY ./src/app/aws-lambdas ./src/app/aws-lambdas
 
 # operations
 COPY --chmod=755 ./operations/utils ./operations/utils

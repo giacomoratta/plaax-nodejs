@@ -20,7 +20,7 @@
 ### Next steps for MVP: general - MVP1-Part5
 
 - Differentiate operations by app
-  - rename awsLambdas into aws-lambdas
+  - (done) rename awsLambdas into aws-lambdas
   - fix operations
     - move all content into /aws-lambdas
     - fix all references, paths, etc.

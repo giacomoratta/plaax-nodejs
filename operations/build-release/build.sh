@@ -15,7 +15,7 @@ printf " >> NPM version: "
 npm --version
 
 CURRENT_DIRECTORY=$(pwd)
-AWS_LAMBDA_APP_DIRECTORY="./src/app/awsLambdas"
+AWS_LAMBDA_APP_DIRECTORY="./src/app/aws-lambdas"
 
 printf "\nInstalling all packages with a clean-install..."
 npm run init

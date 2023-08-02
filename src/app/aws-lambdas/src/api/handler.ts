@@ -3,7 +3,7 @@ import { routesHandlerMap } from './apiRoutesHandler'
 import { genericJsonServerError } from './responseBuilders'
 
 import { createLogger } from '../../../../core/logger'
-const log = createLogger('awsLambda/api/index')
+const log = createLogger('aws-lambdas/api/index')
 
 export const setupLambdaApiHandler = (handlersMap: LambdaApiRoutesHandlerMap): LambdaHandler => {
   return async (event, context) => {

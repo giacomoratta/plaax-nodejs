@@ -10,7 +10,7 @@ _(sorted by descending date)_
 - Remove useless dependencies for lambda bundle
   - remove from main package.json to make `npm ci` faster
   - common package.json and tsconfig.json for dev/build steps
-  - changed structure to src/core and src/app/<awsLambda|server>
+  - changed structure to src/core and src/app/<awsLambdas|server>
   - every app has its specific package.json with production dependencies
   - changed operations script after the new structure
   - add package-scripts.sh to wrap multiple commands that needs to be run together
@@ -21,7 +21,7 @@ _(sorted by descending date)_
       - remove local "clean" from package.json(s)
     - install
       - npm ci
-      - cd src/app/awsLambdas; npm ci
+      - cd src/app/aws-lambdas; npm ci
       - cd src/app/server; npm ci - problem "Cannot find module... Please verify that the package.json has a valid "main" entry"
     - reset
       - ask for confirmation

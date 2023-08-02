@@ -9,7 +9,7 @@ import * as boardApiController from '../../../../core/apiControllers/board.contr
 import * as userProjectsApiController from '../../../../core/apiControllers/userProjects.controller'
 
 // import { createLogger } from '../../logger'
-// const log = createLogger('awsLambda/api/routesHandler')
+// const log = createLogger('aws-lambdas/api/routesHandler')
 
 export const routesHandlerMap: LambdaApiRoutesHandlerMap = {
   'GET /user/{userId}/projects': {

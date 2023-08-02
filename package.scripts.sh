@@ -78,8 +78,8 @@ then
 
   if [[ $1 =~ ^"--install-all" ]] || [[ $1 =~ ^"--install-aws-lambdas" ]]
   then
-    printf "Installing the packages of 'awsLambdas' application...\n"
-    cd "$CURRENT_DIRECTORY/src/app/awsLambdas"
+    printf "Installing the packages of 'aws-lambdas' application...\n"
+    cd "$CURRENT_DIRECTORY/src/app/aws-lambdas"
     npm ci $NPM_CI_OPTIONS
     printf "\n\n"
   fi
@@ -116,7 +116,7 @@ fi
 
 if [ "$1" = "--build-aws-lambdas" ]
 then
-  cd "$CURRENT_DIRECTORY/src/app/awsLambdas"
+  cd "$CURRENT_DIRECTORY/src/app/aws-lambdas"
   npm run build
   cd $CURRENT_DIRECTORY
 fi

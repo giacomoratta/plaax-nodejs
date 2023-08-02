@@ -13,7 +13,7 @@ without the help of frameworks or multi-tools packages.
 - [docs](docs): notes, snippets, project documentations;
 - [operations](operations): scripts for ci/cd operations both for local run and GitHub actions;
 - [src/core](src%2Fcore): common code shared by specific applications of this project;
-- [src/app/awsLambdas](src%2Fapp%2FawsLambdas): project implementation as serverless (based on AWS Lambda);
+- [src/app/aws-lambdas](src%2Fapp%2Faws-lambdas): project implementation as serverless (based on AWS Lambda);
 - [src/app/server](src%2Fapp%2Fserver): project implementation as containerized server.
 
 **src/core vs. src/app**. This repository has the main code of the project and some of its possible applications 
