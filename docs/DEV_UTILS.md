@@ -43,6 +43,41 @@ while read -r SingleLine
   done <<< "$MultipleLines"
 ```
 
+#### Check current SHELL
+```
+is_zsh_shell () {
+  SUB='zsh'
+  if [[ "$SHELL" == *"$SUB"* ]]
+  then
+    return 1
+  fi
+  return 0
+}
+```
+
+#### Console: ask for confirmation
+```
+ask_for_confirmation () {
+  QUESTION="Are you sure? [y/N] "
+  is_zsh_shell
+  if [ $? -eq 1 ]
+  then
+    # read command for /bin/zsh
+    read "REPLY?$QUESTION"
+  else
+    # read command for /bin/bash
+    read -r -p "$QUESTION" REPLY
+  fi
+
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    return 1
+  fi
+  return 0
+}
+```
+
+
 
 ## AWS Cli
 
@@ -64,6 +99,7 @@ aws s3api list-objects-v2 \
 ```
 
 
+
 ## Docker
 
 Docker images for Node: https://hub.docker.com/_/node
@@ -72,6 +108,9 @@ Docker images for Node: https://hub.docker.com/_/node
 ```
 # Build the image
 docker build -t gr/plaax-nodejs .
+
+# Build the image of a specific stage
+docker build --target basebuilder -t gr/plaax-nodejs .
 
 # Check image content
 docker run -it gr/plaax-nodejs sh

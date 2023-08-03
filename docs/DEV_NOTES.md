@@ -2,9 +2,9 @@
 
 ## Local config for `git`, `npm`, `nvm`
 
-#### Set a permanent git config for a repository 
+### `git`: set a permanent git config for a repository 
 This way will prevent the usage of other git accounts or global settings.
-```shell
+```
 $ git config --local user.email '878787+myusername@users.noreply.github.com'
 $ git config --local user.name 'myusername'
 
@@ -20,36 +20,49 @@ $ ssh-add --apple-use-keychain ~/.ssh/<key-name> #add permanently (macOs 2023)
 $ ssh -vT git@github.com
 ```
 
-#### Set a local npm registry
+### `npm`: set a local npm registry
 Create the file `.npmrc` with the following content:
-```text
+```
 registry=https://registry.npmjs.org/
 @namespace:registry=https://registry.npmjs.org/
 ```
 
-#### Set local node and npm versions
-- Add `engines` section to `package.json`:
-  ```
-  "engines": {
-    "node": ">=18.12.1 <19.0.0",
-    "npm": ">=9.5.0 < 10.0.0"
-  }
-  ```
-- Create the `.nvmrc` file:
-  ```shell
-  $ nvm use lts/hydrogen
-  $ node -v > .nvmrc
+### `npm` + `nvm`: set local node and npm versions
+1. Add `engines` section to `package.json`:
+    ```
+    "engines": {
+      "node": ">=18.12.1 <19.0.0",
+      "npm": ">=9.5.0 < 10.0.0"
+    }
+    ```
+2. Install `nvm`
+3. Create the `.nvmrc` file:
+    ```
+    $ nvm use lts/hydrogen
+    $ node -v > .nvmrc
+    
+    # next time, just run:
+    $ nvm use
+    ```
   
-  # next time, just run:
-  $ nvm use
-  ```
-  
-#### Exclusions in .gitignore
-```text
+### Exclusions in .gitignore
+```
 *
 !.gitignore
 !readme
 ```
+
+
+## Typescript
+
+### Option --noEmit
+The noEmit option tells TypeScript that we only want to run type checking and do not want the compiler to output any transpiled code.
+
+### Different TsConfigs
+- [tsconfig.json](..%2Ftsconfig.json): the main tsconfig with common and general configs;
+  it must keep this name (not tsconfig.common.json) so the IDE or other automatic checks can easily find it.
+- [tsconfig.build.json](..%2Ftsconfig.build.json): specific config for distribution build;
+- [tsconfig.eslint.json](..%2Ftsconfig.eslint.json): config for eslint checks.
 
 
 ## Bash Scripting
@@ -62,47 +75,67 @@ registry=https://registry.npmjs.org/
 - `set -e`: exit immediately if a command exits with a non-zero status;
 - `alias` must be avoided in the scripts: it is made for terminal usage; use functions instead;
 - `printf` is preferable to `echo` (which does not process escape characters like `\n`; `echo -e` does it!).
+- `$SHELL` (outputs: `/bin/zsh` or `/bin/bash`) states the current shell; it can be used to:
+  - force scripts to be executed with the current shell
+  - differentiate commands based on the compatibility zsh vs. bash (e.g. `read` or `date`)
+- `read`: differences between bash and zsh
+  - zsh: `read "REPLY?$QUESTION"`
+  - bash: `read -r -p "$QUESTION" REPLY`
+- `date`: differences between bash and zsh
+  - zsh: `date -v-30d "+%Y-%m-%d"`
+  - bash: `date -d "30 days ago" "+%Y-%m-%d"`
+- run commands and save output into a file:
+  - `2>&1 | tee -a build.log`
+  - `2>&1` redirects stderr into the stdout stream
+  - `-a` option appends the output instead of overwriting (the log file will have more info)
 
 
 ## Docker
 
-#### COPY always as 'root' user
+### COPY always as 'root' user
 - The `COPY` instruction sets the copied files with `root` user.
 - Use `--chowm` if we need to set another user.
 - `COPY --chown=${USER_GROUP} ./src ./src`
 
-#### Remove container after the execution
+### Remove container after the execution
 - `docker run --rm ...`
 
-#### ENV vs. ARG
-- `ENV` should be used for environment variables for the running software.
-- `ARG` should be used for arguments inside the docker file.
+### ENV vs. ARG
+- `ARG` should be used for arguments inside the docker file and saving environment variables
+  - usage (image build): `docker build --build-arg var_name="value" ...`
+  - usage for setting environment variables:
+    ```
+    ARG var_name
+    ENV MY_ENV_VAR $var_name
+    ```
+- `ENV` should be used for on-the-fly environment variables for the running software
+  - better for sensitive data, since it will be not saved into the image
+  - usage (container run): `docker run --env var_name="value" ...` 
+  - usage (container run) with variable: `docker run --env AWS_ACCESS_KEY_ID ...`
+    - the docker command reads the value from local variable $AWS_ACCESS_KEY_ID
+    - the container will have the environment variable as $AWS_ACCESS_KEY_ID
 
-#### Environment variables
-- Image: `docker build --build-arg var_name ...`
-- Container: `docker run --env var_name ...`
-
-#### Secrets inside images and containers
+### Secrets inside images and containers
 - Keeping secrets in the image is an unsafe solution: look for alternative approaches.
 - Containers are always accessible, so do not keep secrets in containers where other people can access them;
 - if we run a container in a controlled environment (e.g. local env.), secrets are quite safe;
 - ...otherwise, there are other methods to access and use secrets.
 
-#### Good practice: do not run processes as root
+### Good practice: do not run processes as root
 Running processes in the container as the root user is a precarious security practice: use a low privileged user and proper filesystem permissions. Builder stages are run as root because 1) it requires less docker instructions and 2) as far as I know - it does not represent a security issue. 
 
-#### Good practice: do not run the app as PID1
+### Good practice: do not run the app as PID1
 > PID 1 is special in unix, and so omitting an init system often leads to incorrect handling of processes and signals, and can result in problems such as containers which can't be gracefully stopped, or leaking containers which should have been destroyed. In Linux, processes in a PID namespace form a tree with each process having a parent process. Only one process at the root of the tree doesn't really have a parent. This is the "init" process, which has PID 1.
 
 **Solution**: use `tini` or `dumb-init`.
 - If PID1 is our app, it does not handle child-process signals, so they remain as zombie with reserved resources.
 - When PID1 is 'tini' and our app terminates, the init system takes care of cleaning the process table.
 
-#### Naming conventions of Docker files
+### Naming conventions of Docker files
 - `Dockerfile.testRunner`
 - `testRunner.Dockerfile`
 
-#### REFERENCES
+### REFERENCES
 - https://towardsdev.com/writing-a-docker-file-for-your-node-js-typescript-micro-service-c5170b957893
 - https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf
 - https://petermalmgren.com/pid-1-child-processes-docker/
@@ -173,4 +206,8 @@ Credits: https://stackoverflow.com/a/65389878
 - Differentiate environments for deployments:
   - define a global env. variable `ENV_NAME`;
   - use it in the script wherever it is needed as `$ENV_NAME`.
- 
+
+
+## Package.json
+- How to add comments:  https://bobbyhadz.com/blog/add-comments-to-package-json
+- Pass external parameters to npm scripts: with '--'; example: `npm run reset-init -- --yes`

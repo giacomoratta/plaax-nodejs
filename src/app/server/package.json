@@ -1,0 +1,32 @@
+{
+  "name": "plaax-nodejs-server",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18.12.1 <19.0.0",
+    "npm": ">=9.5.0 < 10.0.0"
+  },
+  "scripts": {
+    "build": "npx tsc --project ./tsconfig.server.build.json",
+    "start-dev": "npm run build && NODE_ENV=development node ./dist/app/server/start",
+    "start-prd": "NODE_ENV=production node ./src/start",
+    "docker-build": "echo 'not-implemented'",
+    "docker-run": "echo 'not-implemented'",
+    "docker-start": "echo 'not-implemented'",
+    "docker-stop": "echo 'not-implemented'",
+    "docker-list-containers": "echo 'not-implemented'",
+    "docker-list-images": "echo 'not-implemented'",
+    "docker-clean": "echo 'not-implemented'",
+    "docker-rm-containers": "echo 'not-implemented'",
+    "docker-rm-images": "echo 'not-implemented'"
+  },
+  "devDependencies": {
+    "@types/koa__router": "^12.0.0"
+  },
+  "dependencies": {
+    "@koa/router": "^12.0.0",
+    "axios": "1.1.3",
+    "dotenv": "^16.0.3",
+    "koa": "^2.13.4",
+    "koa-pino-logger": "^4.0.0"
+  }
+}

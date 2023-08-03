@@ -1,0 +1,25 @@
+name: deploy-dev
+
+on:
+  workflow_dispatch:
+
+env:
+  ENV_NAME: "dev"
+
+jobs:
+  deploy-job:
+    runs-on: ubuntu-latest # ubuntu-22.04
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+
+      - name: Set permissions to build-release sh files as executables
+        run: chmod +x ./operations/aws-lambdas/deploy/*.sh
+
+      - name: Deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          RELEASE_HASH: ${{ github.sha }}
+        run: ./operations/aws-lambdas/deploy/deploy.sh $ENV_NAME
+        shell: bash

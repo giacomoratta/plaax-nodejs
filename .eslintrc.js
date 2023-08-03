@@ -11,13 +11,14 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'eslint-config-standard',
-    'eslint-config-standard-with-typescript',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended'
   ],
   rules: {
     'no-console': 1, /* warning */
     '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/ban-ts-comment': 1, /* ban-ts-ignore is deprecated */
+    '@typescript-eslint/no-duplicate-enum-values': 0,
     'max-len': [
       // https://eslint.org/docs/latest/rules/max-len (todo: use prettier for auto-format)
       'error',

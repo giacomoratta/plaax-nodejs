@@ -2,6 +2,61 @@
 _(sorted by descending date)_
 
 
+#### PLX-1008: MVP1 part5
+- Update dependencies and vulnerabilities
+  - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
+  - Get rid of vulnerabilities ASAP
+  - Update with breaking changes
+- Remove useless dependencies for lambda bundle
+  - remove from main package.json to make `npm ci` faster
+  - common package.json and tsconfig.json for dev/build steps
+  - changed structure to src/core and src/app/<awsLambdas|server>
+  - every app has its specific package.json with production dependencies
+  - changed operations script after the new structure
+  - add package-scripts.sh to wrap multiple commands that needs to be run together
+    - clean
+      - rm -rf **/release*.zip 2>/dev/null (only 1 *?)
+      - rm -rf **/dist 2>/dev/null
+      - rm -rf **/coverage 2>/dev/null
+      - remove local "clean" from package.json(s)
+    - install
+      - npm ci
+      - cd src/app/aws-lambdas; npm ci
+      - cd src/app/server; npm ci - problem "Cannot find module... Please verify that the package.json has a valid "main" entry"
+    - reset
+      - ask for confirmation
+      - full clean
+      - rm -rf **/node_modules 2>/dev/null
+  - added "notes" to package.json https://bobbyhadz.com/blog/add-comments-to-package-json
+  - update docs with snippets and bash notes
+  - update README
+  - create apps README
+- Add the final logger
+  - GOAL: do not log with console
+  - Introduce pino-logger (+ research for alternatives)
+    - !! Do before the code starts growing up
+    - add pino-http for express/koa https://www.makeuseof.com/node-js-logging-top-packages/
+  - Deploy and check: error stacks should point to the exact line of source TS code
+  - Add flag to activate verbose test logs
+- Test production packages inside app directory
+  - pino is in the main node_modules
+  - for lambda app there are no production packages
+  - tested with lodash chunk into lambda handler: it works
+- Fix operations after splitting core/app
+  - fix operation dockerfile
+  - simplify dockerfile with just copy and run
+  - fix local scripts for running dockerfiles
+- Differentiate operations by app
+  - rename awsLambdas into aws-lambdas
+  - operations: move all content into /aws-lambdas
+    - fix all references, paths, etc.
+    - add comment "run this script from repo root"
+    - fix names of GitHub workflows
+  - try to move yml files of workflows into sub-dir /aws-lambdas
+    - not supported yet
+    - rename to aws-lambdas.build-release.yml
+
+
 #### PLX-1007: MVP1 part4
 - GitHub actions: introduction
   - GOAL: final ci/cd setup
