@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set permissions to build-release sh files as executables
-        run: chmod +x ./operations/deploy/*.sh
+        run: chmod +x ./operations/aws-lambdas/deploy/*.sh
 
       - name: Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           RELEASE_HASH: ${{ github.sha }}
-        run: ./operations/deploy/deploy.sh $ENV_NAME
+        run: ./operations/aws-lambdas/deploy/deploy.sh $ENV_NAME
         shell: bash

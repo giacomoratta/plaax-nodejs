@@ -10,7 +10,7 @@ jobs:
       - name: Repository checkout
         uses: actions/checkout@v3
       - name: Build docker image
-        run: DOCKER_BUILDKIT=1 docker build -t gr/plaax-nodejs/build-release -f ./operations/build-release/all-steps.dockerfile .
+        run: DOCKER_BUILDKIT=1 docker build -t gr/plaax-nodejs/build-release -f ./operations/aws-lambdas/build-release/all-steps.dockerfile .
       - name: Run docker image
         run: docker run
           --platform linux/x86_64

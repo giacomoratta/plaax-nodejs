@@ -28,8 +28,8 @@ ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
 
-COPY --chmod=755 ./operations/utils ./operations/utils
-COPY --chmod=755 ./operations/deploy ./operations/deploy
+COPY --chmod=755 ./operations/aws-lambdas/utils ./operations/aws-lambdas/utils
+COPY --chmod=755 ./operations/aws-lambdas/deploy ./operations/aws-lambdas/deploy
 
 # Note: CMD is overridden when container is run with -it...sh
-CMD ./operations/deploy/deploy.sh
+CMD ./operations/aws-lambdas/deploy/deploy.sh

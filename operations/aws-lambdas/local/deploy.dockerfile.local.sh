@@ -12,7 +12,7 @@ export RELEASE_HASH=$(git rev-parse HEAD)
 # Build docker image for deploy
 if [[ "$1" = "--build" ]]
 then
-  docker build -t $DOCKER_IMAGE_NAME -f ./operations/deploy/all-steps.dockerfile .
+  docker build -t $DOCKER_IMAGE_NAME -f ./operations/aws-lambdas/deploy/all-steps.dockerfile .
 
 elif [[ "$1" = "--sh" ]]
 then
@@ -21,7 +21,7 @@ then
 elif [[ "$1" = "--run" ]]
 then
   # Prepare local env for aws
-  source ./operations/local/utility.set-aws-env.local.sh
+  source ./operations/aws-lambdas/local/utility.set-aws-env.local.sh
   RETURNED_VALUE=$?
   if [ $RETURNED_VALUE -ne 0 ]
   then
@@ -47,7 +47,7 @@ fi
 # 1) do not use "--env AWS_PROFILE" to prevent the error: "The config profile (...) could not be found"
 
 # Useful commands to build and run
-# 1 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f ./operations/deploy.dockerfile .
+# 1 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f ./operations/aws-lambdas/deploy.dockerfile .
 # 2 dir-levels behind:  docker build -t gr/plaax-nodejs/deploy -f deploy.dockerfile ../
 # This dir-level:       docker build -t gr/plaax-nodejs/deploy -f deploy.dockerfile ../../
 # Run as SH and remove: docker run --rm -it gr/plaax-nodejs/deploy sh

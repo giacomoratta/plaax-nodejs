@@ -12,15 +12,15 @@ export RELEASE_HASH=$RELEASE_HASH
 
 
 # Check $ENV_NAME allowed values
-source ./operations/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
+source ./operations/aws-lambdas/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
 
 
 # Get the latest published release label ($LATEST_RELEASE_LABEL)
-source ./operations/utils/aws-release.utils.sh --check-latest-published-releases
+source ./operations/aws-lambdas/utils/aws-release.utils.sh --check-latest-published-releases
 
 
 # Deploy the stack
-./operations/deploy/plaax-stack.aws-cfn.operations.sh \
+./operations/aws-lambdas/deploy/plaax-stack.aws-cfn.operations.sh \
   $ENV_NAME \
   $LATEST_RELEASE_LABEL \
   --deploy

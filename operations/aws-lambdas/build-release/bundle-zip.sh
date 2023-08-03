@@ -4,7 +4,7 @@
 set -e
 
 # Generate new release filenames
-source ./operations/utils/aws-release.utils.sh --generate-new-release-names
+source ./operations/aws-lambdas/utils/aws-release.utils.sh --generate-new-release-names
 
 # Check $RELEASE_LBAPI1_ZIP_FILENAME
 if [ ${#RELEASE_LBAPI1_ZIP_FILENAME} -lt 2 ]
@@ -24,7 +24,7 @@ zip -r $RELEASE_BASE_ZIP_FILENAME ./node_modules
 
 
 # Delete all local zip files
-source ./operations/utils/aws-release.utils.sh --delete-current-local-release
+source ./operations/aws-lambdas/utils/aws-release.utils.sh --delete-current-local-release
 
 CURRENT_DIRECTORY=$(pwd)
 AWS_LAMBDA_APP_DIRECTORY="$CURRENT_DIRECTORY/src/app/aws-lambdas"

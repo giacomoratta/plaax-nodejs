@@ -17,16 +17,7 @@
 
 
 
-### Next steps for MVP: general - MVP1-Part5
-
-- Differentiate operations by app
-  - (done) rename awsLambdas into aws-lambdas
-  - fix operations
-    - move all content into /aws-lambdas
-    - fix all references, paths, etc.
-    - add comment "run this script from repo root"
-    - fix names of GitHub workflows
-  - try to move yml files of workflows into sub-dir /aws-lambdas
+### Next steps for MVP: general - MVP1-Part6
 
 - Finalize server app for hybrid local development
   - (done) run local and run local docker
@@ -68,7 +59,7 @@
 
 
 
-### Next steps for MVP: test development experience - MVP1-Part6
+### Next steps for MVP: test development experience - MVP1-Part7
 
 - Create POST controller for new items
   - GOAL: play with IDs table

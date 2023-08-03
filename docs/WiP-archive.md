@@ -46,6 +46,15 @@ _(sorted by descending date)_
   - fix operation dockerfile
   - simplify dockerfile with just copy and run
   - fix local scripts for running dockerfiles
+- Differentiate operations by app
+  - rename awsLambdas into aws-lambdas
+  - operations: move all content into /aws-lambdas
+    - fix all references, paths, etc.
+    - add comment "run this script from repo root"
+    - fix names of GitHub workflows
+  - try to move yml files of workflows into sub-dir /aws-lambdas
+    - not supported yet
+    - rename to aws-lambdas.build-release.yml
 
 
 #### PLX-1007: MVP1 part4

@@ -55,17 +55,17 @@ COPY ./src/core ./src/core
 COPY ./src/app/aws-lambdas ./src/app/aws-lambdas
 
 # operations
-COPY --chmod=755 ./operations/utils ./operations/utils
-COPY --chmod=755 ./operations/build-release ./operations/build-release
+COPY --chmod=755 ./operations/aws-lambdas/utils ./operations/aws-lambdas/utils
+COPY --chmod=755 ./operations/aws-lambdas/build-release ./operations/aws-lambdas/build-release
 
 # environment variables for operations
 ENV RELEASE_HASH $release_hash
 RUN echo "(env) RELEASE_HASH=$RELEASE_HASH"
 
 # run build operations
-RUN ./operations/build-release/build.sh 2>&1 | tee -a build.log
-RUN ./operations/build-release/bundle-zip.sh 2>&1 | tee -a bundle-zip.log
+RUN ./operations/aws-lambdas/build-release/build.sh 2>&1 | tee -a build.log
+RUN ./operations/aws-lambdas/build-release/bundle-zip.sh 2>&1 | tee -a bundle-zip.log
 
 
 # Note: CMD is overridden when container is run with -it...sh
-CMD ./operations/build-release/release.sh
+CMD ./operations/aws-lambdas/build-release/release.sh

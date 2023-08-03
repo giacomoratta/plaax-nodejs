@@ -18,7 +18,7 @@ fi
 
 
 # Prepare local env for aws
-source ./operations/local/utility.set-aws-env.local.sh
+source ./operations/aws-lambdas/local/utility.set-aws-env.local.sh
 RETURNED_VALUE=$?
 if [ $RETURNED_VALUE -ne 0 ]
 then
@@ -28,12 +28,12 @@ fi
 
 
 # Check $ENV_NAME allowed values
-source ./operations/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
+source ./operations/aws-lambdas/utils/aws-release.utils.sh --exit-on-invalid-env-name $ENV_NAME
 
 
 # Get the latest published release label ($LATEST_RELEASE_LABEL)
-source ./operations/utils/aws-release.utils.sh --check-latest-published-releases
+source ./operations/aws-lambdas/utils/aws-release.utils.sh --check-latest-published-releases
 
 
 # Run the main script
-source ./operations/deploy/plaax-stack.aws-cfn.operations.sh $ENV_NAME $LATEST_RELEASE_LABEL $1
+source ./operations/aws-lambdas/deploy/plaax-stack.aws-cfn.operations.sh $ENV_NAME $LATEST_RELEASE_LABEL $1
