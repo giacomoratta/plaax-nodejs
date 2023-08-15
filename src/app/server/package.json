@@ -7,8 +7,8 @@
   },
   "scripts": {
     "build": "npx tsc --project ./tsconfig.server.build.json",
-    "start-dev": "npm run build && NODE_ENV=development node ./dist/app/server/start",
-    "start-prd": "NODE_ENV=production node ./src/start",
+    "start-dev": "NODE_ENV=development node ./dist/app/server/src/start.js",
+    "start-prd": "NODE_ENV=production node ./dist/app/server/src/start.js",
     "docker-build": "echo 'not-implemented'",
     "docker-run": "echo 'not-implemented'",
     "docker-start": "echo 'not-implemented'",

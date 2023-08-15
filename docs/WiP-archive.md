@@ -2,6 +2,9 @@
 _(sorted by descending date)_
 
 
+#### PLX-1009: MVP1 part6
+...
+
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities
   - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
@@ -118,7 +121,7 @@ _(sorted by descending date)_
       - created a copy of object + created a rule
       - wait until 11 Jun at 16:00 and something should be deleted
       - try with 1 non-current-version objects retained
-      - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Foperations%2Fplaax-stack-static.aws-cfn.yml)
+      - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Foperations%2Faws-lambdas%2Fdeploy-static%2Fplaax-stack-static.aws-cfn.yml)
 
 
 #### PLX-1005: MVP1 part2

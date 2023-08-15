@@ -94,6 +94,7 @@
 - docker compose with postgres
 - docker compose with dynamodb
 - integration tests
+- lambda layers (enhance startup time)
 
 #### THE PROJECT (pro/optionals)
 - provide API with GraphQL
@@ -125,3 +126,7 @@
 - js bundlers: Webpack5, Rollup, Esbuild, Parcel, Vite, etc. https://byby.dev/web-bundlers
   (Vite uses esbuild for dependency bundles, rollup for production bundles)
 - Faster Virtual DOM https://github.com/aidenybai/million
+
+
+#### SERVERLESS PATTERN
+- https://blog.serverlessadvocate.com/unlocking-serverless-superpowers-mastering-the-8-crucial-design-patterns-every-engineer-should-128fafb87113
