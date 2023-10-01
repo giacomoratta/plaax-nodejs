@@ -1,5 +1,13 @@
-FROM --platform=linux/x86_64 node:18-slim AS basebuilder
+FROM --platform=linux/x86_64 node:18-slim AS plaax-nodejs18-aws2-linux-server
 # The base image for distbuilder, to avoid reinstalling all node modules.
+
+LABEL version="1.0"
+LABEL description="The base nodejs 18 image for fixed platform as linux x86-64 \
+with extra packages (aws-cli2, zip, tini, etc.) for a serverful backend."
+
+RUN apt-get update
+RUN apt-get install -y procps
+RUN apt-get install -y tini
 
 ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
@@ -25,7 +33,7 @@ RUN cd ./src/app/server && npm ci 2>&1 | tee -a install-server.log
 
 
 
-FROM basebuilder AS distbuilder
+FROM plaax-nodejs18-aws2-linux-server AS distbuilder
 # The distribution builder: run tests and compile typescript.
 
 # test & build files
@@ -47,19 +55,24 @@ RUN cd ./src/app/server && npm run build 2>&1 | tee -a build.log
 
 
 
-FROM distbuilder AS runner
+FROM plaax-nodejs18-aws2-linux-server AS runner
 # The final container for running the service.
 
-RUN apt-get update
-RUN apt-get install -y procps
-RUN apt-get install -y tini
-
-ENV NODE_ENV development
+ENV NODE_ENV production
 
 ARG EXEC_USER_GROUP=node:node
 ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 
 WORKDIR ${CONTAINER_WORKING_DIR}
+
+COPY --from=distbuilder ${CONTAINER_WORKING_DIR}/package.json .
+COPY --from=distbuilder ${CONTAINER_WORKING_DIR}/package-lock.json .
+RUN npm ci --omit=dev 2>&1 | tee -a install-core-prd.log # no dev dependencies - install the shared packages
+
+COPY --from=distbuilder ${CONTAINER_WORKING_DIR}/src/app/server/dist ./src/app/server/dist
+COPY --from=distbuilder ${CONTAINER_WORKING_DIR}/src/app/server/package.json ./src/app/server/package.json
+COPY --from=distbuilder ${CONTAINER_WORKING_DIR}/src/app/server/package-lock.json ./src/app/server/package-lock.json
+RUN cd ./src/app/server && npm ci --omit=dev 2>&1 | tee -a install-server-prd.log # no dev dependencies - install the shared packages
 
 # init system for a proper signal handling
 ENTRYPOINT ["tini", "--"]
@@ -73,4 +86,4 @@ USER ${EXEC_USER_GROUP}
 EXPOSE 3000
 
 # Note: CMD is overridden when container is run with -it...sh
-CMD cd ./src/app/server && npm run start-dev 2>&1 | tee -a run.log
+CMD cd ./src/app/server && npm run start-prd 2>&1 | tee -a run.log

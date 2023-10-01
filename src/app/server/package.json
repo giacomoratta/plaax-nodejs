@@ -9,15 +9,18 @@
     "build": "npx tsc --project ./tsconfig.server.build.json",
     "start-dev": "NODE_ENV=development node ./dist/app/server/src/start.js",
     "start-prd": "NODE_ENV=production node ./dist/app/server/src/start.js",
-    "docker-build": "echo 'not-implemented'",
-    "docker-run": "echo 'not-implemented'",
-    "docker-start": "echo 'not-implemented'",
-    "docker-stop": "echo 'not-implemented'",
-    "docker-list-containers": "echo 'not-implemented'",
-    "docker-list-images": "echo 'not-implemented'",
-    "docker-clean": "echo 'not-implemented'",
-    "docker-rm-containers": "echo 'not-implemented'",
-    "docker-rm-images": "echo 'not-implemented'"
+    "docker-dev-build": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --build",
+    "docker-dev-sh":    "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --sh",
+    "docker-dev-run":   "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --run",
+    "docker-dev-stop":  "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --stop",
+    "docker-prd-build": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --build",
+    "docker-prd-sh":    "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --sh",
+    "docker-prd-run":   "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --run",
+    "docker-prd-stop":  "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --stop",
+    "docker-list-containers": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --list-containers",
+    "docker-list-images":     "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --list-images",
+    "docker-rm-containers":   "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --rm-containers",
+    "docker-rm-images":       "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --rm-images"
   },
   "devDependencies": {
     "@types/koa__router": "^12.0.0"

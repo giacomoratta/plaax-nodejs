@@ -27,10 +27,7 @@
       do not change current one and make it working good enough;
     - rename to work with Dockerfile.dev
     - create final dev.dockerfile and prd.dockerfile
-  - (wip) run local with docker working with remote aws services
-    - extend bash script to autoload local aws credentials
-    - use .env file?
-  - add docker scripts
+  - (done) add docker scripts
     - create bash script with single option (with variables, etc.)
     - add build step // docker build --target distbuilder -t gr/plaax-nodejs -f ./Dockerfile ../../../
     - "docker-build": "docker build -t gr/plaax-nodejs .",
@@ -41,14 +38,16 @@
     - "docker-list-images": "docker images | awk '/plaax-nodejs/'",
     - "docker-rm-containers": "docker rm $(docker container ls -a | awk '/plaax-nodejs/ {print $1}')",
     - "docker-rm-images": "docker rmi $(docker images | awk '/plaax-nodejs/ {print $3}')"
-    - none images = dangling image https://www.freecodecamp.org/news/docker-remove-image-how-to-delete-docker-images-explained-with-examples/
+  - (wip) run local with docker working with remote aws services
+    - extend bash script to autoload local aws credentials
+    - use .env file?
   - implement 1 api endpoint
     - with unit-tests
   - implement all api endpoints
     - with unit-tests
     - some integration tests
 
-- Operations
+- (done) Operations
   - script to remove dangling images (none)
     - https://www.freecodecamp.org/news/docker-remove-image-how-to-delete-docker-images-explained-with-examples/
   - other scripts for cleaning
@@ -66,6 +65,7 @@
     - everything can change a lot
     - just do it for making the README complete for an external presentation
     - also document git workflows and the usage of operations
+    - add schemas and drawings
 
 
 
