@@ -3,7 +3,28 @@ _(sorted by descending date)_
 
 
 #### PLX-1009: MVP1 part6
-...
+- Finalize server app for hybrid local development
+  - GOAL: use koa, koa middlewares, play with docker
+  - (done) run local and run local docker
+  - (done) Dockerfile / Dockerfile.prod
+    - is really needed now to be perfect? no, do the best and leave comments with technical debt;
+      do not change current one and make it working good enough;
+    - rename to work with Dockerfile.dev
+    - create final dev.dockerfile and prd.dockerfile
+  - (done) add docker scripts
+    - create bash script with single option (with variables, etc.)
+    - add build step // docker build --target distbuilder -t gr/plaax-nodejs -f ./Dockerfile ../../../
+    - "docker-build": "docker build -t gr/plaax-nodejs .",
+    - "docker-run": "docker run -p 3000:3000 gr/plaax-nodejs",
+    - "docker-start": "docker container start $(docker container ls -a | awk '/plaax-nodejs/ {print $1}' | head -n1)",
+    - "docker-stop": "docker container stop $(docker container ls | awk '/plaax-nodejs/ {print $1}')",
+    - "docker-list-containers": "docker container ls -a | awk '/plaax-nodejs/'",
+    - "docker-list-images": "docker images | awk '/plaax-nodejs/'",
+    - "docker-rm-containers": "docker rm $(docker container ls -a | awk '/plaax-nodejs/ {print $1}')",
+    - "docker-rm-images": "docker rmi $(docker images | awk '/plaax-nodejs/ {print $3}')"
+  - (done) run local with docker working with remote aws services
+    - extend bash script to autoload local aws credentials
+    - use .env file?
 
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities

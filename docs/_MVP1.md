@@ -21,26 +21,10 @@
 
 - Finalize server app for hybrid local development
   - GOAL: use koa, koa middlewares, play with docker
-  - (done) run local and run local docker
-  - (done) Dockerfile / Dockerfile.prod
-    - is really needed now to be perfect? no, do the best and leave comments with technical debt;
-      do not change current one and make it working good enough;
-    - rename to work with Dockerfile.dev
-    - create final dev.dockerfile and prd.dockerfile
-  - (done) add docker scripts
-    - create bash script with single option (with variables, etc.)
-    - add build step // docker build --target distbuilder -t gr/plaax-nodejs -f ./Dockerfile ../../../
-    - "docker-build": "docker build -t gr/plaax-nodejs .",
-    - "docker-run": "docker run -p 3000:3000 gr/plaax-nodejs",
-    - "docker-start": "docker container start $(docker container ls -a | awk '/plaax-nodejs/ {print $1}' | head -n1)",
-    - "docker-stop": "docker container stop $(docker container ls | awk '/plaax-nodejs/ {print $1}')",
-    - "docker-list-containers": "docker container ls -a | awk '/plaax-nodejs/'",
-    - "docker-list-images": "docker images | awk '/plaax-nodejs/'",
-    - "docker-rm-containers": "docker rm $(docker container ls -a | awk '/plaax-nodejs/ {print $1}')",
-    - "docker-rm-images": "docker rmi $(docker images | awk '/plaax-nodejs/ {print $3}')"
-  - (wip) run local with docker working with remote aws services
-    - extend bash script to autoload local aws credentials
-    - use .env file?
+  - (wip) (priority) uniform responses from core api controllers
+    - return object with response code, message, data
+    - lambda and server should just transform the data in the proper format (if needed)
+  - (bug) run server-dev not working even if AWS env vars are set
   - implement 1 api endpoint
     - with unit-tests
   - implement all api endpoints
@@ -60,12 +44,18 @@
   - doc git guidelines
     - commit message stile
     - not allowed to push on master
+    - always pull-req
   - document scripts in operations + locals
     - briefly
     - everything can change a lot
     - just do it for making the README complete for an external presentation
     - also document git workflows and the usage of operations
     - add schemas and drawings
+    - repo split: pros & cons
+      - more efforts with operations (e.g. extra care with paths and packages)
+      - more efforts in keeping the repo well-structured and easy to understand
+      - work on code re-usability shared among 2 different backends
+        - e.g. api controllers needs to be the source of truth: specific backends have to just transform and send
 
 
 

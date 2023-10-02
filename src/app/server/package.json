@@ -7,29 +7,30 @@
   },
   "scripts": {
     "build": "npx tsc --project ./tsconfig.server.build.json",
-    "start-dev": "NODE_ENV=development node ./dist/app/server/src/start.js",
+    "start-dev": "NODE_ENV=development ts-node ./src/start.ts",
     "start-prd": "NODE_ENV=production node ./dist/app/server/src/start.js",
     "docker-dev-build": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --build",
-    "docker-dev-sh":    "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --sh",
-    "docker-dev-run":   "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --run",
-    "docker-dev-stop":  "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --stop",
+    "docker-dev-sh": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --sh",
+    "docker-dev-run": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --run",
+    "docker-dev-stop": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --stop",
     "docker-prd-build": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --build",
-    "docker-prd-sh":    "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --sh",
-    "docker-prd-run":   "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --run",
-    "docker-prd-stop":  "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --stop",
+    "docker-prd-sh": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --sh",
+    "docker-prd-run": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --run",
+    "docker-prd-stop": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh prd --stop",
     "docker-list-containers": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --list-containers",
-    "docker-list-images":     "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --list-images",
-    "docker-rm-containers":   "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --rm-containers",
-    "docker-rm-images":       "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --rm-images"
+    "docker-list-images": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --list-images",
+    "docker-rm-containers": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --rm-containers",
+    "docker-rm-images": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh - --rm-images"
   },
   "devDependencies": {
-    "@types/koa__router": "^12.0.0"
+    "@types/koa__router": "^12.0.1",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "@koa/router": "^12.0.0",
-    "axios": "1.1.3",
-    "dotenv": "^16.0.3",
-    "koa": "^2.13.4",
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "koa": "^2.14.2",
     "koa-pino-logger": "^4.0.0"
   }
 }

@@ -1,5 +1,6 @@
 FROM --platform=linux/x86_64 node:18-slim AS plaax-nodejs18-aws2-linux-server
 # The base image for distbuilder, to avoid reinstalling all node modules.
+# See .dockerignore for all globally ignored files
 
 LABEL version="1.0"
 LABEL description="The base nodejs 18 image for fixed platform as linux x86-64 \
@@ -50,8 +51,8 @@ COPY ./src/__tests__ ./src/__tests__
 COPY ./src/core ./src/core
 COPY ./src/app/server ./src/app/server
 
-# install server-specific app packages
-RUN cd ./src/app/server && npm run build 2>&1 | tee -a build.log
+# build the server app (with core modules) - NOT NEEDED for dev purposes
+# RUN cd ./src/app/server && npm run build 2>&1 | tee -a build.log
 
 
 
@@ -71,6 +72,9 @@ ENTRYPOINT ["tini", "--"]
 # Run processes in the container with low privileged user and proper filesystem permissions.
 RUN chown -R ${EXEC_USER_GROUP} ${CONTAINER_WORKING_DIR}
 USER ${EXEC_USER_GROUP}
+
+# Enable .env-dev file to be used for env variables
+RUN cd ./src/app/server && mv .env-dev .env
 
 # The container listens on the stated network ports during runtime
 # docker run -p 80:80/tcp -p 80:80/udp ...

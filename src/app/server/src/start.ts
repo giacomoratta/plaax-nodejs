@@ -1,7 +1,5 @@
-import * as dotenv from 'dotenv'
-
+import './env'
 import { server } from './setup'
-dotenv.config()
 
 // prevent open handles after running all tests
 if (process.env.NODE_ENV !== 'test') {

@@ -1,5 +1,6 @@
 FROM --platform=linux/x86_64 node:18-slim AS plaax-nodejs18-aws2-linux-server
 # The base image for distbuilder, to avoid reinstalling all node modules.
+# See .dockerignore for all globally ignored files
 
 LABEL version="1.0"
 LABEL description="The base nodejs 18 image for fixed platform as linux x86-64 \

@@ -9,6 +9,8 @@ const log = createLogger('repo/plaaxItems/userProjects')
 const ddbClient = new DynamoDBClient(DynamoDBClientConfiguration)
 
 export const getUserProjectIdsList = async (userId: number): Promise<UserProjectIdsList | undefined> => {
+  log.info({ DynamoDbTables, DynamoDBClientConfiguration }, 'aabb')
+
   const command = new QueryCommand({
     TableName: DynamoDbTables.USER_PROJECTS,
     KeyConditionExpression: 'userId = :userId',
