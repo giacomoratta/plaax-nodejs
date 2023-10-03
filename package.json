@@ -18,6 +18,8 @@
     "lint-fix": "eslint . --fix",
     "lint-debug": "DEBUG=eslint:cli-engine npm run lint",
     "test": "jest",
+    "test-memory-leak": "node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage --silent",
+    "test-memory-leak-break": "node --inspect-brk --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage --silent",
     "test-coverage": "jest --coverage",
     "test-aws-lambdas": "jest ./src/app/aws-lambdas/src ./src/core",
     "test-server": "jest ./src/app/server/src ./src/core",

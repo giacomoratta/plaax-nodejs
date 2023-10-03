@@ -51,14 +51,11 @@
 #### THE PROJECT (basics): MVP1-backend
 - (wip) create api layer (focus on the basic features of task manager)
 - (done) add pino logger for the code (suppress on tests)
-- add logger for api requests (pino? as middleware?) (suppress on tests)
-- local-dev env. with server
-  - nodemon
-  - containerized
-  - script for cleaning docker stuff from this project
-  - simulate api with remote dynamodb connection
-  - add sql-db (mysql) locally?
-  - add no-sql-db (dynamodb?) locally?
+- (done) add logger for api requests (pino? as middleware?) (suppress on tests)
+- (done) local-dev env. with server
+  - (done) containerized
+  - (done) script for cleaning docker stuff from this project
+  - (done) simulate api with remote dynamodb connection
 
 #### DEPLOYMENT ON AWS AS SERVERLESS
 - (done) deploy on AWS as DEV environment
@@ -95,6 +92,11 @@
 - docker compose with dynamodb
 - integration tests
 - lambda layers (enhance startup time)
+- ship logs to DataDog, Sentry, Logzio, or others
+- check test memory leaks
+- cache api responses (avoid dynamo, processing, etc.)
+  - better performance
+  - less usage (and costs) of aws services
 
 #### THE PROJECT (pro/optionals)
 - provide API with GraphQL
@@ -123,6 +125,7 @@
 - connect with SSO, Cognito, etc. ?
 - implement SSR
 - serve fragments w/ Lambda (SSR)
+- state management with Redux, Mobx, etc.
 - js bundlers: Webpack5, Rollup, Esbuild, Parcel, Vite, etc. https://byby.dev/web-bundlers
   (Vite uses esbuild for dependency bundles, rollup for production bundles)
 - Faster Virtual DOM https://github.com/aidenybai/million

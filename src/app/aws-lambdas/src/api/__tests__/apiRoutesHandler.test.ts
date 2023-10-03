@@ -2,6 +2,7 @@ import { routesHandlerMap } from '../apiRoutesHandler'
 
 import * as userProjectsApiController from '../../../../../core/apiControllers/userProjects.controller'
 import * as boardApiController from '../../../../../core/apiControllers/board.controller'
+import { dataNotFoundResponse, successResponse } from '../../../../../core/apiControllers/apiResponseBuilders'
 
 import {
   projectItemsArrayP1001P1002
@@ -33,17 +34,16 @@ describe('AWS Lambda handler for API Gateway', () => {
     })
 
     it('should return 404 if user has no projects', async () => {
-      mockedUserProjectsApiController.getUserProjects.mockImplementation(async () => { return undefined })
+      mockedUserProjectsApiController.getUserProjects
+        .mockResolvedValue(dataNotFoundResponse('The user 1234 is not associated to any project yet.'))
       // @ts-expect-error: incomplete parameters for route fn() - enough for testing
       const routeHandlerResponse = await routesHandlerMap[routeTestKey].fn(routeHandlerBasicEvent)
       expect(routeHandlerResponse.statusCode).toBe(404)
-      expect(routeHandlerResponse.body).toBe('{"message":"The user 1234 is not associated to any project yet.","payload":{}}')
+      expect(routeHandlerResponse.body).toBe('{"message":"The user 1234 is not associated to any project yet."}')
     })
 
     it('should return 200 with user projects', async () => {
-      mockedUserProjectsApiController.getUserProjects.mockImplementation(async () => {
-        return projectItemsArrayP1001P1002
-      })
+      mockedUserProjectsApiController.getUserProjects.mockResolvedValue(successResponse('ok!', projectItemsArrayP1001P1002))
       // @ts-expect-error: incomplete parameters for route fn() - enough for testing
       const routeHandlerResponse = await routesHandlerMap[routeTestKey].fn(routeHandlerBasicEvent)
 
@@ -72,11 +72,11 @@ describe('AWS Lambda handler for API Gateway', () => {
     })
 
     it('should return 404 if user has an empty board', async () => {
-      mockedBoardApiController.getUserBoard.mockImplementation(async () => { return undefined })
+      mockedBoardApiController.getUserBoard.mockResolvedValue(dataNotFoundResponse('Board not found for user 1234.'))
       // @ts-expect-error: incomplete parameters for route fn() - enough for testing
       const routeHandlerResponse = await routesHandlerMap[routeTestKey].fn(routeHandlerBasicEvent)
       expect(routeHandlerResponse.statusCode).toBe(404)
-      expect(routeHandlerResponse.body).toBe('{"message":"Board not found for user 1234.","payload":{}}')
+      expect(routeHandlerResponse.body).toBe('{"message":"Board not found for user 1234."}')
     })
 
     it('should return 200 with user board', async () => {
@@ -84,7 +84,7 @@ describe('AWS Lambda handler for API Gateway', () => {
         projectExpandedP1001,
         projectExpandedP1002
       ]
-      mockedBoardApiController.getUserBoard.mockImplementation(async () => { return userProjectsOnBoard })
+      mockedBoardApiController.getUserBoard.mockResolvedValue(successResponse('ok!', userProjectsOnBoard))
       // @ts-expect-error: incomplete parameters for route fn() - enough for testing
       const routeHandlerResponse = await routesHandlerMap[routeTestKey].fn(routeHandlerBasicEvent)
 

@@ -20,12 +20,13 @@ describe('API Controller: user-projects', () => {
       mockedUserProjectsRepo.getUserProjectsList.mockImplementation(async () => {
         throw new Error('Unexpected failure.')
       })
-      await expect(async () => await getUserProjects('1002')).rejects.toThrow('Unexpected failure.')
+      const apiResponse = await getUserProjects('1002')
+      expect(apiResponse.error?.message).toBe('Unexpected failure.')
     })
 
     it('should throw when userId is not valid', async () => {
-      await expect(async () => await getUserProjects('0dfa02'))
-        .rejects.toThrow('Invalid userId (\'0dfa02\'). Expected numbers only.')
+      const apiResponse = await getUserProjects('0dfa02')
+      expect(apiResponse.error?.message).toBe('Invalid userId (\'0dfa02\'). Expected numbers only.')
     })
   })
 })

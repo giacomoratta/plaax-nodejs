@@ -1,9 +1,6 @@
 import { type LambdaApiRoutesHandlerMap } from './types'
 
-import {
-  buildJsonResponse,
-  notFoundJsonServerError
-} from './responseBuilders'
+import { toLambdaApiResponse } from './lambdaResponseBuilders'
 
 import * as boardApiController from '../../../../core/apiControllers/board.controller'
 import * as userProjectsApiController from '../../../../core/apiControllers/userProjects.controller'
@@ -16,28 +13,16 @@ export const routesHandlerMap: LambdaApiRoutesHandlerMap = {
     enabled: true,
     fn: async (event) => {
       const userId = (event.pathParameters?.userId ?? '')
-      const data = await userProjectsApiController.getUserProjects(userId)
-      if (data == null) {
-        return notFoundJsonServerError(`The user ${userId} is not associated to any project yet.`)
-      }
-      return buildJsonResponse(200, {
-        message: 'Projects for the user ' + userId,
-        payload: data
-      })
+      const apiResponse = await userProjectsApiController.getUserProjects(userId)
+      return toLambdaApiResponse(apiResponse)
     }
   },
   'GET /board/user/{userId}': {
     enabled: true,
     fn: async (event) => {
       const userId = (event.pathParameters?.userId ?? '')
-      const data = await boardApiController.getUserBoard(userId)
-      if (data == null) {
-        return notFoundJsonServerError(`Board not found for user ${userId}.`)
-      }
-      return buildJsonResponse(200, {
-        message: 'Board for user ' + userId,
-        payload: data
-      })
+      const apiResponse = await boardApiController.getUserBoard(userId)
+      return toLambdaApiResponse(apiResponse)
     }
   }
   // 'GET /calendar/user/{userId}': { enabled: true, fn: () }

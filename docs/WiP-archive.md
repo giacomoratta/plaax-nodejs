@@ -25,6 +25,18 @@ _(sorted by descending date)_
   - (done) run local with docker working with remote aws services
     - extend bash script to autoload local aws credentials
     - use .env file?
+  - (done) Local operations for server
+    - script to remove dangling images (none)
+      - https://www.freecodecamp.org/news/docker-remove-image-how-to-delete-docker-images-explained-with-examples/
+    - other scripts for cleaning
+      - docker prune
+      - docker unused images (by containers)
+    - remove specific images created by operations
+      - add general script to other repo unix-utils
+  - (done) uniform responses from core api controllers
+    - return object with response code, message, data
+    - lambda and server should just transform the data in the proper format (if needed)
+    - test error responses on server
 
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities

@@ -26,7 +26,7 @@ describe('Integration tests for AWS Lambda handler for API Gateway', () => {
       })
 
       expect(apiResponse.statusCode).toBe(404)
-      expect(apiResponse.body).toBe('{"message":"The user 10115 is not associated to any project yet.","payload":{}}')
+      expect(apiResponse.body).toBe('{"message":"The user 10115 is not associated to any project yet."}')
     })
 
     it('should get some user projects', async () => {
@@ -61,7 +61,7 @@ describe('Integration tests for AWS Lambda handler for API Gateway', () => {
       })
 
       expect(apiResponse.statusCode).toBe(404)
-      expect(apiResponse.body).toBe('{"message":"Board not found for user 10115.","payload":{}}')
+      expect(apiResponse.body).toBe('{"message":"Board not found for user 10115."}')
     })
 
     it('should get the user board', async () => {

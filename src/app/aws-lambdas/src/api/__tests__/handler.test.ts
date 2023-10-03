@@ -1,5 +1,5 @@
 import { setupLambdaApiHandler } from '../handler'
-import { buildJsonResponse } from '../responseBuilders'
+import { toLambdaApiResponse } from '../lambdaResponseBuilders'
 
 describe('AWS Lambda handler for API Gateway', () => {
   it('should return 500 if route not found, 200 if route found', async () => {
@@ -8,7 +8,8 @@ describe('AWS Lambda handler for API Gateway', () => {
       [routeTestKey]: {
         enabled: true,
         fn: async (/* event */) => {
-          return buildJsonResponse(200, {
+          return toLambdaApiResponse({
+            code: 200,
             message: 'Sample message',
             payload: {}
           })
@@ -27,7 +28,7 @@ describe('AWS Lambda handler for API Gateway', () => {
 
     expect(unknownRouteResponse.statusCode).toBe(500)
     expect(unknownRouteResponse.body)
-      .toBe('{"message":"Internal server error.","payload":{"reason":"No handler found for this route: GET /unknown"}}')
+      .toBe('{"message":"Internal server error.","error":{"reason":"No handler found for this route: GET /unknown"}}')
   })
 
   it('should return 500 if route is not enabled', async () => {
@@ -46,7 +47,7 @@ describe('AWS Lambda handler for API Gateway', () => {
     expect(routesHandlerMap[routeTestKey].fn).not.toHaveBeenCalled()
     expect(getSampleRouteResponse.statusCode).toBe(500)
     expect(getSampleRouteResponse.body)
-      .toBe(`{"message":"Internal server error.","payload":{"reason":"Handler disabled for this route: ${routeTestKey}"}}`)
+      .toBe(`{"message":"Internal server error.","error":{"reason":"Handler disabled for this route: ${routeTestKey}"}}`)
   })
 
   it('should return 500 if route handler throws', async () => {
@@ -65,6 +66,6 @@ describe('AWS Lambda handler for API Gateway', () => {
 
     expect(getSampleRouteResponse.statusCode).toBe(500)
     expect(getSampleRouteResponse.body)
-      .toBe('{"message":"Internal server error.","payload":{"reason":"Unexpected error!"}}')
+      .toBe('{"message":"Internal server error.","error":{"reason":"Unexpected error!"}}')
   })
 })

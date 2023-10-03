@@ -20,12 +20,13 @@ describe('API Controller: board', () => {
       mockedPlaaxBoardRepo.getExpandedUserBoard.mockImplementation(async () => {
         throw new Error('Unexpected failure.')
       })
-      await expect(async () => await getUserBoard('1002')).rejects.toThrow('Unexpected failure.')
+      const apiResponse = await getUserBoard('1002')
+      expect(apiResponse.error?.message).toBe('Unexpected failure.')
     })
 
     it('should throw when userId is not valid', async () => {
-      await expect(async () => await getUserBoard('0dfa02'))
-        .rejects.toThrow('Invalid userId (\'0dfa02\'). Expected numbers only.')
+      const apiResponse = await getUserBoard('0dfa02')
+      expect(apiResponse.error?.message).toBe('Invalid userId (\'0dfa02\'). Expected numbers only.')
     })
   })
 })

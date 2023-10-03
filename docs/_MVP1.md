@@ -21,24 +21,12 @@
 
 - Finalize server app for hybrid local development
   - GOAL: use koa, koa middlewares, play with docker
-  - (wip) (priority) uniform responses from core api controllers
-    - return object with response code, message, data
-    - lambda and server should just transform the data in the proper format (if needed)
-  - (bug) run server-dev not working even if AWS env vars are set
+  - (bug) npm run server-dev not working even if AWS env vars are set
   - implement 1 api endpoint
     - with unit-tests
   - implement all api endpoints
     - with unit-tests
     - some integration tests
-
-- (done) Operations
-  - script to remove dangling images (none)
-    - https://www.freecodecamp.org/news/docker-remove-image-how-to-delete-docker-images-explained-with-examples/
-  - other scripts for cleaning
-    - docker prune
-    - docker unused images (by containers)
-  - remove specific images created by operations
-    - add general script to other repo unix-utils
 
 - Improve README to be a good presentation of the project
   - doc git guidelines
@@ -56,6 +44,7 @@
       - more efforts in keeping the repo well-structured and easy to understand
       - work on code re-usability shared among 2 different backends
         - e.g. api controllers needs to be the source of truth: specific backends have to just transform and send
+      - open to be playground for different backends and infra (aws-lambdas, gcp-functions, aws-ec-server, ...)
 
 
 
