@@ -22,11 +22,6 @@
 - Finalize server app for hybrid local development
   - GOAL: use koa, koa middlewares, play with docker
   - (bug) npm run server-dev not working even if AWS env vars are set
-  - (wip) implement 1 api endpoint
-    - with unit-tests
-  - implement all api endpoints
-    - with unit-tests
-    - some integration tests
 
 - Improve README to be a good presentation of the project
   - doc git guidelines

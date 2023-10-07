@@ -44,6 +44,8 @@ _(sorted by descending date)_
     - rename to just handler.integration.test.ts
     - clarify the usage of getMockedImplForAwsDdbClient (better using dynamodb mocking directly?)
     - document and motivate the type of integration test: https://katalon.com/resources-center/blog/integration-testing
+  - (done) server: implement 1 api endpoint
+    - with unit-tests and integration-tests
 
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities
