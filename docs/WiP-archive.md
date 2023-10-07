@@ -37,6 +37,9 @@ _(sorted by descending date)_
     - return object with response code, message, data
     - lambda and server should just transform the data in the proper format (if needed)
     - test error responses on server
+  - (done) jest tests memory config
+    - run tests for memory-leak discovery
+    - added 2 config for less memory and workers
 
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities
