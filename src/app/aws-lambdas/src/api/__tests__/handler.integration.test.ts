@@ -1,5 +1,20 @@
+/*
+* Integration tests for the full flow
+*   - FLOW:
+*     - from handler (w/ lambda event from API Gateway)
+*     - to DynamoDb (w/ its raw data)
+*   - APPROACH:
+*     - "big bang" integration testing - all modules are integrated and tested at once, as a singular entity
+*     - all modules involved are fully covered by unit-tests
+*   - NOTES:
+*     - only ddb is mocked
+*     - introduce ddb awareness in the integration tests
+*     - ideally, nothing should be mocked in the middle
+*/
+
 import handler from '../handler'
 
+import { cloneJsonObject } from '../../../../../__tests__/testUtils'
 import userProjectsU1005json
   from '../../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/userProjects-u1005.json'
 import projectItemsP1001P002
@@ -10,11 +25,19 @@ import allProjectItemsP1002FromDdb
   from '../../../../../core/repositories/PlaaxItemsRepo/__test-data-ddb__/allProjectItems-p1002.json'
 
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
-import { cloneJsonObject, getMockedImplForDdbClient } from '../../../../../__tests__/testUtils'
-const ddbClient = new DynamoDBClient({})
-const ddbClientSendMockImpl = getMockedImplForDdbClient(ddbClient)
+jest.mock('@aws-sdk/client-dynamodb')
 
 describe('Integration tests for AWS Lambda handler for API Gateway', () => {
+  const ddbClientInstance = new DynamoDBClient({})
+  const mockImplementationOnceForDdbClient = (fn) => {
+    // @ts-expect-error: TS2339 property does not exist on type
+    ddbClientInstance.send.mockImplementationOnce(fn)
+  }
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   describe('GET /user/{userId}/projects', () => {
     const routeTestKey = 'GET /user/{userId}/projects'
 
@@ -30,11 +53,12 @@ describe('Integration tests for AWS Lambda handler for API Gateway', () => {
     })
 
     it('should get some user projects', async () => {
-      ddbClientSendMockImpl(async () => {
+      mockImplementationOnceForDdbClient(async () => {
         /* ddb response for getUserProjectIdsList */
         return cloneJsonObject(userProjectsU1005json)
       })
-      ddbClientSendMockImpl(async () => {
+
+      mockImplementationOnceForDdbClient(async () => {
         /* ddb response for getProjectsById */
         return cloneJsonObject(projectItemsP1001P002)
       })
@@ -65,15 +89,17 @@ describe('Integration tests for AWS Lambda handler for API Gateway', () => {
     })
 
     it('should get the user board', async () => {
-      ddbClientSendMockImpl(async () => {
+      mockImplementationOnceForDdbClient(async () => {
         /* ddb response for getUserProjectIdsList */
         return cloneJsonObject(userProjectsU1005json)
       })
-      ddbClientSendMockImpl(async () => {
+
+      mockImplementationOnceForDdbClient(async () => {
         /* ddb response for getExpandedProject */
         return cloneJsonObject(allProjectItemsP1001FromDdb)
       })
-      ddbClientSendMockImpl(async () => {
+
+      mockImplementationOnceForDdbClient(async () => {
         /* ddb response for getExpandedProject */
         return cloneJsonObject(allProjectItemsP1002FromDdb)
       })
@@ -92,10 +118,3 @@ describe('Integration tests for AWS Lambda handler for API Gateway', () => {
     })
   })
 })
-
-/*
-* integration tests for the entire flow
-*  - only dynamodb is mocked
-*  - introduce ddb awareness in the integration tests
-*  - in theory, nothing should be mocked in the middle
-*/

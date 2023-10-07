@@ -40,6 +40,10 @@ _(sorted by descending date)_
   - (done) jest tests memory config
     - run tests for memory-leak discovery
     - added 2 config for less memory and workers
+  - (done) check handler.ddb.integration.test.ts
+    - rename to just handler.integration.test.ts
+    - clarify the usage of getMockedImplForAwsDdbClient (better using dynamodb mocking directly?)
+    - document and motivate the type of integration test: https://katalon.com/resources-center/blog/integration-testing
 
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities
