@@ -1,21 +1,15 @@
 import Koa from 'koa'
-import KoaRouter from '@koa/router'
 import { httpLogger } from './http-logger'
 import { stateMiddleware, genericErrorHandler } from './middlewares'
-import { addRouteHandlers } from './api/routeHandlers'
+import { createRestApiV1Router } from './api/restApiV1Router'
 
 export const server = new Koa()
 
-/* Keep all route definitions here for better readability */
-export const router = new KoaRouter({
-  prefix: '/rest/v1'
-})
-
-addRouteHandlers(router)
+export const routerRestApiV1 = createRestApiV1Router()
 
 server
   .use(genericErrorHandler)
   .use(httpLogger)
   .use(stateMiddleware)
-  .use(router.routes())
-  .use(router.allowedMethods())
+  .use(routerRestApiV1.routes())
+  .use(routerRestApiV1.allowedMethods())

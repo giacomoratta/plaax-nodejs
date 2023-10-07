@@ -3,7 +3,11 @@ import * as boardApiController from '../../../../core/apiControllers/board.contr
 import * as apiHelloWorld from '../../../../core/apiControllers/helloWorld'
 import { toServerApiResponseContext } from './serverResponseBuilders'
 
-export const addRouteHandlers = (router: KoaRouter) => {
+export const createRestApiV1Router = (): KoaRouter => {
+  const router = new KoaRouter({
+    prefix: '/rest/v1'
+  })
+
   router
     .get('/hello/world/:id', apiHelloWorld.getById)
     .get('/board/user/:userId', async (ctx): Promise<void> => {
@@ -16,4 +20,6 @@ export const addRouteHandlers = (router: KoaRouter) => {
   // .get('/calendar/:userId/:from/:to', apiCalendar.getByUserId)
   // .get('/calendar/:userId/:projectId/:from/:to', apiCalendar.getByUserProjectId)
   // .post('/calendar/item', apiCalendar.addItemToCalendar)
+
+  return router
 }
