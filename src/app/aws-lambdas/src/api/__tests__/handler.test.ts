@@ -66,6 +66,6 @@ describe('AWS Lambda handler for API Gateway', () => {
 
     expect(getSampleRouteResponse.statusCode).toBe(500)
     expect(getSampleRouteResponse.body)
-      .toBe('{"message":"Internal server error.","error":{"reason":"Unexpected error!"}}')
+      .toBe('{"message":"Internal server error.","error":{"message":"Error from route handler"}}')
   })
 })

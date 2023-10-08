@@ -25,9 +25,7 @@ export const setupLambdaApiHandler = (handlersMap: LambdaApiRoutesHandlerMap): L
       return await handlersMap[event.routeKey].fn(event, context)
     } catch (error) {
       log.error(error, 'API Lambda error.')
-      return genericJsonServerError({
-        reason: 'Unexpected error!'
-      })
+      return genericJsonServerError(error)
     }
   }
 }
