@@ -112,7 +112,7 @@ then
   # --rm: remove after the execution
   docker run --rm \
     --platform linux/x86_64 \
-    -p 5001:3000 \
+    -p 5001:3010 \
     --env ENV_NAME \
     --env RELEASE_HASH \
     --env AWS_ACCESS_KEY_ID \

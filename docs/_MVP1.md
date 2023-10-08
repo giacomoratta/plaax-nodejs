@@ -19,10 +19,6 @@
 
 ### Next steps for MVP: general - MVP1-Part6
 
-- Finalize server app for hybrid local development
-  - GOAL: use koa, koa middlewares, play with docker
-  - (bug) npm run server-dev not working even if AWS env vars are set
-
 - Improve README to be a good presentation of the project
   - doc git guidelines
     - commit message stile

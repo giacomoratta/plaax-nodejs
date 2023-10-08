@@ -84,7 +84,7 @@ USER ${EXEC_USER_GROUP}
 
 # The container listens on the stated network ports during runtime
 # docker run -p 80:80/tcp -p 80:80/udp ...
-EXPOSE 3000
+EXPOSE 3010
 
 # Note: CMD is overridden when container is run with -it...sh
 CMD cd ./src/app/server && npm run start-prd 2>&1 | tee -a run.log

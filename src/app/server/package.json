@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "npx tsc --project ./tsconfig.server.build.json",
-    "start-dev": "NODE_ENV=development ts-node ./src/start.ts",
+    "start-dev": "DOTENV=.env-dev NODE_ENV=development ts-node ./src/start.ts",
     "start-prd": "NODE_ENV=production node ./dist/app/server/src/start.js",
     "docker-dev-build": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --build",
     "docker-dev-sh": "cd ../../../ && $SHELL ./operations/server/local/dockerfile.local.sh dev --sh",
