@@ -46,6 +46,13 @@ _(sorted by descending date)_
     - document and motivate the type of integration test: https://katalon.com/resources-center/blog/integration-testing
   - (done) server: implement 1 api endpoint
     - with unit-tests and integration-tests
+- Improve README to be a good presentation of the project
+  - (done) section: the project (idea, just for dev, playground)
+  - (done) section: the repository (structure, etc.)
+  - (done) section: install, build, run (done)
+  - (done) section: ci/cd operations
+  - (done) section: app as aws-lambda
+  - (done) section: app as server
 
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities
