@@ -2,6 +2,58 @@
 _(sorted by descending date)_
 
 
+#### PLX-1009: MVP1 part6
+- Finalize server app for hybrid local development
+  - GOAL: use koa, koa middlewares, play with docker
+  - (done) run local and run local docker
+  - (done) Dockerfile / Dockerfile.prod
+    - is really needed now to be perfect? no, do the best and leave comments with technical debt;
+      do not change current one and make it working good enough;
+    - rename to work with Dockerfile.dev
+    - create final dev.dockerfile and prd.dockerfile
+  - (done) add docker scripts
+    - create bash script with single option (with variables, etc.)
+    - add build step // docker build --target distbuilder -t gr/plaax-nodejs -f ./Dockerfile ../../../
+    - "docker-build": "docker build -t gr/plaax-nodejs .",
+    - "docker-run": "docker run -p 3000:3000 gr/plaax-nodejs",
+    - "docker-start": "docker container start $(docker container ls -a | awk '/plaax-nodejs/ {print $1}' | head -n1)",
+    - "docker-stop": "docker container stop $(docker container ls | awk '/plaax-nodejs/ {print $1}')",
+    - "docker-list-containers": "docker container ls -a | awk '/plaax-nodejs/'",
+    - "docker-list-images": "docker images | awk '/plaax-nodejs/'",
+    - "docker-rm-containers": "docker rm $(docker container ls -a | awk '/plaax-nodejs/ {print $1}')",
+    - "docker-rm-images": "docker rmi $(docker images | awk '/plaax-nodejs/ {print $3}')"
+  - (done) run local with docker working with remote aws services
+    - extend bash script to autoload local aws credentials
+    - use .env file?
+  - (done) Local operations for server
+    - script to remove dangling images (none)
+      - https://www.freecodecamp.org/news/docker-remove-image-how-to-delete-docker-images-explained-with-examples/
+    - other scripts for cleaning
+      - docker prune
+      - docker unused images (by containers)
+    - remove specific images created by operations
+      - add general script to other repo unix-utils
+  - (done) uniform responses from core api controllers
+    - return object with response code, message, data
+    - lambda and server should just transform the data in the proper format (if needed)
+    - test error responses on server
+  - (done) jest tests memory config
+    - run tests for memory-leak discovery
+    - added 2 config for less memory and workers
+  - (done) check handler.ddb.integration.test.ts
+    - rename to just handler.integration.test.ts
+    - clarify the usage of getMockedImplForAwsDdbClient (better using dynamodb mocking directly?)
+    - document and motivate the type of integration test: https://katalon.com/resources-center/blog/integration-testing
+  - (done) server: implement 1 api endpoint
+    - with unit-tests and integration-tests
+- Improve README to be a good presentation of the project
+  - (done) section: the project (idea, just for dev, playground)
+  - (done) section: the repository (structure, etc.)
+  - (done) section: install, build, run (done)
+  - (done) section: ci/cd operations
+  - (done) section: app as aws-lambda
+  - (done) section: app as server
+
 #### PLX-1008: MVP1 part5
 - Update dependencies and vulnerabilities
   - GOAL: deal with major updates (Typescript 5, Eslint, Jest, etc.)
@@ -118,7 +170,7 @@ _(sorted by descending date)_
       - created a copy of object + created a rule
       - wait until 11 Jun at 16:00 and something should be deleted
       - try with 1 non-current-version objects retained
-      - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Foperations%2Fplaax-stack-static.aws-cfn.yml)
+      - set up the rule in [plaax-stack-static.aws-cfn.yml](..%2Foperations%2Faws-lambdas%2Fdeploy-static%2Fplaax-stack-static.aws-cfn.yml)
 
 
 #### PLX-1005: MVP1 part2

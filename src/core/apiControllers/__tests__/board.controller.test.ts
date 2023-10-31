@@ -17,15 +17,16 @@ describe('API Controller: board', () => {
     })
 
     it('should throw when repo function throws', async () => {
+      const errorMessage = 'getExpandedUserBoard: unexpected failure.'
       mockedPlaaxBoardRepo.getExpandedUserBoard.mockImplementation(async () => {
-        throw new Error('Unexpected failure.')
+        throw new Error(errorMessage)
       })
-      await expect(async () => await getUserBoard('1002')).rejects.toThrow('Unexpected failure.')
+      await expect(getUserBoard('1002')).rejects.toThrow(errorMessage)
     })
 
     it('should throw when userId is not valid', async () => {
-      await expect(async () => await getUserBoard('0dfa02'))
-        .rejects.toThrow('Invalid userId (\'0dfa02\'). Expected numbers only.')
+      const errorMessage = 'Invalid userId (\'0dfa02\'). Expected numbers only.'
+      await expect(getUserBoard('0dfa02')).rejects.toThrow(errorMessage)
     })
   })
 })

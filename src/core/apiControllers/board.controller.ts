@@ -1,8 +1,12 @@
 import { assertValidUserId } from './apiValidators'
+import { ApiResponse, dataNotFoundResponse, successResponse } from './apiResponseBuilders'
 import { getExpandedUserBoard } from '../repositories/PlaaxItemsRepo/board'
-import { type ProjectExpanded } from '../models/ItemExpanded'
 
-export const getUserBoard = async (userId: string): Promise<ProjectExpanded[] | undefined> => {
+export const getUserBoard = async (userId: string): Promise<ApiResponse> => {
   const intUserId = assertValidUserId(userId)
-  return await getExpandedUserBoard(intUserId)
+  const data = await getExpandedUserBoard(intUserId)
+  if (data == null) {
+    return dataNotFoundResponse(`Board not found for user ${userId}.`)
+  }
+  return successResponse('Board for user ' + userId, data)
 }

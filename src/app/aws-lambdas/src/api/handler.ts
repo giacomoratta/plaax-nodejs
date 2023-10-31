@@ -1,6 +1,6 @@
 import { type LambdaHandler, type LambdaApiRoutesHandlerMap } from './types'
 import { routesHandlerMap } from './apiRoutesHandler'
-import { genericJsonServerError } from './responseBuilders'
+import { genericJsonServerError } from './lambdaResponseBuilders'
 
 import { createLogger } from '../../../../core/logger'
 const log = createLogger('aws-lambdas/api/index')
@@ -25,9 +25,7 @@ export const setupLambdaApiHandler = (handlersMap: LambdaApiRoutesHandlerMap): L
       return await handlersMap[event.routeKey].fn(event, context)
     } catch (error) {
       log.error(error, 'API Lambda error.')
-      return genericJsonServerError({
-        reason: 'Unexpected error!'
-      })
+      return genericJsonServerError(error)
     }
   }
 }

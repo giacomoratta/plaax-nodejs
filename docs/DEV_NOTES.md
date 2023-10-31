@@ -97,8 +97,10 @@ The noEmit option tells TypeScript that we only want to run type checking and do
 - Use `--chowm` if we need to set another user.
 - `COPY --chown=${USER_GROUP} ./src ./src`
 
-### Remove container after the execution
-- `docker run --rm ...`
+### Cleaning operations
+- `docker run --rm ...`: remove container after the execution.
+- `docker images -qf "dangling=true"`: image with no name, displayed as `<none>`.
+- `docker prune`: Remove all unused containers, networks, images (both dangling and unreferenced), and optionally, volumes.
 
 ### ENV vs. ARG
 - `ARG` should be used for arguments inside the docker file and saving environment variables

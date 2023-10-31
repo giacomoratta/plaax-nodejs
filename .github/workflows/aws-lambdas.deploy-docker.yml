@@ -1,4 +1,4 @@
-name: deploy-dev-docker
+name: aws-lambdas.deploy-dev-docker
 
 on:
   workflow_dispatch:

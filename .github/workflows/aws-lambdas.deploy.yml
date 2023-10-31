@@ -1,4 +1,4 @@
-name: deploy-dev
+name: aws-lambdas.deploy-dev
 
 on:
   workflow_dispatch:

@@ -32,20 +32,18 @@ ARG release_hash
 ARG CONTAINER_WORKING_DIR=/home/plaax-nodejs
 WORKDIR ${CONTAINER_WORKING_DIR}
 
-# installation
+# installation files
 COPY ./.npmrc ./
 COPY ./package.json ./
 COPY ./package-lock.json ./
 COPY --chmod=755 ./package.scripts.sh ./
 
-# testing
+# test & build files
 COPY ./.jest ./.jest
 COPY ./__mocks__ ./__mocks__
 COPY ./.eslintignore ./
 COPY ./.eslintrc.js ./
 COPY ./jest.config.js ./
-
-# building
 COPY ./tsconfig.eslint.json ./
 COPY ./tsconfig.json ./
 

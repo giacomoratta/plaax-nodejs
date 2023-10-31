@@ -1,8 +1,12 @@
 import { assertValidUserId } from './apiValidators'
+import { ApiResponse, dataNotFoundResponse, successResponse } from './apiResponseBuilders'
 import { getUserProjectsList } from '../repositories/PlaaxItemsRepo/userProjects'
-import { type UserProjectsList } from '../models/User'
 
-export const getUserProjects = async (userId: string): Promise<UserProjectsList | undefined> => {
+export const getUserProjects = async (userId: string): Promise<ApiResponse> => {
   const intUserId = assertValidUserId(userId)
-  return await getUserProjectsList(intUserId)
+  const data = await getUserProjectsList(intUserId)
+  if (data == null) {
+    return dataNotFoundResponse(`The user ${userId} is not associated to any project yet.`)
+  }
+  return successResponse('Projects for the user ' + userId, data)
 }
